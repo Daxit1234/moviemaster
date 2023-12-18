@@ -1,13 +1,12 @@
 import React from 'react'
 import HeroBannerr from './herroBenner/HeroBannerr'
-import Header from "../../components/header/Header"
+import Popular from './popular/Popular'
 
 function Home() {
-
   return (
-    <div>
-        <Header />
+    <div style={{height:"1000px"}}>
        <HeroBannerr/>
+       <Popular/>
     </div>
   )
 }

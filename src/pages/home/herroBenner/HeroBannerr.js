@@ -10,7 +10,6 @@ function HeroBannerr() {
   const [query, setQuery] = useState("");
   // const navigate = useNavigate()
   const { data, loading } = useFetch("/movie/upcoming")
-  console.log(data)
   const url  ="https://image.tmdb.org/t/p/original"
 
   useEffect(() => {
@@ -20,7 +19,6 @@ function HeroBannerr() {
         ?.backdrop_path;
     setBackGround(bg)
   }, [data])
-  console.log(backGround)
 
 
   const searchQueryHandle = (e) => {
@@ -40,13 +38,12 @@ function HeroBannerr() {
         <div className="heroBannerContent">
           <span className='title'>WelCome</span>
           <span className='subTitle'>
-            Millions of Movie ,TV Shows and people
-            to discover Expolore now
+          Your Cinematic Journey Begins Here – Secure Your Spot in the Limelight.
           </span>
           <div className="searchInput">
             <input type="text"
               onChange={(e) => setQuery(e.target.value)}
-              placeholder='Search for Movie or TV Shows...'
+              placeholder='Search for Movies...'
               onKeyUp={searchQueryHandle} />
             <button className="searchButton"> Search</button>
           </div>

@@ -1,0 +1,11 @@
+.cardimg{
+    height: 100px;
+    width: 70px;
+    margin: auto;
+    justify-content: center;
+}
+.card-box{
+    display: flex;
+    width: 100%;
+    margin: 10px;
+}
