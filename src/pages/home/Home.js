@@ -4,7 +4,7 @@ import Popular from './popular/Popular'
 
 function Home() {
   return (
-    <div style={{height:"2000px"}}>
+    <div>
        <HeroBannerr/>
        <Popular/>
     </div>

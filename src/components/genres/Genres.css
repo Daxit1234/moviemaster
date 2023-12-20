@@ -1,0 +1,19 @@
+.genres{
+    /* border: 5px solid red; */
+    /* display: flex; */
+
+    /* width: 70%; */
+    /* display: grid; */
+   /* position: absolute; */
+   /* margin-bottom: 100%;  */
+}
+.genre{
+    color: white;
+    margin: 0 5px;
+}
+.genre-item{
+    background-color: palevioletred;
+    border-radius: 5px;
+    font-size: 13px;
+    padding: 5px;
+}

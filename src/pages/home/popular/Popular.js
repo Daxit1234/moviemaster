@@ -5,7 +5,6 @@ import "./Popular.css"
 
 function Popular() {
     const {data,loading}=useFetch(`/movie/popular`)
-
   return (
     <div className='popular-main'>
         <h3 className='movie-title'> Popular Movies</h3>

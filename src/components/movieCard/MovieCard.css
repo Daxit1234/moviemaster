@@ -16,6 +16,10 @@
     color: rgba(247, 246, 243, 0.5);
     font-size: 14px;
 }
+.genred-box{
+    height: 50px;
+    overflow: scroll;
+}
 @media only screen and (max-width: 600px) {
     .cardimg  {
       width: 130px;
