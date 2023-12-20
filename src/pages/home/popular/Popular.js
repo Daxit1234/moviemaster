@@ -1,16 +1,14 @@
 import React from 'react'
-import ContentWrapper from '../../../components/contentWrapper/ContentWrapper'
 import useFetch from '../../../hook/useFetch';
 import Carousel from '../../../components/carousel/Carousel';
+import "./Popular.css"
 
 function Popular() {
     const {data,loading}=useFetch(`/movie/popular`)
 
   return (
-    <div className='carouselSection'>
-       <ContentWrapper>
-        <span className='carouselTitle'>What's Popular</span>
-      </ContentWrapper>
+    <div className='popular-main'>
+        <h3 className='movie-title'> Popular Movies</h3>
         <Carousel data={data?.results} loading={loading}/> 
     </div>
   )

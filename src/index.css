@@ -4,4 +4,9 @@
   padding: 0;
   background-color:  rgb(4,21,45);
 } 
+*{
+  ::-webkit-scrollbar{
+    display: none;
+  }
+}
 

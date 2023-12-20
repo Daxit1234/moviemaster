@@ -7,7 +7,7 @@ function Header() {
     <div>
       <nav className="navbar navbar-expand-md navbar-dark">
         <div className="container">
-          <img src={logo} alt="dvd" />
+          <img className="imglogo" src={logo} alt="dvd" />
 
           <button
             className="navbar-toggler"

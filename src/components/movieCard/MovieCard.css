@@ -1,11 +1,27 @@
 .cardimg{
-    height: 100px;
-    width: 70px;
-    margin: auto;
-    justify-content: center;
+    height: 300px;
+    width: 180px;
 }
 .card-box{
-    display: flex;
-    width: 100%;
-    margin: 10px;
+    margin: 10px 0; 
+    border-radius: 5px;
 }
+.movie-name-card{
+    color: aliceblue;
+    font-size: 20px;
+    overflow: hidden; 
+    height: 25px;
+}
+.release-date-card{
+    color: rgba(247, 246, 243, 0.5);
+    font-size: 14px;
+}
+@media only screen and (max-width: 600px) {
+    .cardimg  {
+      width: 130px;
+      height: 240px;
+    }
+    .card-box{
+        margin: 5px 0; 
+    }
+  }

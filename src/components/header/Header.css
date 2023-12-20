@@ -38,13 +38,13 @@
     width: 100%; 
     color: #fff;
   }
-  img{
+  .imglogo{
     height: 15px;
    width: 50px;
     transform: scale(3);
   }
   @media only screen and (max-width: 640px) {
-    img{
+    .imglogo{
         /* position: absolute; */
         margin-left: 70px;
         height: 100ox;
