@@ -6,7 +6,6 @@ import MovieCard from "../movieCard/MovieCard";
 import SkeletonItem from "../skeleton/moviecard skeleton/Skeleton";
 
 const Carousel = ({ data, loading}) => {
-  // const carouselContainer=useRef()
   const url = "https://image.tmdb.org/t/p/original";
   return (
     <div className="row">
@@ -25,6 +24,7 @@ const Carousel = ({ data, loading}) => {
                     title={items.title || items.name}
                     date={items.release_date}
                     genres={items.genre_ids}
+                    id={items.id}
                 />
             </div>
               );

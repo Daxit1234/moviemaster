@@ -1,7 +1,8 @@
 .popular-main{
-    margin-top:600px;
-    margin-left: 5%;
-    margin-right: 5%;
+    position: absolute;
+    top:600px;
+    left: 5%;
+    right: 5%;
 }
 .movie-title{
     color: aliceblue;
@@ -11,7 +12,7 @@
 }
 @media only screen and (max-width: 600px) {
     .popular-main{
-        margin-top:400px;
+        top:400px;
     }
     .movie-title{
         top: 400px;

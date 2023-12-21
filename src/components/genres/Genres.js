@@ -113,17 +113,15 @@ function Genres({genresid}) {
         }
       }
   return (
-    <div className=' d-flex'>
-    {genresid?.map((g)=>{
-    //  if(!genres?.name) "";
-     return(
-         <div key={g} className="genre">
-            <span className='genre-item'>{genres[g]?.name}</span>
-             
-         </div>
-     )
-    })}
-     </div>
+      <div className='genres'>
+         {genresid?.map((g)=>{
+          return(
+              <div key={g} className="genre">
+                  {genres[g]?.name}
+              </div>
+          )
+         })}
+      </div>
   )
 }
 

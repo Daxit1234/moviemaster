@@ -1,4 +1,4 @@
-.cardimg{
+ .cardimg{
     height: 300px;
     width: 180px;
 }
@@ -16,9 +16,17 @@
     color: rgba(247, 246, 243, 0.5);
     font-size: 14px;
 }
-.genred-box{
+.card-box .circleRating{
     height: 50px;
-    overflow: scroll;
+    width: 50px;
+    margin-top: -30px;
+}
+.card-box .circleRating .CircularProgressbar-text {
+     fill: black;
+}
+.genres{
+        display: flex;
+        flex-flow: wrap;
 }
 @media only screen and (max-width: 600px) {
     .cardimg  {

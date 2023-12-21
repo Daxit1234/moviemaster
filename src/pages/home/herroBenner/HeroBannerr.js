@@ -5,13 +5,13 @@ import Img from '../../../components/lazyLoading/Img';
 import ContentWrapper from '../../../components/contentWrapper/ContentWrapper';
 import "./herobanner.css"
 
-function HeroBannerr() {
+let HeroBannerr=()=> {
   const [backGround, setBackGround] = useState("");
   const [query, setQuery] = useState("");
   // const navigate = useNavigate()
   const { data, loading } = useFetch("/movie/upcoming")
   const url  ="https://image.tmdb.org/t/p/original"
-
+  console.log("sndkjnskjn")
   useEffect(() => {
     const bg =
       url+
@@ -20,7 +20,13 @@ function HeroBannerr() {
     setBackGround(bg)
   }, [data])
 
-
+  // setInterval(() => {
+  //   const bg =
+  //     url+
+  //     data?.results?.[Math.floor(Math.random() * 20)]
+  //       ?.backdrop_path;
+  //   setBackGround(bg)
+  // }, 3000);
   const searchQueryHandle = (e) => {
     if (e.key === "Enter" && query.length > 0) {
       // navigate(`/search/${query}`)
