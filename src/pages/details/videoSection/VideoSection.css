@@ -1,0 +1,126 @@
+.videosSection {
+	 position: relative;
+	 margin-bottom: 50px;
+     top: 1250px;
+}
+ .videosSection .sectionHeading {
+	 font-size: 24px;
+	 color: white;
+	 margin-bottom: 25px;
+}
+ .videosSection .videos {
+	 display: flex;
+	 gap: 10px;
+	 overflow-x: auto;
+	 margin-right: -20px;
+	 margin-left: -20px;
+	 padding: 0 20px;
+}
+ @media only screen and (min-width: 768px) {
+	 .videosSection .videos {
+		 gap: 20px;
+		 margin: 0;
+		 padding: 0;
+	}
+    .videosSection {
+        top: 600px;
+   }
+}
+ .videosSection .videos .videoItem {
+	 width: 150px;
+	 flex-shrink: 0;
+	 cursor: pointer;
+}
+ @media only screen and (min-width: 768px) {
+	 .videosSection .videos .videoItem {
+		 width: 25%;
+	}
+}
+.videoItem .videoThumbnail {
+	 margin-bottom: 15px;
+	 position: relative;
+}
+ .videoThumbnail img {
+	 width: 100%;
+	 display: block;
+	 border-radius: 12px;
+	 transition: all 0.7s ease-in-out;
+}
+ .videoThumbnail svg {
+	 position: absolute;
+	 top: 50%;
+	 left: 50%;
+	 transform: translate(-50%, -50%);
+	 width: 50px;
+	 height: 50px;
+}
+ .videoThumbnail .triangle {
+	 stroke-dasharray: 240;
+	 stroke-dashoffset: 380;
+	 stroke: white;
+	 transform: translateY(0);
+	 transition: all 0.7s ease-in-out;
+}
+ .videoThumbnail .circle {
+	 stroke: white;
+	 stroke-dasharray: 650;
+	 stroke-dashoffset: 1300;
+	 transition: all 0.5s ease-in-out;
+}
+ .videoItem .videoThumbnail:hover Img {
+	 opacity: 0.5;
+}
+ .videoThumbnail:hover .triangle {
+	 stroke-dashoffset: 0;
+	 opacity: 1;
+	 stroke: #da2f68;
+}
+ .videosSection .videos .videoItem .videoThumbnail:hover .circle {
+	 stroke-dashoffset: 0;
+	 stroke: #da2f68;
+}
+ .videosSection .videos .videoItem .videoTitle {
+	 color: white;
+	 font-size: 14px;
+	 line-height: 20px;
+}
+ @media only screen and (min-width: 768px) {
+	 .videosSection .videos .videoItem .videoTitle {
+		 font-size: 16px;
+		 line-height: 24px;
+	}
+}
+@keyframes skeleton {
+    0%{
+        background-color: hsl(204, 43%, 70%);
+    }
+    100%{
+        background-color: hsl(201, 62%, 29%);
+    }
+}
+ .videosSection .videoSkeleton {
+	 display: flex;
+	 gap: 10px;
+	 overflow-x: auto;
+}
+ @media only screen and (min-width: 768px) {
+	 .videosSection .videoSkeleton {
+		 gap: 20px;
+	}
+}
+ .videosSection .videoSkeleton .skItem {
+	 width: 150px;
+	 flex-shrink: 0;
+}
+ @media only screen and (min-width: 768px) {
+	 .videosSection .videoSkeleton .skItem {
+		 width: 25%;
+	}
+}
+ .videosSection .videoSkeleton .skItem .thumb {
+	 width: 100%;
+	 aspect-ratio: 1.7777778;
+	 border-radius: 12px;
+	 margin-bottom: 10px;
+     animation: skeleton 0.8s linear infinite alternate;
+}

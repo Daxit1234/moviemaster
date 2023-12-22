@@ -187,6 +187,16 @@
     font-weight: 600;
     opacity: 1;
 }
+
+/* skeleton css start */
+@keyframes skeleton {
+    0%{
+        background-color: hsl(204, 43%, 70%);
+    }
+    100%{
+        background-color: hsl(201, 62%, 29%);
+    }
+}
 .detailsBanner .detailsBannerSkeleton {
     display: flex;
     position: relative;
@@ -196,7 +206,7 @@
 @media only screen and (min-width: 768px) {
      .detailsBannerSkeleton {
         gap: 50px;
-        flex-direction: row;
+        flex-direction: column;
    }
 }
 .detailsBanner .detailsBannerSkeleton .contentWrapper {
@@ -204,11 +214,12 @@
     gap: 50px;
 }
 .detailsBanner .detailsBannerSkeleton .left {
-    flex-shrink: 0;
     width: 100%;
     display: block;
     border-radius: 12px;
     aspect-ratio: 0.6666666667;
+    animation: skeleton 0.8s linear infinite alternate;
+
 }
 @media only screen and (min-width: 768px) {
     .detailsBanner .detailsBannerSkeleton .left {
@@ -223,12 +234,17 @@
     height: 25px;
     margin-bottom: 20px;
     border-radius: 50px;
+    animation: skeleton 0.8s linear infinite alternate;
+
 }
 .detailsBanner .detailsBannerSkeleton .right .row:nth-child(2) {
     width: 75%;
     margin-bottom: 50px;
+    animation: skeleton 0.8s linear infinite alternate;
+
 }
 .detailsBanner .detailsBannerSkeleton .right .row:nth-child(5) {
     width: 50%;
     margin-bottom: 50px;
+    animation: skeleton 0.8s linear infinite alternate;
 }

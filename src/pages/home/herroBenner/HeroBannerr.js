@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useFetch from '../../../hook/useFetch';
 import Img from '../../../components/lazyLoading/Img';
 import ContentWrapper from '../../../components/contentWrapper/ContentWrapper';
@@ -8,10 +8,9 @@ import "./herobanner.css"
 let HeroBannerr=()=> {
   const [backGround, setBackGround] = useState("");
   const [query, setQuery] = useState("");
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
   const { data, loading } = useFetch("/movie/upcoming")
   const url  ="https://image.tmdb.org/t/p/original"
-  console.log("sndkjnskjn")
   useEffect(() => {
     const bg =
       url+
@@ -20,16 +19,9 @@ let HeroBannerr=()=> {
     setBackGround(bg)
   }, [data])
 
-  // setInterval(() => {
-  //   const bg =
-  //     url+
-  //     data?.results?.[Math.floor(Math.random() * 20)]
-  //       ?.backdrop_path;
-  //   setBackGround(bg)
-  // }, 3000);
   const searchQueryHandle = (e) => {
     if (e.key === "Enter" && query.length > 0) {
-      // navigate(`/search/${query}`)
+      navigate(`/search/${query}`)
     }
   }
 
