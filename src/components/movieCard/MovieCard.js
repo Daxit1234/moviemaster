@@ -4,7 +4,7 @@ import "./MovieCard.css"
 import CircleRating from "../circleRating/CircleRating";
 import dayjs from "dayjs";
 import Genres from '../genres/Genres';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 
 function MovieCard({poster,rating,title,date,genres,id}) {
   const navigate=useNavigate();
