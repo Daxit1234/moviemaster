@@ -11,7 +11,6 @@ function Showtime() {
                 <>
                 <div className='showtime-box'>
                    <span className="time-title"> {item.time}</span>
-
                 </div>
                 </>
             )

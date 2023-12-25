@@ -6,8 +6,18 @@
 }
 .showtime-box{
     padding: 10px;
-    background-color: rgb(22, 61, 189);
+    border: 2px solid blue;
     color: white;
     border-radius: 5px;
     margin: 5px;
+    transition: all ease 0.2s;
+}
+.showtime-box:hover{
+    padding: 10px;
+    background-color: rgba(0, 0, 112, 0.672);
+    color: white;
+    border-radius: 10px;
+    margin: 5px;
+    cursor: pointer;
+    scale: 1.2;
 }

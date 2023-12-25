@@ -29,10 +29,10 @@
     flex-direction: column;
     padding: 10px;
     margin-left: 10px;
-    background-color: rgb(209, 201, 201);
-    color: black;
+    background-color: rgba(12, 12, 12, 0.27);
+    color: rgb(244, 239, 239);
     border-radius: 10px;
-    transition: all 0.5s;
+    transition: all 0.4s;
 }
 @media only screen and (min-width: 768px) {
   .dateContainer {
@@ -40,14 +40,12 @@
   }
 }
  .dateBox:hover{
-     background-color: rgb(47, 47, 129); 
+     background-color: rgb(10, 10, 232); 
     box-shadow: 0 0 5px 5px rgb(47, 47, 129);
-    margin-left: 20px;
-    margin-right: 20px;
     color: wheat;
+    scale: 1.2;
 }
 .active{
-  background-color: rgba(26, 5, 93, 0.297);
+  background-color: rgba(43, 13, 234, 0.881);
   color: rgb(235, 227, 227);
-
 }
