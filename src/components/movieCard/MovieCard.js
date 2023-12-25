@@ -10,7 +10,7 @@ function MovieCard({poster,rating,title,date,genres,id}) {
   const navigate=useNavigate();
   return (
      <div className='card-box'
-      onClick={()=>navigate(`/${id}`)}
+      onClick={()=>navigate(`/details/${id}`)}
      >
         <Img className="cardimg" src={poster} />
 

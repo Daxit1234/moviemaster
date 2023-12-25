@@ -4,7 +4,7 @@ import Carousel from '../../../components/carousel/Carousel';
 import "./Popular.css"
 
 function Popular() {
-    const {data,loading}=useFetch(`/movie/popular`)
+    const {data,loading}=useFetch(`/movie/now_playing`)
   return (
     <div className='popular-main'>
         <h3 className='movie-title'> Popular Movies</h3>

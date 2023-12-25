@@ -5,7 +5,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchDataFromApi } from "../../utils/api";
 import ContentWrapper from "../../components/contentWrapper/ContentWrapper";
 import MovieCard from "../../components/movieCard/MovieCard";
-// import Spinner from "../../components/spinner/Spinner";
 import noResults from "../../assets/no-results.png";
 import Img from "../../components/lazyLoading/Img";
 import PosterFallback from "../../assets/no-poster.png";
@@ -53,7 +52,7 @@ function SearchResult() {
   useEffect(() => {
     setPageNum(1);
     fetchInitialData();
-  },[]);
+  },[query]);
 
   return (
     <div className="searchResultsPage">
