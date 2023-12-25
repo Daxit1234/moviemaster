@@ -15,7 +15,7 @@ const DetailsBanner = ({ video, crew }) => {
   const [show, setShow] = useState(false);
   const [videoId, setVideoId] = useState(null);
   const navigate=useNavigate();
-
+  const { id }=useParams();
   const { data, loading } = useFetch(`/movie/${id}`);
   const url = "https://image.tmdb.org/t/p/original";
   const _genres = data?.genres.map((g) => g.id);

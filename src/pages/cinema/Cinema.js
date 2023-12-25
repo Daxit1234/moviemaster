@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import useFetch from '../../hook/useFetch';
 import Topimage from './topImage/Topimage';
 import MovieDates from './dates/MovieDates';
+import CinemaDetail from './cinemaDetails/cinemaName/CinemaDetail';
 
 const Cinema = () => {
     const { id } = useParams();
@@ -11,6 +12,7 @@ const Cinema = () => {
     <div>
        <Topimage data={data} />
        <MovieDates/>
+       <CinemaDetail/>
     </div>
   )
 }

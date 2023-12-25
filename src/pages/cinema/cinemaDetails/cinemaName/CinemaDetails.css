@@ -1,0 +1,44 @@
+.cinema-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top:-25px;
+}
+.cinema-info{
+    margin-left: 5px;
+   display: flex;
+   flex-direction: column;
+   background-color: rgba(0, 5, 10, 0.171);
+}
+.cinemaName{
+    color: white;
+    font-size: 15px;
+    font-weight: 500px;
+    line-height: 24px;
+    letter-spacing: 1px;
+} 
+.cinema-location{
+    display: flex;
+    color: rgba(255, 255, 255, 0.426);
+    padding: 3px 11px;
+    border-radius: 96px;
+    margin: 5px;
+    cursor: pointer;
+}
+.time-info{
+    background-color: rgba(0, 0, 1, 0.43);
+    margin: 10px 0;
+}
+@media only screen and (min-width: 768px) {
+    .cinema-info{
+        margin-left: 5%;;
+        font-size: 18px;
+    }
+    .cinema-container {
+        flex-direction: row;
+    }
+    .time-info{
+    
+        margin-left: 45px;
+    }
+  }

@@ -12,14 +12,11 @@ let Details=()=> {
   const {id}=useParams()
   const {data,loading}=useFetch(`/movie/${id}/videos`);
   const {data:credits,loading:creditsLoading}=useFetch(`/movie/${id}/credits`)
-  console.log(credits)
   return (
     <div>
       <DetailsBanner video={data?.results?.[0]}  crew={credits?.crew}/>
       <Cast data={credits?.cast} loading={creditsLoading} />
       <VideoSection data={data} loading={loading} />
-      {/* <Similar mediaType={mediaType} id={id}/> */}
-      {/* <Recommandation mediaType={mediaType} id={id}/>  */}
     </div>
   )
 }
