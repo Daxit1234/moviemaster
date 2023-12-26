@@ -8,9 +8,9 @@
 .cinema-info{
    display: flex;
    flex-direction: column;
-   background-color: rgba(244, 247, 249, 0.117);
+   background-color: rgba(0, 0, 0, 0.43);
    padding: 10px;
-   border-radius: 30px;
+   border-radius: 20px;
 }
 .cinemaName{
     color: white;
@@ -23,7 +23,7 @@
     display: flex;
     color: rgba(255, 255, 255, 0.426);
     padding: 3px 11px;
-    border-radius: 96px;
+    border-radius: 20px;
     margin: 5px;
     cursor: pointer;
     border: 1px solid white;

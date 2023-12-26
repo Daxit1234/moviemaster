@@ -14,6 +14,8 @@ function Topimage({data}) {
           <div className="backdrop-img-cinema">
             <Img src={url + data.backdrop_path}></Img>
           </div>
+          <div className="opacity-layer"></div>
+
           <span onClick={()=>navigate(`/details/${id}`)} className='title'>{data.name || data.title}</span>
         </>
     )

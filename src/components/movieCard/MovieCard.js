@@ -13,7 +13,7 @@ function MovieCard({poster,rating,title,date,genres,id}) {
       onClick={()=>navigate(`/details/${id}`)}
      >
         <Img className="cardimg" src={poster} />
-
+    
         <CircleRating rating={rating} />
      
       <div className='mt-2 movie-name-card'>

@@ -6,6 +6,7 @@ import Header from './components/header/Header';
 import Details from './pages/details/Details';
 import SearchResult from './pages/searchResult/SearchResult';
 import Cinema from './pages/cinema/Cinema';
+import Seats from './pages/seats/Seacts';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path='/details/:id' element={<Details/>} />
       <Route path='/search/:query' element={<SearchResult/>} />
       <Route path='/cinema/:id' element={<Cinema/>} />
+      <Route path='/seats' element={<Seats/>} />
       {/* <Route path='/explore/:mediaType' element={<Explore/>} /> */}
       {/* <Route path='*' element={<NotFound/>} /> */}
     </Routes>
