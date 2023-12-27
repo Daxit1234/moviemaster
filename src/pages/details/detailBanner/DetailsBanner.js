@@ -71,7 +71,7 @@ const DetailsBanner = ({ video, crew }) => {
                         <PlayBtn />
                         <span className="text">Watch Trailer</span>
                       </div>
-                        <div onClick={()=>navigate(`/cinema/${id}`)} class="btn">Book Now</div>
+                        <div onClick={()=>navigate(`/cinema/${id}`)} className="btn">Book Now</div>
                     </div>
                     <div className="overview">
                       <div className="heading">Overview</div>

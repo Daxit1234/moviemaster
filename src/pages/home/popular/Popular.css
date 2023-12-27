@@ -4,10 +4,8 @@
     left: 5%;
     right: 5%;
 }
-.movie-title{
+.popular-main .movie-title{
     color: aliceblue;
-    position: absolute;
-    top: 580px;
     font-size: 30px;
 }
 @media only screen and (max-width: 600px) {

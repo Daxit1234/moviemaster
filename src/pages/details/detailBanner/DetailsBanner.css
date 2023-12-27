@@ -19,7 +19,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    opacity: 0.1;
+    opacity: 0.3;
     overflow: hidden;
 }
 .detailsBanner .backdrop-img .lazy-load-image-background img {
@@ -188,7 +188,7 @@
     opacity: 1;
 }
 
-.right >.row >.btn {
+.right .row .btn {
     background: linear-gradient( rgba(216, 220, 224, 0.486), #0950b4);
     color: #fff;
     padding: 1rem 3rem;
@@ -211,6 +211,8 @@
     font-size: 20px;
   }
 }
+
+
 /* skeleton css start */
 @keyframes skeleton {
     0%{

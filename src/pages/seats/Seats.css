@@ -1,133 +1,94 @@
-
-.chk{
-    border: 1.5px solid #00b8f5;
-    border-radius: 5px;
-    height: 18px;
-    width: 20px;
-    margin: 5px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 5px;
-    padding: 1px;
-    /* line-height: 10px; */
+.status-container .chk{
+    margin: 0 10px;
 }
-.chk:hover{
-    box-shadow: 0px 0px 10px 1px #00b8f5;
+.chk {
+  border: 1.5px solid #00b8f5;
+  border-radius: 5px;
+  height: 28px;
+  width: 25px;
+  margin: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 8px;
+  padding: 3px;
 }
-.con{
-    /* margin-top: 60px;
-    margin-left: 100px; */
-    overflow: scroll;
+.chk:hover {
+  box-shadow: 0px 0px 10px 1px #00b8f5;
 }
-.btn1{
-    position: relative;
-    left: 520px;
-    top: 10px;
+.con {
+  overflow: scroll;
 }
-.btn1 button{
-    height: 40px;
-    width: 170px;
-    background-color: #00b8f5;
-    color: rgb(12, 97, 119);
-    font-weight: bold;
-    font-size: 20px;
-    border-radius: 10px;
+.btn1 {
+  position: relative;
+  left: 520px;
+  top: 10px;
 }
-.btn1 button:hover{
-    box-shadow: 0px 0px 10px 0px #00b8f5;
+.screen {
+  margin-left: 10rem;
+  margin-top: 60px;
+  margin-bottom: 10px;
+  border: 1px solid rgb(69, 121, 185);
+  height: 1.3rem;
+  width: 70%;
+  border-radius: 0% 0% 100% 100%;
 }
-.screen{
-    margin-left: 10rem;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 1px solid rgb(69, 121, 185);
-    height: 1.3rem;
-    width: 70%;
-    border-radius:0% 0% 100% 100%;
-}
-#p{
-    font-size: large;
-    font-stretch: extra-expanded;
-    margin-top: -4px;
+#p {
+  font-size: large;
+  margin-top: -4px;
 }
 .book-btn {
-    background: linear-gradient( rgba(216, 220, 224, 0.486), #0950b4);
-    color: #fff;
-    padding: 0.5rem 2rem;
-    font-size: 15px;
-    font-weight: 600;
-    border: none;
-    border-radius: 2rem;
-    cursor: pointer;
-    transition-duration: 0.4s;
+  background: linear-gradient(rgba(216, 220, 224, 0.486), #0950b4);
+  color: #fff;
+  padding: 0.5rem 2rem;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition-duration: 0.4s;
 }
- .book-btn:hover{
-    background: #fff;
-    box-shadow: 0px 2px 20px 5px #97B1BF;
-    color: #000;
+.book-btn:hover {
+  background: #fff;
+  box-shadow: 0px 2px 20px 5px #97b1bf;
+  color: #000;
 }
 
 @media only screen and (max-width: 768px) {
-    .screen-container{
-        position: absolute;
-        width: 100%;
-        overflow-x: scroll;
-        top: 100px;
-    }
+  .screen-container {
+    position: absolute;
+    width: 100%;
+    overflow-x: scroll;
+    top: 100px;
+  }
+  .con .row {
+    width: 200%;
+  }
+  .screen {
+    position: relative;
+    width: 300px;
+    left: 0px;
+    margin-top: 20px;
+  }
+  .book-btn {
+    position: fixed;
+  }
+  .status-container {
+    margin: 0 10px;
+    /* width: 20%; */
+}
 }
 @media only screen and (min-width: 768px) {
-    .chk{
-    border: 1.5px solid #00b8f5;
-    border-radius: 5px;
-    height: 28px;
-    width: 28px;
+  .chk {
     margin: 8px 7px;
-    color: #fff;
-    cursor: pointer;
     font-size: 10px;
     line-height: 10px;
-}
-.chk:hover{
-    box-shadow: 0px 0px 10px 1px #00b8f5;
-}
-.con{
+  }
+  .con {
     margin-top: 60px;
     margin-left: 100px;
     height: 580px;
-    overflow: hidden;
-}
-.btn1{
-    position: relative;
-    left: 520px;
-    top: 10px;
-}
-.btn1 button{
-    height: 40px;
-    width: 170px;
-    background-color: #00b8f5;
-    color: rgb(12, 97, 119);
-    font-weight: bold;
-    font-size: 20px;
-    border-radius: 10px;
-}
-.btn1 button:hover{
-    box-shadow: 0px 0px 10px 0px #00b8f5;
-}
-.screen{
-    margin-left: 10rem;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 1px solid rgb(69, 121, 185);
-    height: 1.3rem;
-    width: 70%;
-    border-radius:0% 0% 100% 100%;
-}
-#p{
-    font-size: large;
-    font-stretch: extra-expanded;
-    margin-top: -4px;
-} 
-.book-btn {
+  }
+  .book-btn {
     font-size: 20px;
   }
 }
