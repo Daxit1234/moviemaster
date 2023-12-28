@@ -1,6 +1,7 @@
 import React from "react";
 import "./Header.css";
 import logo from "../../assets/headerLogo-removebg-preview.png";
+import {Link} from "react-router-dom";
 
 function Header() {
   return (
@@ -21,24 +22,24 @@ function Header() {
           <div className="collapse navbar-collapse" id="collapsibleNavbar">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <a className="nav-link" href="/">
+                <Link className="nav-link" to="/">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/">
+              <Link className="nav-link" to="/about">
                   About
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/">
-                  Services
-                </a>
+              <Link className="nav-link" to="/contact">
+                  Contect
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/">
-                  Contact
-                </a>
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
               </li>
             </ul>
           </div>

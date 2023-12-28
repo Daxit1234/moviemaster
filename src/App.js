@@ -7,6 +7,7 @@ import Details from './pages/details/Details';
 import SearchResult from './pages/searchResult/SearchResult';
 import Cinema from './pages/cinema/Cinema';
 import Seats from './pages/seats/Seacts';
+import LoginSingup from './pages/login&singup/LoginSingup';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path='/search/:query' element={<SearchResult/>} />
       <Route path='/cinema/:id' element={<Cinema/>} />
       <Route path='/seats' element={<Seats/>} />
+      <Route path='/login' element={<LoginSingup/>} />
       {/* <Route path='/explore/:mediaType' element={<Explore/>} /> */}
       {/* <Route path='*' element={<NotFound/>} /> */}
     </Routes>
