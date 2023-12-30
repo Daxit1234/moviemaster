@@ -8,9 +8,12 @@ import SearchResult from './pages/searchResult/SearchResult';
 import Cinema from './pages/cinema/Cinema';
 import Seats from './pages/seats/Seacts';
 import LoginSingup from './pages/login&singup/LoginSingup';
+import Moviestate from "./context/MovieState";
+
 
 function App() {
   return (
+    <Moviestate>
     <Router>
     <Header/>
     <Routes>
@@ -25,6 +28,7 @@ function App() {
     </Routes>
     {/* <Footer/> */}
    </Router>
+    </Moviestate>
   );
 }
 

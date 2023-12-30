@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./Seats.css";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 function Seats() {
   //   const {booking,details,setDetails} = useContext(MovieContext);
   const [status, setStatus] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   // const [color,setColor]=useState("")
   let seats = [
     {
