@@ -1,23 +1,26 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import "./LoginSingup.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import cinemaImage from "../../assets/cinema.jpg";
 import Img from "../../components/lazyLoading/Img";
 
 const LoginSingup = () => {
   const [coverbox, setCoverbox] = useState(false);
-  const [usersingup, setUser] = useState({
+  const [usersingup, setUserSingup] = useState({
     name: "",
     email: "",
     password: "",
     cpassword: "",
   });
+  const [userLogin,setUserLogin]= useState({ email: "", password: "" })
   const [otpBox, setOtpBox] = useState(false);
   const [otp,setOtp]=useState(null)
   const [otpError,setOtpError]=useState("");
   const [regError,setRegError]=useState("");
-
-  const handlesubmit = async (e) => {
+  const [loginError,setLoginError]=useState("");
+  const navigate=useNavigate();
+ 
+  const handlesubmitSingup = async (e) => {
     e.preventDefault();
     const { name, email, password, cpassword } = usersingup;
     if (password.length >= 8 && password === cpassword) {
@@ -34,7 +37,6 @@ const LoginSingup = () => {
        return setRegError(json.error)
       } else {
         setOtpBox(true);
-        setOtpError("Otp Sent SuccessFully")
       }
     } else if (password === cpassword) {
      return setRegError("password must be 8 character");
@@ -43,6 +45,32 @@ const LoginSingup = () => {
     }
   };
  
+  const handlesubmitLogin = async (e) => {
+    e.preventDefault();
+    const {email,password}=userLogin
+    const responce = await fetch("http://localhost:8080/users/login", {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password })
+    });
+    
+    const json = await responce.json();
+    if (json.error) {
+      alert("dskj")
+      console.log(json)
+      setLoginError(json.error)
+    } else {
+      // localStorage.setItem("userDetails",JSON.stringify(json))
+      // if(JSON.parse(localStorage.getItem("userDetails")).name==="Admin"){
+      //    navigate("/Users")
+      // }else{
+        navigate("/")
+      // }
+    }
+}
+
   const handleVerify=async(e)=>{
     e.preventDefault()
     const responce = await fetch(`http://localhost:8080/users/verifyotp/${otp}`, {
@@ -52,11 +80,26 @@ const LoginSingup = () => {
       }
     });
     const json = await responce.json();
-    setOtpError(json.error)
+   
+    if(json.error){
+      setOtpError(json.error)
+    }else{
+      setCoverbox(false)
+    }
   }
-  const handleonchange = (e) => {
-    setUser({ ...usersingup, [e.target.name]: e.target.value });
+
+  const handleonchangeSingup = (e) => {
+    setUserSingup({ ...usersingup, [e.target.name]: e.target.value });
   };
+
+  const handleonchangeLogin = (e) => {
+    setUserLogin({ ...userLogin, [e.target.name]: e.target.value });
+  };
+
+  let resendOtp=async()=>{
+    const email=usersingup.email
+    await fetch(`http://localhost:8080/users/resendotp/${email}`)
+  }
   return (
     // <!-- Login Page -->
     <div className="login-singup-container">
@@ -69,17 +112,20 @@ const LoginSingup = () => {
         className={`cover_box ${coverbox ? "active-register" : "active-login"}`}
       >
         <div className="form-box login">
+         <div>
+            <p className="text-danger text-center" style={{marginTop:"15px"}}>{loginError}</p>
+          </div>
           <h2>Login</h2>
-          <form action="#">
+          <form onSubmit={handlesubmitLogin}>
             <div class="input-field">
-              <input type="text" required spellcheck="false" />
+              <input type="text" name="email"required spellcheck="false" onChange={handleonchangeLogin}/>
               <label>Enter email</label>
               <span className="icon ">
                 <i className="fa-solid fa-envelope text-light"></i>
               </span>
             </div>
             <div class="input-field">
-              <input type="text" required spellcheck="false" />
+              <input type="text" name="password"required spellcheck="false" onChange={handleonchangeLogin}/>
               <label>Password</label>
               <span className="icon ">
                 <i className="fa-solid fa-lock text-light"></i>
@@ -121,7 +167,7 @@ const LoginSingup = () => {
           }
 
           <h2>Register</h2>
-          <form  onSubmit={otpBox?handleVerify:handlesubmit}>
+          <form  onSubmit={otpBox?handleVerify:handlesubmitSingup}>
             {!otpBox ? (
               <>
                 <div class="input-field d-flex">
@@ -130,7 +176,7 @@ const LoginSingup = () => {
                     name="name"
                     required
                     spellcheck="false"
-                    onChange={handleonchange}
+                    onChange={handleonchangeSingup}
                   />
                   <label>Username</label>
                   <span className="icon ">
@@ -143,7 +189,7 @@ const LoginSingup = () => {
                     name="email"
                     required
                     spellcheck="false"
-                    onChange={handleonchange}
+                    onChange={handleonchangeSingup}
                   />
                   <label>Email</label>
                   <span className="icon ">
@@ -157,7 +203,7 @@ const LoginSingup = () => {
                     name="password"
                     required
                     spellcheck="false"
-                    onChange={handleonchange}
+                    onChange={handleonchangeSingup}
                   />
                   <label>Password</label>
                   <span className="icon ">
@@ -170,7 +216,7 @@ const LoginSingup = () => {
                     name="cpassword"
                     required
                     spellcheck="false"
-                    onChange={handleonchange}
+                    onChange={handleonchangeSingup}
                   />
                   <label>Confirm Password</label>
                   <span className="icon ">
@@ -187,7 +233,7 @@ const LoginSingup = () => {
               </>
             ) : (
               <>
-              <p className="text-success text-center" >{otpError}</p>
+              <p className="text-danger text-center" >{otpError}</p>
               <div class="input-field">
                 <input
                   type="number"
@@ -201,7 +247,7 @@ const LoginSingup = () => {
                   <i className="fa-solid fa-lock text-light"></i>
                 </span>
               </div>
-                <p className="text-light text-center">Do Not Have Otp ? <span className="text-danger">30</span> </p>
+                <p className="text-light text-center">Do Not Have Otp ? <span className="text-primary" onClick={resendOtp}>resend</span> </p>
                 </>
             )}
 

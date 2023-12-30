@@ -4,6 +4,7 @@ const User = require("../models/user");
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
 const { error } = require("console");
+const { Route } = require("react-router-dom");
 
 let sendEmailForOtp = (userEmail) => {
   // Generate a random 6-digit OTP
@@ -72,6 +73,14 @@ router.post("/verifyotp/:userotp",async (req, res) => {
     res.send({error:"your opt is incorrect"});
   }
 });
+
+
+router.get("/resendotp/:email",async (req, res) => {
+  const email = req.params.email;
+  global.otp = sendEmailForOtp(email);
+  res.send("otp send successfully")
+});
+
 
 
 //ROUTE:2 login user using get:http://localhost:3000/users/login

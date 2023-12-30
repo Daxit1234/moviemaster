@@ -21,7 +21,7 @@ function Header() {
 
           <div className="collapse navbar-collapse" id="collapsibleNavbar">
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
+              <li className="nav-item" >
                 <Link className="nav-link" to="/">
                   Home
                 </Link>
@@ -36,6 +36,7 @@ function Header() {
                   Contect
                 </Link>
               </li>
+          
               <li className="nav-item">
                 <Link className="nav-link" to="/login">
                   Login
