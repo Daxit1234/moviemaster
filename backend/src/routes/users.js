@@ -44,7 +44,6 @@ let sendEmailForOtp = (userEmail) => {
 };
 
 //ROUTE:1 create a user using post:http://localhost:3000/users/createuser
-
 let verification;
 router.post("/createuser",async (req, res) => {
   userdata = User(req.body);
@@ -57,6 +56,7 @@ router.post("/createuser",async (req, res) => {
   res.send({userdata})
 });
 
+//ROUTE:2 create a user using post:http://localhost:8080/users//verifyotp/:otp
 router.post("/verifyotp/:userotp",async (req, res) => {
   const userotp = req.params.userotp;
   userotp === global.otp ? (verification = true) : (verification = false);
@@ -74,11 +74,17 @@ router.post("/verifyotp/:userotp",async (req, res) => {
   }
 });
 
-
+//ROUTE:3 resend otp using get:http://localhost:8080/users//resendotp/:daxitgodhani303@gmail.com
 router.get("/resendotp/:email",async (req, res) => {
   const email = req.params.email;
   global.otp = sendEmailForOtp(email);
   res.send("otp send successfully")
+});
+
+//ROUTE:4 verify otp using get:http://localhost:8080/users/verifyotpforget/:otp
+router.get("/verifyotpforget/:otp",async (req, res) => {
+  const otp = req.params.otp;
+  otp === global.otp ? res.send(true) : res.send(false);
 });
 
 

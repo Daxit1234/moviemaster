@@ -3,6 +3,7 @@ import "./LoginSingup.css";
 import { Link, useNavigate } from "react-router-dom";
 import cinemaImage from "../../assets/cinema.jpg";
 import Img from "../../components/lazyLoading/Img";
+import OtpBox from "./OtpBox";
 
 const LoginSingup = () => {
   const [coverbox, setCoverbox] = useState(false);
@@ -14,6 +15,8 @@ const LoginSingup = () => {
   });
   const [userLogin,setUserLogin]= useState({ email: "", password: "" })
   const [otpBox, setOtpBox] = useState(false);
+  const [otpBoxForget, setOtpBoxFoeget] = useState(false);
+  const [forgetPass, setForgetPass] = useState(false);
   const [otp,setOtp]=useState(null)
   const [otpError,setOtpError]=useState("");
   const [regError,setRegError]=useState("");
@@ -58,8 +61,6 @@ const LoginSingup = () => {
     
     const json = await responce.json();
     if (json.error) {
-      alert("dskj")
-      console.log(json)
       setLoginError(json.error)
     } else {
       // localStorage.setItem("userDetails",JSON.stringify(json))
@@ -67,6 +68,7 @@ const LoginSingup = () => {
       //    navigate("/Users")
       // }else{
         navigate("/")
+        setUserLogin({ email: "", password: "" })
       // }
     }
 }
@@ -85,7 +87,17 @@ const LoginSingup = () => {
       setOtpError(json.error)
     }else{
       setCoverbox(false)
+      setUserSingup({
+        name: "",
+        email: "",
+        password: "",
+        cpassword: "",
+      })
     }
+  }
+
+  const verifyOtpForget=()=>{
+    alert(otp)
   }
 
   const handleonchangeSingup = (e) => {
@@ -96,9 +108,19 @@ const LoginSingup = () => {
     setUserLogin({ ...userLogin, [e.target.name]: e.target.value });
   };
 
-  let resendOtp=async()=>{
+  let resendOtpreg=async()=>{
     const email=usersingup.email
     await fetch(`http://localhost:8080/users/resendotp/${email}`)
+  }
+  let resendOtpForget=async()=>{
+    const email=userLogin.email
+    await fetch(`http://localhost:8080/users/resendotp/${email}`)
+  }
+
+  let sendOtpForget=async()=>{
+    const email=userLogin.email
+    await fetch(`http://localhost:8080/users/resendotp/${email}`)
+    setOtpBoxFoeget(true)
   }
   return (
     // <!-- Login Page -->
@@ -116,8 +138,11 @@ const LoginSingup = () => {
             <p className="text-danger text-center" style={{marginTop:"15px"}}>{loginError}</p>
           </div>
           <h2>Login</h2>
-          <form onSubmit={handlesubmitLogin}>
-            <div class="input-field">
+          <form onSubmit={!forgetPass? handlesubmitLogin : verifyOtpForget}>
+            {
+              !forgetPass ?(
+                <>
+                <div class="input-field">
               <input type="text" name="email"required spellcheck="false" onChange={handleonchangeLogin}/>
               <label>Enter email</label>
               <span className="icon ">
@@ -136,10 +161,33 @@ const LoginSingup = () => {
                 <input type="checkbox" className="mr-2" />
                 Remember Me
               </label>
-              <Link href="#">Forgot Password?</Link>
+              <o className="text-primary" onClick={()=> setForgetPass(true)}>Forgot Password?</o>
             </div>
+                </>
+              ):(
+                <>
+                <div class="input-field">
+              <input type="text" name="email"required spellcheck="false" onChange={handleonchangeLogin}/>
+              <label>Enter email</label>
+              <span className="icon ">
+                <i className="fa-solid fa-envelope text-light"></i>
+              </span>
+            </div>
+              <p  className="text-primary" onClick={sendOtpForget}>send Otp</p>
+              {
+              otpBoxForget &&   
+              <OtpBox
+              otpError={otpError}
+              setOtp={setOtp}
+              resendOtp={resendOtpForget}
+              />
+              }
+              </>
+              )
+            }
+            
             <button type="submit" className="loginregisterbtn">
-              Login
+              { forgetPass ?"Verify" :"Login"}
             </button>
             <div className="login-register">
               <p className="text-light">
@@ -232,23 +280,11 @@ const LoginSingup = () => {
                 </div>
               </>
             ) : (
-              <>
-              <p className="text-danger text-center" >{otpError}</p>
-              <div class="input-field">
-                <input
-                  type="number"
-                  name="otp"
-                  required
-                  spellcheck="false"
-                  onChange={(e)=> setOtp(e.target.value)}
+                <OtpBox  
+                  otpError={otpError}
+                  setOtp={setOtp}
+                  resendOtp={resendOtpreg}
                 />
-                <label>Enter otp</label>
-                <span className="icon ">
-                  <i className="fa-solid fa-lock text-light"></i>
-                </span>
-              </div>
-                <p className="text-light text-center">Do Not Have Otp ? <span className="text-primary" onClick={resendOtp}>resend</span> </p>
-                </>
             )}
 
             <button type="submit" className="loginregisterbtn">
