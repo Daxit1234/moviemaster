@@ -2,9 +2,6 @@ const exprees = require("express");
 const router = exprees.Router();
 const User = require("../models/user");
 const nodemailer = require("nodemailer");
-const crypto = require("crypto");
-const { error } = require("console");
-const { Route } = require("react-router-dom");
 
 let sendEmailForOtp = (userEmail) => {
   // Generate a random 6-digit OTP
@@ -59,7 +56,7 @@ router.post("/createuser",async (req, res) => {
       global.otp=null
     }, 60000);
   } catch (error) {
-    res.send({error:error})
+    res.send({error:"error"})
   }
 });
 
