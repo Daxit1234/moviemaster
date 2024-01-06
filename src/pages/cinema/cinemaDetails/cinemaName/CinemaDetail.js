@@ -36,7 +36,7 @@ function CinemaDetail() {
               </div>
               <iframe
                 title="map"
-                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3719.908895480864!2d72.8596944!3d21.195777800000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDExJzQ0LjgiTiA3MsKwNTEnMzQuOSJF!5e0!3m2!1sen!2sin!4v1703519430253!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d15076.960819298862!2d72.930953!3d19.14096!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTnCsDA4JzI3LjUiTiA3MsKwNTUnNTEuNCJF!5e0!3m2!1sen!2sin!4v1704289199844!5m2!1sen!2sin"
                 loading="lazy"
               ></iframe>
             </div>

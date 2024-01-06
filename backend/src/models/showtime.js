@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 
 const showtimeSchema = new mongoose.Schema({
-    cinema: {
+    cinemaId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Cinema',
         required: true

@@ -9,7 +9,7 @@ router.post("/addshowtime", async (req, res) => {
        const showtime = new Showtime(req.body);
        
         //Validate that the cinemaId exists
-        const cinemaExists = await Cinema.findById(showtime.cinema);
+        const cinemaExists = await Cinema.findById(showtime.cinemaId);
         if (!cinemaExists) {
             return res.status(404).json({ error: 'Cinema not found' });
         }
@@ -25,7 +25,7 @@ router.post("/addshowtime", async (req, res) => {
 // ROUTE: get showtime using GET http://localhost:8080/show/getshowtime
 router.get("/getshowtime/:cinemaId", async (req, res) => {
     try {
-        const showtime=await Showtime.find({cinema:req.params.cinemaId})
+        const showtime=await Showtime.find({cinemaId:req.params.cinemaId})
         if (!showtime) {
             return res.status(404).json({ error: 'showtime not found' });
         }
