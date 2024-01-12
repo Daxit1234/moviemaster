@@ -43,8 +43,15 @@ router.post("/bookSeat", async (req, res) => {
 // ROUTE 2: get booked seat using GET http://localhost:8080/bookedSeats/getseat
 router.get("/getseat", async (req, res) => {
     try {
-        const bookedSeat = await BookedSeat.find()
-        res.status(201).send(bookedSeat);
+        const bookedseat = new BookedSeat(req.body);
+        const SeatsNo = await BookedSeat.find({
+            cinemaId: bookedseat.cinemaId,
+            showId: bookedseat.showId,
+            movieId: bookedseat.movieId,
+            date: bookedseat.date
+        },{seats:1,_id:0})
+        const allSeatsArray = SeatsNo.flatMap(data => data.seats);
+        res.status(201).send(allSeatsArray);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }

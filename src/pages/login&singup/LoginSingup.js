@@ -128,7 +128,6 @@ const LoginSingup = () => {
    const responce= await fetch(`http://localhost:8080/users/resendotp/${email}`)
     const json=await responce.json()
     alert(json)
-    console.log(json)
   }
 
   let sendOtpForget=async()=>{
@@ -142,8 +141,6 @@ const LoginSingup = () => {
   let handleonchangePassword = async (e) => {
     e.preventDefault();
     const { email, password: newpassword, cpassword: cnewpassword } = userLogin;
-    console.log(newpassword)
-    console.log(newpassword.length)
     if (newpassword.length >= 8 && newpassword === cnewpassword) {
       try {
         const response = await fetch("http://localhost:8080/users/forgetpass", {

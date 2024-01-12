@@ -1,62 +1,102 @@
 {
     "results":[
         {
+            "_id":"65955673f5355526e0979",
+            "Cinemaid":"6593f5355526e0970",
             "time" : "9:30 am",
             "show_type":"3D"
         },
         {
+            "_id":"659556735526e0979",
+            "Cinemaid":"6593f53556e0979",
             "time" : "9:30 am",
             "show_type":"3D"
         },
         {
+            "_id":"6595567355e0979",
+            "Cinemaid":"6593f535560979",
             "time" : "9:30 am",
             "show_type":"3D"
         },
         {
+            
+            "_id":"659556755e0979",
+            "Cinemaid":"6593f53556979",
             "time" : "9:30 am",
             "show_type":"3D"
         },
         {
+            "_id":"659567355e0979",
+            "Cinemaid":"653f535560979",
+            "time" : "9:30 am",
+            "show_type":"3D"
+        },
+        { 
+            "_id":"595567355e0979",
+            "Cinemaid":"593f535560979",
             "time" : "9:30 am",
             "show_type":"3D"
         },
         {
+            
+            "_id":"6595567355e099",
+            "Cinemaid":"6593f53556099",
             "time" : "9:30 am",
             "show_type":"3D"
         },
         {
+            
+            "_id":"659557355e0979",
+            "Cinemaid":"6593f535560979",
             "time" : "9:30 am",
             "show_type":"3D"
         },
         {
+            
+            "_id":"659567355e0979",
+            "Cinemaid":"6593f535560979",
             "time" : "9:30 am",
             "show_type":"3D"
         },
         {
+            
+            "_id":"659556355e0979",
+            "Cinemaid":"6593f535560979",
             "time" : "9:30 am",
             "show_type":"3D"
         },
         {
+            
+            "_id":"659557355e0979",
+            "Cinemaid":"6593f535560979",
             "time" : "9:30 am",
             "show_type":"3D"
         },
         {
+            
+            "_id":"659556755e0979",
+            "Cinemaid":"6593f535560979",
             "time" : "9:30 am",
             "show_type":"3D"
         },
         {
+            
+            "_id":"659556735e0979",
+            "Cinemaid":"6593f535560979",
             "time" : "9:30 am",
             "show_type":"3D"
         },
         {
+            
+            "_id":"65955673e0979",
+            "Cinemaid":"6593f5560979",
             "time" : "9:30 am",
             "show_type":"3D"
         },
         {
-            "time" : "9:30 am",
-            "show_type":"3D"
-        },
-        {
+            
+            "_id":"6595567355e09",
+            "Cinemaid":"6593f5355679",
             "time" : "9:30 am",
             "show_type":"3D"
         }

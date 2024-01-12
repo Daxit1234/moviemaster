@@ -5,7 +5,6 @@ import MovieContext from '../../context/Moviecontext'
 
 function Home() {
   const {details}=useContext(MovieContext)
-  console.log(details)
   return (
     <div>
        <HeroBannerr/>

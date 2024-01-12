@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState ,useContext} from "react";
 import "./Moviedates.css";
-
+import MovieContext from "../../../context/Moviecontext";
 
 const MovieDates = () => {
-  const [selected,setSelected]= useState("")
+  const [selected,setSelected]= useState(new Date().toString())
+  const {bookingDetails,setBookingDetails}=useContext(MovieContext);
 
   const today = new Date();
   const nextDates = [];
@@ -14,6 +15,7 @@ const MovieDates = () => {
   }
   let handleDate=(e)=>{
     setSelected(e.target.getAttribute("name"))
+    setBookingDetails({...bookingDetails,date:e.target.getAttribute("name")})
   }
   return (
     <>

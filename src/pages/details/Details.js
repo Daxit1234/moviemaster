@@ -1,12 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import useFetch from '../../hook/useFetch'
 import { useParams } from 'react-router-dom'
 // import "./Details.scss"
 import DetailsBanner from './detailBanner/DetailsBanner'
 import Cast from './cast/Cast'
 import VideoSection from './videoSection/VideoSection'
-// import Similar from './similar/Similar'
-// import Recommandation from './recommandation/Recommendations'
+import MovieContext from '../../context/Moviecontext'
 
 let Details=()=> {
   const {id}=useParams()

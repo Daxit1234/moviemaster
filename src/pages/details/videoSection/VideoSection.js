@@ -8,7 +8,6 @@ import PlayBtn from "../detailBanner/PlayBtn";
 const VideoSection = ({ data, loading }) => {
     const [show, setShow] = useState(false);
     const [videoId, setVideoId] = useState(null);
-    console.log(data)
     const loadingSkeleton = () => {
         return (
             <div className="skItem">
