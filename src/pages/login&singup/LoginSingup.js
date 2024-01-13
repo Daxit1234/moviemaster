@@ -64,14 +64,10 @@ const LoginSingup = () => {
     if (json.error) {
       setLoginError(json.error)
     } else {
-      // localStorage.setItem("userDetails",JSON.stringify(json))
-      // if(JSON.parse(localStorage.getItem("userDetails")).name==="Admin"){
-      //    navigate("/Users")
-      // }else{
+      localStorage.setItem("userData",JSON.stringify(json))
         navigate("/")
         setUserLogin({ email: "", password: "" })
         setLoginError("")
-      // }
     }
 }
 

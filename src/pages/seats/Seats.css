@@ -37,7 +37,7 @@
   margin-top: -4px;
 }
 .book-btn {
-  background: linear-gradient(rgba(216, 220, 224, 0.486), #0950b4);
+   background: linear-gradient(rgba(216, 220, 224, 0.486), #0950b4);
   color: #fff;
   padding: 0.5rem 2rem;
   font-size: 15px;
@@ -45,14 +45,17 @@
   border: none;
   border-radius: 2rem;
   cursor: pointer;
-  transition-duration: 0.4s;
+  transition-duration: 0.4s; 
 }
 .book-btn:hover {
   background: #fff;
   box-shadow: 0px 2px 20px 5px #97b1bf;
   color: #000;
 }
-
+.book-container{
+  width: 40%;
+  position: absolute;
+}
 @media only screen and (max-width: 768px) {
   .screen-container {
     position: absolute;
@@ -84,7 +87,8 @@
     line-height: 10px;
   }
   .con {
-    margin-top: 60px;
+    position: relative;
+    top: 60px;
     margin-left: 100px;
     height: 580px;
   }

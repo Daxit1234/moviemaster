@@ -11,8 +11,8 @@ function Showtime() {
   let handleSetShow=(cid,tid)=>{
     setBookingDetails((prevDetails) => ({
       ...prevDetails,
-      showId: tid,
-      cinemaId: cid,
+      showId: "65a28767eeafe22cbdf56d25",   //change with tid
+      cinemaId: "65a28751eeafe22cbdf56d23",  //change with cid
     }));
     console.log(bookingDetails)
     Navigate('/seats')

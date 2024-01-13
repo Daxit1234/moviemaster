@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import "./Seats.css";
+import MovieContext from "../../context/Moviecontext";
 // import { useNavigate } from "react-router-dom";
 
 function Seats() {
-  //   const {booking,details,setDetails} = useContext(MovieContext);
+  const {bookingDetails,setBookingDetails,booking}=useContext(MovieContext);
   const [status, setStatus] = useState(false);
-  // const navigate = useNavigate();
-  // const [color,setColor]=useState("")
+  const [selectedSeats, setSelectedSeats] = useState([]);
+  let bookedSeats= ['G7', 'G8', 'G9', 'G10', 'I8', 'I9','A5', 'A6', 'A7', 'A8', 'A9', 'B10', 'C8', 'D7', 'C5', 'C4', 'C3', 'C2', 'B2', 'E2', 'E3', 'E4', 'E1', 'E11', 'E10', 'C14', 'C15', 'C16', 'F14', 'E15', 'E14', 'A13', 'A14', 'A15', 'A16'];
   let seats = [
     {
       row: "A",
@@ -62,33 +63,55 @@ function Seats() {
         spans[i].style.width = "100px";
         spans[i].style.visibility = "hidden";
       }
+      if( bookedSeats.includes(spans[i].getAttribute("name"))){
+         spans[i].style.pointerEvents = "none";
+        spans[i].style.backgroundColor = " #5c788a";
+      }
     }
+
   }, []);
   let selected = (e) => {
+    let temp=e.target.getAttribute("name")
     if (status) {
       e.target.style.backgroundColor = "";
+      let newArray=selectedSeats.filter(i=>i!==temp);
+      setSelectedSeats(newArray)
       setStatus(false);
     } else {
       e.target.style.backgroundColor = "#00b8f5";
-      //   let temp=e.target.getAttribute("name")
-      //   setDetails({...details,seat:[...details.seat,temp]})
+      setSelectedSeats([...selectedSeats,temp])
       setStatus(true);
     }
   };
-  // let handleBooking = () => {
-  //   if (!localStorage.getItem("userDetails")) {
-  //     navigate("/login");
-  //   } else {
-  //     const spans = document.getElementsByTagName("span");
-  //     for (let i = 0; i < spans.length; i++) {
-  //       spans[i].style.backgroundColor = "rgb(4,21,45)";
-  //     }
-  //       booking()/
-  //       navigate("/bookedTikets")
-  //   }
-  // };
+  let handleBooking = () => {
+    let obj=JSON.parse(localStorage.getItem("userData"))
+    setBookingDetails({...bookingDetails,
+      seats:selectedSeats,
+      totalAmount:selectedSeats.length*200,
+      email:obj.email,
+      userName:obj.name
+    })
+    booking();
+  };
   return (
     <div className="screen-container">
+      
+   {
+    selectedSeats.length > 0 ? 
+      <div  className={`d-flex justify-content-center`}>
+         <div className="d-flex justify-content-between book-container">
+          <div className="">
+          <h5 className="text-light" id="" onClick={handleBooking}> ₹{selectedSeats.length*200}</h5>
+          <p className="text-light">Ticket {selectedSeats.length} x ₹{selectedSeats.length*200}</p>
+          </div>
+          <div>
+          <div className="book-btn" id="booking-btn" onClick={handleBooking}>Book Now</div>
+          </div>
+        </div>
+      </div>
+      :<></>
+   } 
+    
       <div className="text-light con container">
         {seats.map((item) => {
           return (
@@ -136,9 +159,7 @@ function Seats() {
           <p>Selected</p>
 
         </div>
-        <div className="d-flex justify-content-center">
-          <div className="book-btn">Book Now</div>
-        </div>
+     
       </div>
     </div>
   );

@@ -15,7 +15,8 @@ const MovieDates = () => {
   }
   let handleDate=(e)=>{
     setSelected(e.target.getAttribute("name"))
-    setBookingDetails({...bookingDetails,date:e.target.getAttribute("name")})
+   let newDate= e.target.getAttribute("name").slice(0,16)
+    setBookingDetails({...bookingDetails,date:newDate})
   }
   return (
     <>
