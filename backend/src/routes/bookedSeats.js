@@ -41,7 +41,7 @@ router.post("/bookSeat", async (req, res) => {
 });
 
 // ROUTE 2: get booked seat using GET http://localhost:8080/bookedSeats/getseat
-router.get("/getseat", async (req, res) => {
+router.post("/getseat", async (req, res) => {
     try {
         const bookedseat = new BookedSeat(req.body);
         const SeatsNo = await BookedSeat.find({

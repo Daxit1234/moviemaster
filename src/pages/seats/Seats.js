@@ -4,10 +4,9 @@ import MovieContext from "../../context/Moviecontext";
 // import { useNavigate } from "react-router-dom";
 
 function Seats() {
-  const {bookingDetails,setBookingDetails,booking}=useContext(MovieContext);
+  const {bookingDetails,setBookingDetails,booking,bookedSeats}=useContext(MovieContext);
   const [status, setStatus] = useState(false);
   const [selectedSeats, setSelectedSeats] = useState([]);
-  let bookedSeats= ['G7', 'G8', 'G9', 'G10', 'I8', 'I9','A5', 'A6', 'A7', 'A8', 'A9', 'B10', 'C8', 'D7', 'C5', 'C4', 'C3', 'C2', 'B2', 'E2', 'E3', 'E4', 'E1', 'E11', 'E10', 'C14', 'C15', 'C16', 'F14', 'E15', 'E14', 'A13', 'A14', 'A15', 'A16'];
   let seats = [
     {
       row: "A",
@@ -46,6 +45,7 @@ function Seats() {
       seatNo: [1, 2, 3, 4, 0, 5, 6, 7, 8, 9, 10, 11, 12, 0, 13, 14, 15, 16],
     },
   ];
+
   useEffect(() => {
     const spans = document.getElementsByTagName("span");
     for (let i = 0; i < spans.length; i++) {
@@ -63,13 +63,13 @@ function Seats() {
         spans[i].style.width = "100px";
         spans[i].style.visibility = "hidden";
       }
-      if( bookedSeats.includes(spans[i].getAttribute("name"))){
+      if( bookedSeats?.includes(spans[i].getAttribute("name"))){
          spans[i].style.pointerEvents = "none";
         spans[i].style.backgroundColor = " #5c788a";
       }
     }
 
-  }, []);
+  }, [bookedSeats]);
   let selected = (e) => {
     let temp=e.target.getAttribute("name")
     if (status) {
@@ -84,14 +84,13 @@ function Seats() {
     }
   };
   let handleBooking = () => {
-    let obj=JSON.parse(localStorage.getItem("userData"))
     setBookingDetails({...bookingDetails,
       seats:selectedSeats,
       totalAmount:selectedSeats.length*200,
-      email:obj.email,
-      userName:obj.name
+     
     })
     booking();
+    
   };
   return (
     <div className="screen-container">

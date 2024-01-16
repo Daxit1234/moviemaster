@@ -6,7 +6,7 @@ import Header from './components/header/Header';
 import Details from './pages/details/Details';
 import SearchResult from './pages/searchResult/SearchResult';
 import Cinema from './pages/cinema/Cinema';
-import Seats from './pages/seats/Seacts';
+import Seats from './pages/seats/Seats';
 import LoginSingup from './pages/login&singup/LoginSingup';
 import Moviestate from "./context/MovieState";
 
