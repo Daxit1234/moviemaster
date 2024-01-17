@@ -83,14 +83,13 @@ function Seats() {
       setStatus(true);
     }
   };
-  let handleBooking = () => {
-    setBookingDetails({...bookingDetails,
+  let handleBooking =async () => {
+   await setBookingDetails({...bookingDetails,
       seats:selectedSeats,
       totalAmount:selectedSeats.length*200,
-     
     })
-    booking();
-    
+      booking();
+    console.log(bookingDetails)
   };
   return (
     <div className="screen-container">

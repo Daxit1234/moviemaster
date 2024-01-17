@@ -2,8 +2,7 @@ import "./Carousel.css";
 import React from "react";
 import PosterFallback from "../../assets/no-poster.png";
 import MovieCard from "../movieCard/MovieCard";
-// import Genres from "../genres/Genres";
-import SkeletonItem from "../skeleton/moviecard skeleton/Skeleton";
+import SkeletonItem from "../skeleton/Skeleton";
 
 const Carousel = ({ data, loading}) => {
   const url = "https://image.tmdb.org/t/p/original";

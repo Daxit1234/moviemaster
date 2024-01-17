@@ -9,13 +9,16 @@ import Cinema from './pages/cinema/Cinema';
 import Seats from './pages/seats/Seats';
 import LoginSingup from './pages/login&singup/LoginSingup';
 import Moviestate from "./context/MovieState";
-
+import Admin from './pages/admin/Admin';
+import AddCinema from './pages/admin/addCinema/AddCinema';
+import AddShowTime from './pages/admin/addShowTime/AddShowTime';
+import SideBar from './components/admin/sideBar/SideBar';
 
 function App() {
   return (
     <Moviestate>
     <Router>
-    <Header/>
+    {window.location.pathname.slice(0,6) !== '/admin' ? <Header />:<SideBar/> }
     <Routes>
       <Route path='/' element={<Home/>} />
       <Route path='/details/:id' element={<Details/>} />
@@ -23,8 +26,9 @@ function App() {
       <Route path='/cinema/:id' element={<Cinema/>} />
       <Route path='/seats' element={<Seats/>} />
       <Route path='/login' element={<LoginSingup/>} />
-      {/* <Route path='/explore/:mediaType' element={<Explore/>} /> */}
-      {/* <Route path='*' element={<NotFound/>} /> */}
+      <Route path='/admin/*'element={<SideBar/>}/>
+      <Route path='/admin/addcinema' element={<AddCinema/>} />
+      <Route path='/admin/addshowtime' element={<AddShowTime/>} />
     </Routes>
     {/* <Footer/> */}
    </Router>

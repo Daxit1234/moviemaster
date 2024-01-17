@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./VideoSection.css";
 import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
-import VideoPop from "../../../components/videoPop/VideoPop";
+import VideoPop from "../../../components/user/videoPop/VideoPop";
 import Img from "../../../components/lazyLoading/Img";
 import PlayBtn from "../detailBanner/PlayBtn";
 
