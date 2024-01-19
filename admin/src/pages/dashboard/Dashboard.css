@@ -1,18 +1,45 @@
 .users{
-   
-    background: red;
+    height: 150px;
+    width: 25%;
+   background-color: #00B0F4; 
 }
 .cinema{
-
+    height: 150px;
+    width: 25%;
+   background-color: rgb(0,146,90);
 }
 .shows{
-
+    height: 150px;
+    width: 25%;
+   background-color: #FD9C0B;
 }
 .booking{
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 25%;
+   background-color: rgb(234,88,54);
 }
-.counting-box  div{
-
-    background: red;
+.counting-box  {
+    width: 100%;
+    display: flex;
+}
+.counting-item  {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px 0 30px;
+}
+.count-no{
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+}
+.title-item{
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    opacity: 0.7;
+}
+.counting-item  .fa-solid{
+    font-size: 90px;
+    align-self: center;
+    opacity: 0.3;
 }
