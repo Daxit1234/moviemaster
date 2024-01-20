@@ -36,6 +36,11 @@
   color: rgba(255, 255, 255, 0.552);
   font-size: 18px;
 }
+.sidebar ul li a:hover {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  transition: all ease 0.1s;
+}
 /* Responsive styles */
 @media only screen and (max-width: 768px) {
   .sidebar {

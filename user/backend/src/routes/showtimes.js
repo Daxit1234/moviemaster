@@ -35,6 +35,16 @@ router.get("/getshowtime/:cinemaId", async (req, res) => {
     }
 });
 
+// ROUTE: get all showtime using GET http://localhost:8080/show/getallshowtime
+router.get("/getallshowtime", async (req, res) => {
+    try {
+        const showtimes = await Showtime.find().populate('cinemaId', 'cinemaName');
+        res.status(201).send(showtimes);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
 // ROUTE 3: delete showtime using DELETE http://localhost:8080/show/deleteshowtime
 router.delete("/deleteshowtime/:id", async (req, res) => {
     try {

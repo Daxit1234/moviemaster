@@ -24,7 +24,25 @@ router.get("/getcinema", async (req, res) => {
     }
 });
 
-// ROUTE 2: delete cinema using GET http://localhost:8080/cinemas/deletecinema
+// ROUTE 3: edit cinema using post http://localhost:8080/cinemas/editcinema
+router.put("/editcinema/:id", async (req, res) => {
+    try {
+        let cinema = await Cinema.findOne({_id: req.params.id });
+        if (!cinema) {
+          return res
+            .status(400)
+            .json({ error: "cinema is not found" });
+        }
+       await Cinema.updateOne({_id:req.params.id},{$set: req.body})
+      res.json({success:"cinema Updated"})  
+    }
+    catch (err) {
+        console.error(err)
+        res.status(500).send("internal server error")
+    }
+});
+
+// ROUTE 4: delete cinema using GET http://localhost:8080/cinemas/deletecinema
 router.delete("/deletecinema/:id", async (req, res) => {
     try {
         await Cinema.findByIdAndDelete(req.params.id)
