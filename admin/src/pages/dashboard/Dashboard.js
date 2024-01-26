@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import "./Dashboard.css";
 import SideBar from "../../components/sideBar/SideBar";
 import { useLocation } from "react-router-dom";
 import Header2 from "../../components/header2/Header2";
+import AdminContext from "../../context/AdminContext";
 
 function Dashboard() {
   const location = useLocation();
-  console.log(location);
+  const { getShows,getCinemas,allShows,allCinema}=useContext(AdminContext);
+  useEffect(()=>{
+    getShows()
+    getCinemas()
+  },[])
+  console.log(allCinema?.length)
   return (
     <>
       <div className="d-flex">
@@ -25,7 +31,7 @@ function Dashboard() {
           </div>
           <div className="cinema m-3 counting-item">
             <div>
-            <div className="count-no">24</div>
+            <div className="count-no">{allCinema?.length}</div>
               <div className="title-item">Cinema</div>
             </div>
             <div className="d-flex">
@@ -34,7 +40,7 @@ function Dashboard() {
           </div>
           <div className="shows m-3 counting-item">
             <div>
-            <div className="count-no">24</div>
+            <div className="count-no">{allShows?.length || 0}</div>
               <div className="title-item">Shows</div>
             </div>
             <div className="d-flex">
