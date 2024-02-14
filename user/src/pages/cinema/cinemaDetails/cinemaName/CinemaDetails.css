@@ -27,7 +27,7 @@
     margin: 5px;
     cursor: pointer;
     border: 1px solid white;
-    width: 30%;
+    width: 100px;
     text-align: center;
     transition: all ease 0.2s;
     letter-spacing: 4px;
@@ -53,6 +53,19 @@
 .mappopup iframe{
     height: 200px;
     width: 100%;
+}
+.notFoundImage {
+    display: flex;
+    justify-content: center;
+}
+.notFoundImage img{
+    height: 300px;
+    width: 300px;
+    margin-top: 20px;
+}
+.notFoundImage h2{
+    position: absolute;
+    color: white;
 }
 @media only screen and (min-width: 768px) {
     .cinema-info{

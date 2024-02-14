@@ -9,9 +9,6 @@ import Cinema from './pages/cinema/Cinema';
 import Seats from './pages/seats/Seats';
 import LoginSingup from './pages/login&singup/LoginSingup';
 import Moviestate from "./context/MovieState";
-import AddCinema from './pages/admin/addCinema/AddCinema';
-import AddShowTime from './pages/admin/addShowTime/AddShowTime';
-import SideBar from './components/admin/sideBar/SideBar';
 
 function App() {
   return (

@@ -2,12 +2,19 @@ import { useState } from "react";
 import MovieContext from "./Moviecontext";
 
 const Moviestate = (props) => {
- let obj = JSON.parse(localStorage.getItem("userDetails"));
+  const [allCinema, setAllCinema] = useState([]);
+  const [query,setQuery]=useState("")
+ let obj;
+ if (localStorage.getItem("userDetails")) {
+  obj = JSON.parse(localStorage.getItem("userDetails"));
+} else {
+  obj = { name: "", email: "" };
+}
 
  const [bookedSeats, setBookedSeats] = useState([]);
   const [bookingDetails, setBookingDetails] = useState({
-    cinemaId:"65a28751eeafe22cbdf56d23",
-    showId:"65a28767eeafe22cbdf56d25",
+    cinemaId:"",
+    showId:"",
     movieId:null,
     date:new Date().toString().slice(0,16) +"00:00:00.000+00:00",
     totalAmount:null,
@@ -41,6 +48,13 @@ const Moviestate = (props) => {
     // });
   };
 
+    //ger cinemas
+    let getCinemas = async (query) => {
+      let responce = await fetch(`http://localhost:8080/cinemas/getcinema?q=${query}`);
+      let data = await responce.json();
+      setAllCinema(data);
+    };
+
   // //get data from table
   // let getdata = async () => {
   //   await fetch(`${host}/ticket/getticket/${email}`)
@@ -73,7 +87,9 @@ const Moviestate = (props) => {
     <MovieContext.Provider
       value={{
         bookingDetails,setBookingDetails,
-        booking,bookedSeats, setBookedSeats
+        booking,bookedSeats, setBookedSeats,
+        allCinema, setAllCinema,getCinemas,
+        query,setQuery
         // userTikets,
         // getdata,
         // deleteData,

@@ -5,6 +5,8 @@ import Topimage from './topImage/Topimage';
 import MovieDates from './dates/MovieDates';
 import CinemaDetail from './cinemaDetails/cinemaName/CinemaDetail';
 import MovieContext from '../../context/Moviecontext';
+import SearchBox from './filters/SearchBox';
+import "./Cinema.css"
 
 const Cinema = () => {
     const { id } = useParams();
@@ -22,7 +24,10 @@ const Cinema = () => {
   return (
     <div>
        <Topimage data={data} />
+       <div className='date-filter-section'>
        <MovieDates/>
+       <SearchBox />
+       </div>
        <CinemaDetail/>
     </div>
   )

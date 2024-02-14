@@ -1,0 +1,10 @@
+.date-filter-section{
+    display: flex;
+    justify-content: space-between;
+}
+@media only screen and (max-width: 768px) {
+    .date-filter-section{
+        display: flex;
+        flex-direction: column;
+    }
+}

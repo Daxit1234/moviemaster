@@ -1,0 +1,45 @@
+.filter-box{
+    height: 100%;
+    margin-top: 5%;
+    margin-right: 5%;
+    z-index: 2;
+}
+.input-field input {
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 15px;
+    padding: 0 15px;
+    border: 2px solid #f4f2f2a7;
+    background: transparent;
+    color: #e7e9ef;;
+    outline: none;
+    transition: all .5s ease;
+  }
+.filter-box .input-field .icon{
+    position: relative;
+    right: 2.5rem;
+    bottom: 3.6rem;
+    font-size: 1.5em;
+    color: #edf9f1;
+    line-height: 57px;
+}
+@media only screen and (max-width: 768px) {
+    .filter-box{
+        height: 100%;
+        z-index: 2;
+    }
+    .input-field input {
+        width: 80%;
+        margin-top: -40px;
+        margin-left: 40px;
+      }
+      .filter-box .input-field .icon{
+        position: relative;
+        right: 0px;
+        bottom: 3.6rem;
+        font-size: 1.5em;
+        color: #edf9f1;
+        line-height: 57px;
+    }
+}

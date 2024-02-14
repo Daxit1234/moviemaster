@@ -1,7 +1,8 @@
 .showtime-container{
+    position: relative;
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
+    width: 900px;
     margin-right: 5%;
 }
 .showtime-box{
@@ -18,6 +19,9 @@
     font-size: 13px;
 }
 @media only screen and (max-width: 768px) {
+    .showtime-container{
+        width: 100%;
+    }
     .showtime-box{
         padding:3px 10px;
         border: 2px solid blue;
@@ -27,7 +31,7 @@
         transition: all ease 0.2s;
     }
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) { 
     .showtime-box:hover{
         padding: 10px;
         background-color: rgba(0, 0, 112, 0.672);
