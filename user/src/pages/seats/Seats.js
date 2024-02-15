@@ -1,12 +1,14 @@
 import React, { useState, useEffect,useContext } from "react";
 import "./Seats.css";
 import MovieContext from "../../context/Moviecontext";
+import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 
 function Seats() {
-  const {bookingDetails,setBookingDetails,booking,bookedSeats}=useContext(MovieContext);
+  const {bookingDetails,setBookingDetails,bookedSeats}=useContext(MovieContext);
   const [status, setStatus] = useState(false);
   const [selectedSeats, setSelectedSeats] = useState([]);
+  let navigate=useNavigate()
   let seats = [
     {
       row: "A",
@@ -70,6 +72,7 @@ function Seats() {
     }
 
   }, [bookedSeats]);
+
   let selected = (e) => {
     let temp=e.target.getAttribute("name")
     if (status) {
@@ -83,13 +86,13 @@ function Seats() {
       setStatus(true);
     }
   };
+
   let handleBooking =async () => {
    await setBookingDetails({...bookingDetails,
       seats:selectedSeats,
       totalAmount:selectedSeats.length*200,
     })
-      booking();
-    console.log(bookingDetails)
+     navigate("/payment")
   };
   return (
     <div className="screen-container">

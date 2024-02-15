@@ -1,0 +1,56 @@
+.upipayment-container{
+   position: relative;
+   left: 0;
+   /* margin-left: -100px; */
+}
+ .upi-title{
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    position: relative;
+    top: 10px;
+    left: 20px;
+}
+ .upi-options{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -50px;
+}
+ .upi-options .option-item{
+    display: flex;
+   height: 5rem;
+   min-width: 40%;
+   margin: 0.7rem 2rem ;
+}
+ .upi-options .option-item:hover{
+    background-color: rgb(4,21,45);
+}
+ .upi-options .option-item input{
+    align-self: center;
+    min-width: 30px;
+    min-height: 20px;
+   margin: 0.7rem 2rem ;
+}
+.upi-options .option-item img{
+    width: 70px;;
+    height: 70px;
+}
+ .upi-options .option-item span{
+    color: rgba(255, 255, 255, 0.603);
+    font-size: 310x;
+    align-self: center;
+    margin-left: 1rem;
+}
+@media only screen and (max-width: 768px) {
+    .upi-options .option-item{
+        display: flex;
+       height: 3rem;
+       max-width: 100%;
+       margin: 0.7rem 2rem ;
+    }
+    .upi-options .option-item img{
+        width: 50px;;
+        height: 50px;
+        align-self: center;
+    }
+}

@@ -14,7 +14,6 @@ function Header() {
     localStorage.removeItem("userData");
     setLogin(false)
   };
-  // console.log(obj);
   return (
     <div>
       <nav className="navbar navbar-expand-md navbar-dark">

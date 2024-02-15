@@ -9,6 +9,7 @@ import Cinema from './pages/cinema/Cinema';
 import Seats from './pages/seats/Seats';
 import LoginSingup from './pages/login&singup/LoginSingup';
 import Moviestate from "./context/MovieState";
+import Payment from './pages/payment/Payment';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Route path='/cinema/:id' element={<Cinema/>} />
       <Route path='/seats' element={<Seats/>} />
       <Route path='/login' element={<LoginSingup/>} />
+      <Route path='/payment' element={<Payment/>} />
     </Routes>
     {/* <Footer/> */}
    </Router>

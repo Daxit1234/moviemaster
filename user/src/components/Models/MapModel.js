@@ -1,7 +1,6 @@
 import React from "react";
 
 function MapModel( props) {
-    console.log(props)
   return (
     <div>
       <div

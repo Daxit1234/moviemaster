@@ -5,8 +5,8 @@ const Moviestate = (props) => {
   const [allCinema, setAllCinema] = useState([]);
   const [query,setQuery]=useState("")
  let obj;
- if (localStorage.getItem("userDetails")) {
-  obj = JSON.parse(localStorage.getItem("userDetails"));
+ if (localStorage.getItem("userData")) {
+  obj = JSON.parse(localStorage.getItem("userData"));
 } else {
   obj = { name: "", email: "" };
 }

@@ -38,6 +38,7 @@
 }
 .book-btn {
    background: linear-gradient(rgba(216, 220, 224, 0.486), #0950b4);
+   width: 100%;
   color: #fff;
   padding: 0.5rem 2rem;
   font-size: 15px;
@@ -72,12 +73,14 @@
     left: 0px;
     margin-top: 20px;
   }
-  .book-btn {
-    position: fixed;
-  }
   .status-container {
     margin: 0 10px;
-    /* width: 20%; */
+}
+.book-container{
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
 }
 }
 @media only screen and (min-width: 768px) {
