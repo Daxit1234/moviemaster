@@ -50,6 +50,7 @@
 }
 .container-invoice .card-upper .item .name {
   color: black;
+  font-size: 20px;
 }
 .container-invoice .card-upper .title .ticket {
   display: flex;    
@@ -61,7 +62,7 @@
 }
 .container-invoice .card-upper .title h1 {
   text-align: left;
-  font-size: 24px;
+  font-size: 20px;
   margin-bottom: 20px;
 }
 
@@ -101,8 +102,24 @@
 .container-invoice .card-lower .item-lower  .price {
   font-size: small;
 }
+.container-invoice .card-lower .total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+.container-invoice .card-lower .total h5{
+   font-weight: bold;
+}
 @media only screen and (max-width: 768px) {
-  .container-invoice{
-    display: none;
+  .container-invoice {
+    width: 100%;
+  }
+  .container-invoice .card {
+    width: 100%;
+    overflow-x:hidden ;
+  }
+  .container-invoice .card-lower .total {
+    pointer-events: all;
   }
 }

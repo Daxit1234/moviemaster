@@ -20,7 +20,12 @@ const Moviestate = (props) => {
     totalAmount:null,
     seats:[],
     userName:obj.name,
-    email:obj.email
+    email:obj.email,
+    cinemaName:"",
+    cinemaAdd:"",
+    showTime:"",
+    movieName:"",
+    showType:""
   });
   // const [userTikets, setUserTikets] = useState([]);
   // const [allTickets, setallTickets] = useState([]);

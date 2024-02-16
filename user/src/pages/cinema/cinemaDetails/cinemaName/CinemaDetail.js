@@ -29,7 +29,7 @@ function CinemaDetail() {
                 </div>
     
                 <div className="time-info">
-                  <Showtime cinemaid={item._id} />
+                  <Showtime cinemaid={item._id} name={item.cinemaName} address={ item.address + " " +item.city} />
                 </div>
                 <MapModel cinemaName={item.cinemaName} url={item.locationUrl} />
               </div>

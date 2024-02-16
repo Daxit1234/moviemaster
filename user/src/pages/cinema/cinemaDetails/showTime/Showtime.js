@@ -3,7 +3,7 @@ import "./Showtime.css";
 import { useNavigate } from "react-router-dom";
 import MovieContext from "../../../../context/Moviecontext";
 
-function Showtime({cinemaid}) {
+function Showtime({cinemaid,name ,address}) {
   const Navigate = useNavigate();
   const { bookingDetails, setBookingDetails, setBookedSeats } = useContext(MovieContext);
   const [showTime, setShowTime] = useState([]);
@@ -27,12 +27,16 @@ function Showtime({cinemaid}) {
     fetchShowTime();
   }, [cinemaid]);
 
-  const handleSetShow = async (cid, tid) => {
+  const handleSetShow = async (item) => {
     try {
       setBookingDetails((prevDetails) => ({
         ...prevDetails,
-        showId: tid,
-        cinemaId: cid
+        showId: item?._id,
+        cinemaId: item?.cinemaId,
+        showType:item.showType,
+        showTime:item.time,
+        cinemaName:name,
+        cinemaAdd:address
       }));
 
       const response = await fetch("http://localhost:8080/bookedSeats/getseat", {
@@ -41,8 +45,8 @@ function Showtime({cinemaid}) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          cinemaId: cid,
-          showId: tid,
+          cinemaId: item?.cinemaId, 
+          showId: item?._id,
           movieId: bookingDetails.movieId,
           date: bookingDetails.date,
         }),
@@ -68,7 +72,7 @@ function Showtime({cinemaid}) {
           <>
             <div
               className="showtime-box"
-              onClick={() => handleSetShow(item?.cinemaId, item?._id)}
+              onClick={() => handleSetShow(item)}
             >
               <span className="time-title"> {item.time}</span>
               <br />

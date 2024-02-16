@@ -1,12 +1,10 @@
 import React, { useContext } from 'react'
 import "./Invoice.css"
 import MovieContext from '../../context/Moviecontext';
-import useFetch from '../../hook/useFetch';
 
-const Invoice = () => {
+const Invoice = ({handlevisible}) => {
   const {bookingDetails}=useContext(MovieContext);
-  const {date,movieId,seats,showId,totalAmount}=bookingDetails
-  const {data}= useFetch(`/movie/${movieId}`);
+  const {date,movieName,seats,showId,totalAmount,showTime,showType,cinemaName,cinemaAdd}=bookingDetails
   return (
         <div className="container-invoice">
       <div className="card card-upper">
@@ -15,27 +13,28 @@ const Invoice = () => {
           <p className="ticket text-center">{seats.length}<br />Tickets</p>
         </div>
         <div className="item">
-          <p className="name">{data?.title}</p>
-          <p>Show Type : <strong>2D</strong></p>
-          <p>Cinepolis: High Street Mall, Thane (EX Cinemastar) (SCREEN 3)</p>
+          <p className="name">{movieName}</p>
+          <p>Show Type : <strong>{showType}</strong></p>
+          <p>Cinema : <strong>{cinemaName}</strong></p>
+          <p>Address : <strong>{cinemaAdd}</strong></p>
           <p>M-Ticket</p>
           <div className="time">
             <p>Seats No : {seats.map((i)=><strong>{i}  </strong>)}</p>
             <p>{date.slice(0,16) }</p>
-            <p>10:00 AM</p>
+            <p>{showTime}</p>
           </div>
         </div>
       </div>
       <div className="card card-lower">
         <div className="item-lower">
           <p className="name">Sub Total</p>
-          <p className="price-right">Rs. 300.00</p>
+          <h5>Rs. {totalAmount}.00</h5>
         </div>
         <div className="item-lower">
           <p className="name">
             +Add-ons &nbsp;<span id="vall">View All </span>
           </p>
-          <p className="price-right">Rs.1280.00</p>
+          <p className="price">Rs.1280.00</p>
         </div>
         <div className="item-lower">
           <p>Nachos (Qty 4)</p>
@@ -44,10 +43,11 @@ const Invoice = () => {
         </div>
         <div className="item-lower">
           <p className="name">+ Convenience fees</p>
-          <p className="price-right">Rs. 35.40</p>
+          <p className="price">Rs. 35.40</p>
         </div>
-        <div className="total">
-          <p>Amount Payable<a className="price-right"> Rs.1617.40 </a></p>
+        <div className="total" onClick={handlevisible}>
+           <p>Amount Pay</p>
+           <h5>Rs. 244.42</h5>
         </div>
       </div>
     </div>

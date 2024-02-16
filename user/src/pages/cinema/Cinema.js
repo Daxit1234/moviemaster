@@ -18,6 +18,7 @@ const Cinema = () => {
         setBookingDetails((prevDetails) => ({
           ...prevDetails,
           movieId: data.id,
+          movieName:data.title
         }));
       }
     }, [data,setBookingDetails]);

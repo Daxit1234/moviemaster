@@ -1,15 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Payment.css"
 import Upi from '../../components/payment/upi/Upi'
 import Invoice from '../../components/invoice/Invoice'
 
 const Payment = () => {
+  const [invoiceVisible,setInvoiceVisible]=useState(false)
+  let handlevisible=()=>{
+    invoiceVisible?setInvoiceVisible(false):setInvoiceVisible(true)
+  }
   return (
     <div className='payment-page'>
        <div className='d-flex'>
         <div>
 
-      <div className='contect-details'>
+      <div className={`contect-details ${invoiceVisible  ? "hidden":"visible"}`}>
         <div className='heading'>
             <p className='text'>Share your contect Details</p>
         </div>
@@ -35,8 +39,7 @@ const Payment = () => {
         </div>
       </div>
      
-
-      <div className='payment-options contect-details'>
+      <div className={`contect-details payment-options ${!invoiceVisible  ? "visible":"hidden"}`}>
        <div className='heading'>
             <p className='text'>Payment Options</p>
         </div>
@@ -59,8 +62,8 @@ const Payment = () => {
         </div>
       </div>
         </div>
-      <div>
-        <Invoice/>
+      <div className={` ${invoiceVisible  ? "invoice":"no-invoice"}`}>
+        <Invoice handlevisible={handlevisible}/>
       </div>
       </div>
     </div>
