@@ -90,20 +90,36 @@
     color: #000;
   }
   .payment-menus{
-    width: 60%;
+    width: 900px;
     background-color: rgb(4,21,45);
-    /* margin: 1rem 2rem; */
   }
   .payment-menus .menu-item{
-    font-size: 15px;
+    font-size: 20px;
     color: rgba(255, 255, 255, 0.621);
-    padding: 1rem 1rem;
+  }
+  .payment-menus .menu-item .d-flex{
+     padding: 1rem 1rem;
   }
 
   .payment-menus .menu-item:hover{
     color: rgba(255, 255, 255, 0.95);
     background-color:rgba(3, 17, 36, 0.656) ;
   }
+  .payment-menus .active{
+    background-color:rgba(3, 17, 36, 0.656) ;
+  }
+.viewBill{
+  display: none;
+}
+.upi-container {
+  overflow: hidden; 
+  max-height: 0; /* Initially set max-height to 0 */
+  transition: max-height 1.5s ease-out; /* Define transition */
+}
+
+.upi-container.show {
+  max-height: 500px; /* Adjust the value based on your content */
+}
 
 @media only screen and (max-width: 768px) {
   .hidden{
@@ -117,6 +133,16 @@
   }
   .no-invoice{
     display: none;
+  }
+  .viewBill{
+    display: flex;
+    width: 90%;
+    background-color:rgba(30, 41, 190, 0.23) ;
+    color: rgba(255, 255, 255, 0.494);
+    justify-content: center;
+    padding: 10px;
+    font-size: 20px;
+    margin: 10px;
   }
     .contect-details  .form-box{
         flex-direction: column;
