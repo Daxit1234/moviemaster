@@ -8,6 +8,7 @@ import Dashboard from './pages/dashboard/Dashboard'
 import Users from './pages/users/Users'
 import Bookings from './pages/bookings/Bookings'
 import Adminstate from './context/Adminstate'
+import Food from './pages/food/Food'
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
      <Route path='/showtimes' element={<AddShowTime/>} />
      <Route path='/users' element={<Users/>} />
      <Route path='/bookings' element={<Bookings/>} />
-
+     <Route path='/foods' element={<Food/>} />
    </Routes>
   </Router>
     </Adminstate>

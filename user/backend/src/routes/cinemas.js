@@ -18,9 +18,14 @@ router.post("/addcinema", async (req, res) => {
 router.get("/getcinema", async (req, res) => {
     try {
         const cinema = await Cinema.find()
-        const query = req.query.q.toLowerCase();
-        const results = cinema.filter(item => item.cinemaName.toLowerCase().includes(query));
-        res.status(201).send(results);
+        if (req.query.q) {
+            const query = req.query.q.toLowerCase();
+            const results = cinema.filter(item => item.cinemaName.toLowerCase().includes(query));
+            res.status(201).send(results);
+        }
+        else{
+            res.status(201).send(cinema);
+        }
     } catch (error) {
         res.status(400).json({ error: error.message });
     }

@@ -10,7 +10,7 @@ const AddCinema = () => {
   const [item,setItem]=useState({_id:"",cinemaName:"",address:"",city:"",locationUrl:""})
   useEffect(()=>{
     getCinemas()
-  },[])
+  },[allCinema])
 
   let handleDeleteCinema=(e)=>{
     let id=e.target.getAttribute("id")

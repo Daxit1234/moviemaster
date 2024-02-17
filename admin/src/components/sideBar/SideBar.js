@@ -33,7 +33,10 @@ const SideBar = () => {
             <Link to="/users"><i class="fa-solid fa-user"></i>Users</Link>
           </li>
           <li>
-            <Link to="/bookings"><i class="fa-solid fa-ticket"></i>ookings</Link>
+            <Link to="/bookings"><i class="fa-solid fa-ticket"></i>Bookings</Link>
+          </li>
+          <li>
+            <Link to="/foods"><i class="fa-solid fa-mug-saucer"></i> Foods</Link>
           </li>
         </ul>
       </div>

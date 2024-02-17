@@ -1,0 +1,10 @@
+{
+  "scripts": {
+      "admin": "cd admin && npm start",
+      "user": "cd user && npm run both",
+      "all": "concurrently \"npm run admin\" \"npm run user\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

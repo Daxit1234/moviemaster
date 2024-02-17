@@ -15,6 +15,7 @@ function Adminstate(props) {
   });
   const [allShows,setAllShows]=useState([])
   const [allCinema, setAllCinema] = useState([]);
+  const [allFood, setAllFood] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
   const host = "http://localhost:8080";
 
@@ -44,7 +45,7 @@ function Adminstate(props) {
   };
 
   let getCinemas = async () => {
-    let responce = await fetch(`${host}/cinemas/getcinema`);
+    let responce = await fetch(`${host}/cinemas/getcinema?q=`);
     let data = await responce.json();
     setAllCinema(data);
   };
@@ -53,6 +54,12 @@ function Adminstate(props) {
     let responce = await fetch(`${host}/show/getallshowtime`);
     let data = await responce.json();
     setAllShows(data);
+  };
+
+  let getFood = async () => {
+    let responce = await fetch(`${host}/food/getfood`);
+    let data = await responce.json();
+    setAllFood(data);
   };
 
   let getUsers = async () => {
@@ -70,6 +77,11 @@ function Adminstate(props) {
 
   let deleteTime = async(id) => {
     await fetch(`${host}/show/deleteshowtime/${id}`, {
+      method: "DELETE",
+    });
+  };
+  let deleteFood = async(id) => {
+    await fetch(`${host}/food/deletefood/${id}`, {
       method: "DELETE",
     });
   };
@@ -124,11 +136,13 @@ let editshow = async (_id, editShow) => {
         getCinemas,
         allCinema,
         deleteCinema,
+        deleteFood,
         editcinema,
         getShows,allShows,
         deleteTime,newShow, setNewShow,
         addNewShow,editshow,
-        allUsers, setAllUsers,getUsers
+        allUsers, setAllUsers,getUsers,
+        allFood, setAllFood,getFood
       }}
     >
       {props.children}
