@@ -52,7 +52,7 @@ const Food = () => {
                 <td>{item.category}</td>
                 <td>{item.price}</td>
                 <td className="p-1">
-                  <img src="D:/codes/react/moviemasters/user/backend/src/foodImages/1708176436798.jpg" alt="not found" />
+                  <img src={item.imageUrl} height={100} width={150} alt="not found" />
                 </td>
                 <td>
                   <button  className="btn-warning  mr-3" type="button">Edit</button></td><td>

@@ -28,7 +28,6 @@ function Header() {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-
           <div className="collapse navbar-collapse" id="collapsibleNavbar">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">

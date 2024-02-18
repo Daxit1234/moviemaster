@@ -1,5 +1,8 @@
 import React, { useContext, useState } from "react";
 import AdminContext from "../../../context/AdminContext";
+import { imageDb } from "./ImageDb";
+import {getDownloadURL, listAll, ref,uploadBytes} from "firebase/storage";
+import {v4 } from "uuid"
 
 const AddFoodModel = () => {
   const [image, setImage] = useState(null);
@@ -12,6 +15,7 @@ const AddFoodModel = () => {
     imageUrl: "",
   });
   const { getFood,setAllFood,allFood } = useContext(AdminContext);
+  const [loading,setLoading]=useState(false)
 
   const handleImageChange = (event) => {
     setImage(event.target.files[0]);
@@ -21,16 +25,21 @@ const AddFoodModel = () => {
   };
 
   const handleImageUpload = async () => {
-    const formData = new FormData();
-    formData.append("image", image);
-      const response = await fetch(`http://localhost:8080/upload/uploadimage`, {
-        method: "POST",
-        body: formData,
+    setLoading(true)
+      const imgRef=await ref(imageDb,`foodImage/${v4()}`)
+     await uploadBytes(imgRef, image).then(() => {
+        // Image upload successful, get its download URL
+        getDownloadURL(imgRef).then(url => {
+          console.log(url)
+          setNewFood({ ...newFood, imageUrl: url });
+        }).catch(error => {
+          console.error("Error getting download URL:", error);
+        });
+      }).catch(error => {
+        console.error("Error uploading image:", error);
       });
-      const data = await response.json();
-      console.log(data.imageUrl);
-      await setNewFood({ ...newFood, imageUrl: data.imageUrl }); // Update imageUrl state with the response
-      await addFood(); // Call the function to add food after updating imageUrl
+      setLoading(false)
+      setImage(null)
       getFood()
   };
   
@@ -50,7 +59,16 @@ const AddFoodModel = () => {
   
   const handleAddFood = async (e) => {
     e.preventDefault();
-    await handleImageUpload(); // Upload the image before adding food
+    await addFood(); // Upload the image before adding food
+    setNewFood({
+      name: "",
+      category: "",
+      description: "",
+      price: null,
+      type: "",
+      imageUrl: "",
+    });
+    setImage(null);
   };
   return (
     <div>
@@ -165,6 +183,9 @@ const AddFoodModel = () => {
                         Food Image
                       </label>
                   <input required type="file" onChange={handleImageChange} />
+
+                  <button type="button" onClick={handleImageUpload}>
+                    {loading?"loading":"upload"}</button>
                   <div className="modal-footer">
                     <button
                       type="button"

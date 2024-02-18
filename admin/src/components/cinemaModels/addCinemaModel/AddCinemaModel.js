@@ -196,6 +196,7 @@ function AddCinemaModel({role,item}) {
                   type="button"
                   className="btn btn-secondary"
                   data-dismiss="modal"
+                  id="closeButton"
                 >
                   Close
                 </button>
