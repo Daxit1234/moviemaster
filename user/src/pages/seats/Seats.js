@@ -92,7 +92,7 @@ function Seats() {
       seats:selectedSeats,
       totalAmount:selectedSeats.length*200,
     })
-     navigate("/payment")
+     navigate("/food")
   };
   return (
     <div className="screen-container">
