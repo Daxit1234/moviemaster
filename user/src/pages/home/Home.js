@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import HeroBannerr from './herroBenner/HeroBannerr'
-import Popular from './popular/Popular'
+import NewMovie from './newMovie/NewMovie'
 import MovieContext from '../../context/Moviecontext'
 
 function Home() {
@@ -8,7 +8,7 @@ function Home() {
   return (
     <div>
        <HeroBannerr/>
-       <Popular/>
+       <NewMovie/>
     </div>
   )
 }

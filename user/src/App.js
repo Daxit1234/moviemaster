@@ -10,6 +10,7 @@ import Seats from './pages/seats/Seats';
 import LoginSingup from './pages/login&singup/LoginSingup';
 import Moviestate from "./context/MovieState";
 import Payment from './pages/payment/Payment';
+import Food from './pages/food/Food';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Route path='/seats' element={<Seats/>} />
       <Route path='/login' element={<LoginSingup/>} />
       <Route path='/payment' element={<Payment/>} />
+      <Route path='/food' element={<Food/>} />
     </Routes>
     {/* <Footer/> */}
    </Router>
