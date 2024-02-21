@@ -13,6 +13,7 @@ const Invoice2 = ({foodBeverage}) => {
   const [gst, setGst] = useState(0);
   const [convenienceFees, setConvenienceFees] = useState(0);
   const [foodAmount, setFoodAmount] = useState(0);
+  const [contibution , setContibution] = useState(Math.floor(Math.random() * 10) + 1);
 
   useEffect(() => {
     // Calculate base amount, GST, and convenience fees
@@ -28,9 +29,8 @@ const Invoice2 = ({foodBeverage}) => {
     const foodTotal = foodBeverage.reduce((acc, item) => acc + (item.quantity * item.price), 0);
     setFoodAmount(foodTotal);
   }, [totalAmount, foodBeverage]);
-  console.log(foodBeverage)
   return (
-        <div class="booking-summary">
+        <div class="booking-summary mt-5">
       <div class="card card-upper">
         <div class="title">
           <h5>BOOKING SUMMARY</h5>
@@ -85,22 +85,20 @@ const Invoice2 = ({foodBeverage}) => {
         <div class="card1 last-card">
           <div class="fline">
             <p>Contibution to MovieMasters</p>
-            <p>Rs.3.00</p>
+            <p>Rs.{contibution}</p>
           </div>
           <div class="sline">
             <p>(Rs.1 per ticket has been added)</p>
-            <p>Remove</p>
+            <p onClick={()=>setContibution(0)}>Remove</p>
           </div>
           <div class="lline">
-            <a href="T&C">View T&C</a>
+            <p className='text-primary'>View T&C</p>
           </div>
         </div>
-        <div class="state">
-          <p>Your current state is gujrat</p>
-        </div>
-        <div class="total" onClick={()=>navigate('/payment')}>
+        
+        <div class="total mt-3" onClick={()=>navigate('/payment')}>
           <p>Amount Payable</p>
-          <p>Rs.2236.72</p>
+          <p>Rs.{totalAmount+convenienceFees+contibution+foodAmount}</p>
         </div>
       </div>
     </div>

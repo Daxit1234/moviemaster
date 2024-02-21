@@ -18,13 +18,24 @@ router.post("/addcinema", async (req, res) => {
 router.get("/getcinema", async (req, res) => {
     try {
         const cinema = await Cinema.find()
+
+        const page = parseInt(req.query.page) || 1;
+        const pageSize = parseInt(req.query.pageSize) || 10;
+        
+        // Calculate startIndex and endIndex for slicing the data
+        const startIndex = (page - 1) * pageSize;
+        const endIndex = startIndex + pageSize;
+        const paginatedData = cinema.slice(startIndex, endIndex);
+        const totalData = cinema.length
+      
         if (req.query.q) {
             const query = req.query.q.toLowerCase();
-            const results = cinema.filter(item => item.cinemaName.toLowerCase().includes(query));
-            res.status(201).send(results);
+            const results = paginatedData.filter(item => item.cinemaName.toLowerCase().includes(query));
+            paginatedData=results
+            res.status(201).send({paginatedData,totalData});
         }
         else{
-            res.status(201).send(cinema);
+            res.status(201).send({paginatedData,totalData});
         }
     } catch (error) {
         res.status(400).json({ error: error.message });

@@ -1,13 +1,18 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import SideBar from '../../components/sideBar/SideBar'
 import AdminContext from '../../context/AdminContext'
 import Header2 from '../../components/header2/Header2'
+import TablePaginationDemo from '../../components/pagination/Paginathion'
+
 
 const Users = () => {
-  const { allUsers ,getUsers ,deleteUser }=useContext(AdminContext)
+  const { allUsers ,getUsers ,deleteUser ,totalUser}=useContext(AdminContext)
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+
   useEffect(()=>{
-    getUsers()
-  },[])
+    getUsers(page,rowsPerPage)
+  },[page,rowsPerPage])
 
   let handleDeleteUser=(e)=>{
     // let id=e.target.getAttribute("id")
@@ -45,6 +50,8 @@ const Users = () => {
             })}
           </table>
         </div>
+      <TablePaginationDemo set={{ page, rowsPerPage, setPage, setRowsPerPage }}
+      count={totalUser} />
       </div>
     </div>
   )

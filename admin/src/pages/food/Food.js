@@ -3,15 +3,19 @@ import SideBar from '../../components/sideBar/SideBar'
 import Header2 from '../../components/header2/Header2'
 import AddFoodModel from '../../components/cinemaModels/addFoodModel/AddFoodModel'
 import AdminContext from '../../context/AdminContext'
+import TablePaginationDemo from '../../components/pagination/Paginathion'
 
 const Food = () => {
-  const {getFood,allFood,deleteFood}=useContext(AdminContext)
+  const {getFood,allFood,deleteFood ,totalFood}=useContext(AdminContext)
   const [role,setRole]=useState("add")
+  
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
   // const [item,setItem]=useState({_id:"",cinemaName:"",address:"",city:"",locationUrl:""})
   useEffect(()=>{
-    getFood()
-  },[])
-   
+    getFood(page,rowsPerPage)
+  },[page,rowsPerPage])
+
   let handleDeleteFood=(e)=>{
     let id=e.target.getAttribute("id")
     deleteFood(id)
@@ -31,7 +35,7 @@ const Food = () => {
           </button>
         </div>
       </div>
-      <div className="food-list">
+      <div className="cinema-list">
          <table className="table w-100 overflow-auto table-striped">
           <tr className="table-title">
             <th>F.No</th>
@@ -44,9 +48,10 @@ const Food = () => {
             <th>Delete</th>
           </tr>
           {allFood?.map((item, index) => {
+             const currentIndex = index + 1 + page * rowsPerPage; 
             return (
               <tr className={`${index % 2 === 0 ? "even-row" : "odd-row"}`}>
-                <th>{index + 1}</th>
+                <th>{currentIndex}</th>
                 <td>{item.name}</td>
                 <td>{item.type}</td>
                 <td>{item.category}</td>
@@ -70,6 +75,8 @@ const Food = () => {
           })}
         </table> 
       </div>
+      <TablePaginationDemo set={{ page, rowsPerPage, setPage, setRowsPerPage }}
+      count={totalFood}/>
     </div>
     <AddFoodModel role={role}/>
   </div>

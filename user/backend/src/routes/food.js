@@ -17,12 +17,21 @@ router.post("/addfood", async (req, res) => {
 router.get("/getfood", async (req, res) => {
     try {
         const food = await Food.find()
+        const page = parseInt(req.query.page) || 1;
+        const pageSize = parseInt(req.query.pageSize) || 10;
+        
+        // Calculate startIndex and endIndex for slicing the data
+        const startIndex = (page - 1) * pageSize;
+        const endIndex = startIndex + pageSize;
+        const results = food.slice(startIndex, endIndex);
+        const totalData = food.length
         if (req.query.q) {
             const query = req.query.q.toLowerCase();
-            const results = food.filter(item => item.type.toLowerCase().includes(query));
-            res.status(201).send(results);
+            const data = results.filter(item => item.type.toLowerCase().includes(query));
+            results=data
+            res.status(201).send({results,totalData});
         }else{
-            res.status(201).send(food);
+            res.status(201).send({results,totalData});
         }
     } catch (error) {
         res.status(400).json({ error: error.message });

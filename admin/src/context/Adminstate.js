@@ -17,6 +17,9 @@ function Adminstate(props) {
   const [allCinema, setAllCinema] = useState([]);
   const [allFood, setAllFood] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
+  const [totalCinema,setTotalCinema]=useState(null);
+  const [totalFood,setTotalFood]=useState(null);
+  const [totalUser,setTotalUser]=useState(null);
   const host = "http://localhost:8080";
 
   let addNewCinema = async () => {
@@ -44,29 +47,38 @@ function Adminstate(props) {
     console.log(allShows)
   };
 
-  let getCinemas = async () => {
-    let responce = await fetch(`${host}/cinemas/getcinema?q=`);
+  let getCinemas = async (page,row) => {
+    let responce = await fetch(`${host}/cinemas/getcinema?page=${page}&pageSize=${row}`);
     let data = await responce.json();
-    setAllCinema(data);
+    setAllCinema(data.paginatedData);
+    setTotalCinema(data.totalData)
   };
-
+ 
+    
   let getShows = async () => {
     let responce = await fetch(`${host}/show/getallshowtime`);
     let data = await responce.json();
     setAllShows(data);
   };
 
-  let getFood = async () => {
-    let responce = await fetch(`${host}/food/getfood`);
+  let getFood = async (page,row) => {
+    let responce = await fetch(`${host}/food/getfood?page=${page}&pageSize=${row}`);
     let data = await responce.json();
-    setAllFood(data);
+    setAllFood(data.results);
+    setTotalFood(data.totalData);
   };
 
-  let getUsers = async () => {
-    let responce = await fetch(`${host}/users/getUserDetails`);
-    let data = await responce.json();
-    console.log(data)
-    setAllUsers(data);
+  let getUsers = async (page,row) => {
+    try {
+      let responce = await fetch(`${host}/users/getUserDetails?page=${page}&pageSize=${row}`);
+      let data = await responce.json();
+      setAllUsers(data.results);
+      console.log(data)
+      setTotalUser(data.totalData)
+    } catch (error) {
+      console.log("object")
+    }
+
   };
 
   let deleteCinema = async(id) => {
@@ -142,7 +154,7 @@ let editshow = async (_id, editShow) => {
         deleteTime,newShow, setNewShow,
         addNewShow,editshow,
         allUsers, setAllUsers,getUsers,
-        allFood, setAllFood,getFood
+        allFood, setAllFood,getFood,totalCinema,totalFood,totalUser
       }}
     >
       {props.children}

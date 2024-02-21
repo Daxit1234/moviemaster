@@ -21,7 +21,7 @@ const FoodCard = ({ item,OnFoodAdd }) => {
     };
 
     const handleRemoveFood = () => {
-        if (quantity > 0) {
+        if (quantity >= 0) {
             const newQuantity = quantity - 1;
             setQuantity(newQuantity);
 
@@ -38,8 +38,8 @@ const FoodCard = ({ item,OnFoodAdd }) => {
     };
 
     return (
-        <div className="d-flex food-card col-md-6 text-light" style={{ width: '18rem' }}>
-            <img className="card-img-top food-image" src={item.imageUrl} alt="Card image cap" />
+        <div className="d-flex my-2 food-card col-md-6 text-light" style={{ width: '18rem' ,borderRadius:"10px" }}>
+            <img className="card-img-top food-image"style={{ borderRadius:"15px" }} src={item.imageUrl} alt="Card image cap" />
             <div className="card-body ">
                 <div className="d-flex justify-content-between">
                     <h5 className="card-title">{item.name}</h5>

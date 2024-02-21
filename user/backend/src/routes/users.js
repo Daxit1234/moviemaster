@@ -152,7 +152,15 @@ router.post("/forgetPass", async (req, res) => {
 //ROuTE 7: get all user data for admin
 router.get("/getUserDetails", async (req, res) => {
   let user = await User.find();
-  res.send(user);
+  const page = parseInt(req.query.page) || 1;
+  const pageSize = parseInt(req.query.pageSize) || 10;
+  
+  // Calculate startIndex and endIndex for slicing the data
+  const startIndex = (page - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const results = user.slice(startIndex, endIndex);
+  const totalData = user.length
+  res.send({results,totalData});
 });
 
 //ROUTE:8: delete tickets using get:http://localhost:3000/users/delete  for admin

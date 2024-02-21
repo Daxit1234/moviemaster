@@ -4,28 +4,45 @@ import Header2 from "../../components/header2/Header2";
 import "./AddCinema.css";
 import AddCinemaModel from "../../components/cinemaModels/addCinemaModel/AddCinemaModel";
 import AdminContext from "../../context/AdminContext";
+import TablePaginationDemo from "../../components/pagination/Paginathion";
 const AddCinema = () => {
-  const {getCinemas ,allCinema,deleteCinema}=useContext(AdminContext)
-  const [role,setRole]=useState("add")
-  const [item,setItem]=useState({_id:"",cinemaName:"",address:"",city:"",locationUrl:""})
-  useEffect(()=>{
-    getCinemas()
-  },[allCinema])
+  const { getCinemas, allCinema, deleteCinema, totalCinema } =
+    useContext(AdminContext);
+  const [role, setRole] = useState("add");
+  const [item, setItem] = useState({
+    _id: "",
+    cinemaName: "",
+    address: "",
+    city: "",
+    locationUrl: "",
+  });
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  let handleDeleteCinema=(e)=>{
-    let id=e.target.getAttribute("id")
-    deleteCinema(id)
-    getCinemas()
-  }
-  let handleEditCinema=(e)=>{
-    let id=e.target.getAttribute("id")
-    let cinemaName=e.target.getAttribute("cinemaName")
-    let city=e.target.getAttribute("city")
-    let address=e.target.getAttribute("address")
-    let locationUrl=e.target.getAttribute("locationUrl")
-    setItem({_id:id,cinemaName:cinemaName,city:city,address:address,locationUrl:locationUrl})
-    setRole("edit")
-  }
+  useEffect(() => {
+    getCinemas(page, rowsPerPage);
+  }, [page, rowsPerPage]);
+
+  let handleDeleteCinema = (e) => {
+    let id = e.target.getAttribute("id");
+    deleteCinema(id);
+    getCinemas();
+  };
+  let handleEditCinema = (e) => {
+    let id = e.target.getAttribute("id");
+    let cinemaName = e.target.getAttribute("cinemaName");
+    let city = e.target.getAttribute("city");
+    let address = e.target.getAttribute("address");
+    let locationUrl = e.target.getAttribute("locationUrl");
+    setItem({
+      _id: id,
+      cinemaName: cinemaName,
+      city: city,
+      address: address,
+      locationUrl: locationUrl,
+    });
+    setRole("edit");
+  };
   return (
     <div className="d-flex">
       <SideBar />
@@ -34,8 +51,13 @@ const AddCinema = () => {
         <div className="d-flex justify-content-between">
           <div className="h3 opacity-25 m-3">Cinema List</div>
           <div className="p-3">
-            <button type="button" onClick={()=>setRole("add")} class="btn btn-primary btn-lg"   data-toggle="modal"
-              data-target="#exampleModalCenter">
+            <button
+              type="button"
+              onClick={() => setRole("add")}
+              class="btn btn-primary btn-lg"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
+            >
               Add Cinema
             </button>
           </div>
@@ -51,9 +73,11 @@ const AddCinema = () => {
               <th>Update</th>
             </tr>
             {allCinema?.map((item, index) => {
+              const currentIndex = index + 1 + page * rowsPerPage; // Calculate the current index
+
               return (
                 <tr className={`${index % 2 === 0 ? "even-row" : "odd-row"}`}>
-                  <th>{index + 1}</th>
+                  <th>{currentIndex}</th> {/* Render the calculated index */}
                   <td>{item.cinemaName}</td>
                   <td>{item.address}</td>
                   <td>{item.city}</td>
@@ -67,21 +91,40 @@ const AddCinema = () => {
                     ></iframe>
                   </td>
                   <td>
-                    <button  id={item._id} 
-                             cinemaName={item.cinemaName} 
-                             city={item.city} 
-                             address={item.address} 
-                             locationUrl={item.locationUrl} 
-                    data-toggle="modal" data-target="#exampleModalCenter" onClick={handleEditCinema} className="btn-warning  mr-3" type="button">Edit</button>
-                    <button onClick={handleDeleteCinema}  id={item._id}  className="btn-danger" type="button">Delete</button>
+                    <button
+                      id={item._id}
+                      cinemaName={item.cinemaName}
+                      city={item.city}
+                      address={item.address}
+                      locationUrl={item.locationUrl}
+                      data-toggle="modal"
+                      data-target="#exampleModalCenter"
+                      onClick={handleEditCinema}
+                      className="btn-warning  mr-3"
+                      type="button"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={handleDeleteCinema}
+                      id={item._id}
+                      className="btn-danger"
+                      type="button"
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               );
             })}
           </table>
         </div>
+        <TablePaginationDemo
+          set={{ page, rowsPerPage, setPage, setRowsPerPage }}
+          count={totalCinema}
+        />
       </div>
-      <AddCinemaModel role={role} item={item}/>
+      <AddCinemaModel role={role} item={item} />
     </div>
   );
 };
