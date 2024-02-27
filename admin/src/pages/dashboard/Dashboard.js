@@ -7,12 +7,13 @@ import AdminContext from "../../context/AdminContext";
 
 function Dashboard() {
   const location = useLocation();
-  const { getShows,getCinemas,getFood,getUsers,allShows,totalCinema,totalFood,totalUser}=useContext(AdminContext);
+  const {getBooking,totalBooking, getShows,getCinemas,getFood,getUsers,allShows,totalCinema,totalFood,totalUser}=useContext(AdminContext);
   useEffect(()=>{
     getShows()
     getCinemas()
     getUsers()
     getFood()
+    getBooking()
   },[])
   return (
     <>
@@ -50,7 +51,7 @@ function Dashboard() {
           </div>
           <div className="booking m-3 counting-item">
             <div>
-            <div className="count-no">24</div>
+            <div className="count-no">{totalBooking}</div>
               <div className="title-item">Bookings</div>
             </div>
             <div className="d-flex">

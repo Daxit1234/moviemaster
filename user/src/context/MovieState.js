@@ -27,9 +27,6 @@ const Moviestate = (props) => {
     movieName:"",
     showType:""
   });
-  // const [userTikets, setUserTikets] = useState([]);
-  // const [allTickets, setallTickets] = useState([]);
-  // const [users,setUsers]=useState([]);
   const host = "http://localhost:8080";
 
   //book tikets
@@ -57,7 +54,7 @@ const Moviestate = (props) => {
     let getCinemas = async (query) => {
       let responce = await fetch(`http://localhost:8080/cinemas/getcinema?q=${query}`);
       let data = await responce.json();
-      setAllCinema(data);
+      setAllCinema(data.paginatedData);
     };
 
   // //get data from table

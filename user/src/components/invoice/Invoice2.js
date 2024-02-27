@@ -4,7 +4,7 @@ import MovieContext from '../../context/Moviecontext';
 import { useNavigate } from 'react-router-dom';
 
 const Invoice2 = ({foodBeverage}) => {
-  const { bookingDetails } = useContext(MovieContext);
+  const { bookingDetails ,booking } = useContext(MovieContext);
   const { date, movieName, seats, showId, totalAmount, showTime, showType, cinemaName, cinemaAdd } = bookingDetails;
   const navigate = useNavigate();
 
@@ -96,7 +96,7 @@ const Invoice2 = ({foodBeverage}) => {
           </div>
         </div>
         
-        <div class="total mt-3" onClick={()=>navigate('/payment')}>
+        <div class="total mt-3" onClick={()=>{booking() ;navigate('/payment')}}>
           <p>Amount Payable</p>
           <p>Rs.{totalAmount+convenienceFees+contibution+foodAmount}</p>
         </div>

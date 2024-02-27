@@ -35,6 +35,22 @@ const BookedSeatSchema = new mongoose.Schema({
         type:String,
         require:true
     },
+    cinemaName:{
+        type:String,
+        require:true
+    },
+    movieName:{
+        type:String,
+        require:true
+    },
+    showTime:{
+        type:String,
+        require:true
+    },
+    showType:{
+        type:String,
+        require:true
+    }
     }
 );
 

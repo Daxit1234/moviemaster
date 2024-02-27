@@ -1,0 +1,15 @@
+.cinema-time-card{
+    min-height: 400px;
+
+}
+.time-box{
+    background-color: aqua;
+margin: 1px;
+display: flex;
+}
+.add-button{
+    position: absolute;
+    right: 29px;
+    margin: 5px;
+    bottom: 0px;
+}

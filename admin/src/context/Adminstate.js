@@ -17,9 +17,11 @@ function Adminstate(props) {
   const [allCinema, setAllCinema] = useState([]);
   const [allFood, setAllFood] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
+  const [allBooking, setAllBooking] = useState([]);
   const [totalCinema,setTotalCinema]=useState(null);
   const [totalFood,setTotalFood]=useState(null);
   const [totalUser,setTotalUser]=useState(null);
+  const [totalBooking,setTotalBooking]=useState(null);
   const host = "http://localhost:8080";
 
   let addNewCinema = async () => {
@@ -61,6 +63,13 @@ function Adminstate(props) {
     setAllShows(data);
   };
 
+  let getBooking = async (page,row) => {
+    let responce = await fetch(`${host}/bookedSeats/getallbooking?page=${page}&pageSize=${row}`);
+    let data = await responce.json();
+    setAllBooking(data.results);
+    setTotalBooking(data.totalData);
+  };
+
   let getFood = async (page,row) => {
     let responce = await fetch(`${host}/food/getfood?page=${page}&pageSize=${row}`);
     let data = await responce.json();
@@ -73,7 +82,6 @@ function Adminstate(props) {
       let responce = await fetch(`${host}/users/getUserDetails?page=${page}&pageSize=${row}`);
       let data = await responce.json();
       setAllUsers(data.results);
-      console.log(data)
       setTotalUser(data.totalData)
     } catch (error) {
       console.log("object")
@@ -154,7 +162,8 @@ let editshow = async (_id, editShow) => {
         deleteTime,newShow, setNewShow,
         addNewShow,editshow,
         allUsers, setAllUsers,getUsers,
-        allFood, setAllFood,getFood,totalCinema,totalFood,totalUser
+        allFood, setAllFood,getFood,totalCinema,totalFood,totalUser,
+        getBooking,allBooking,totalBooking,setAllBooking
       }}
     >
       {props.children}

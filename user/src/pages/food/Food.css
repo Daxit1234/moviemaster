@@ -37,6 +37,7 @@
 		display: none;
 		margin: 0;
 		padding: 0;
+
 	}
 	.food-image{
 		height: 100px;
@@ -44,8 +45,6 @@
 	}
 	.description{
 		height: 70px;
+		font-size: 10px;
 	}
-	/* .ard-body {
-		margin-top: -10px;
-	} */
 }

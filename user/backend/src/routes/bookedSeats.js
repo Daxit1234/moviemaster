@@ -57,6 +57,28 @@ router.post("/getseat", async (req, res) => {
     }
 });
 
+// ROUTE 2: get all booked seat using GET http://localhost:8080/bookedSeats/getallseat
+router.get("/getallbooking", async (req, res) => {
+    try {
+        const bookedseat = await BookedSeat.find();
+        const page = parseInt(req.query.page) || 1;
+        const pageSize = parseInt(req.query.pageSize) || 10;
+        
+        // Calculate startIndex and endIndex for slicing the data
+        const totalData = bookedseat.length;
+        const startIndex = Math.max(totalData - page * pageSize, 0);
+        const endIndex = Math.max(totalData - (page - 1) * pageSize, 0);
+        
+        // Extract the data for the current page in reverse order
+        const results = bookedseat.slice(startIndex, endIndex).reverse();
+        
+        res.status(201).send({ results, totalData });
+        
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
 
 
 module.exports= router

@@ -1,6 +1,5 @@
 import React from 'react'
 import { BrowserRouter as Router,Route,Routes } from 'react-router-dom'
-import SideBar from './components/sideBar/SideBar'
 import AdminHeader from './components/header/AdminHeader'
 import AddShowTime from './pages/addShowTime/AddShowTime'
 import AddCinema from './pages/addCinema/AddCinema'
@@ -9,6 +8,7 @@ import Users from './pages/users/Users'
 import Bookings from './pages/bookings/Bookings'
 import Adminstate from './context/Adminstate'
 import Food from './pages/food/Food'
+import ShowTime from './pages/addShowTime/ShowTime'
 
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
    <Routes>
      <Route path='/'element={<Dashboard/>}/>
     <Route path='cinemas' element={<AddCinema/>} />
-     <Route path='/showtimes' element={<AddShowTime/>} />
+     <Route path='/showtimes' element={<ShowTime/>} />
      <Route path='/users' element={<Users/>} />
      <Route path='/bookings' element={<Bookings/>} />
      <Route path='/foods' element={<Food/>} />

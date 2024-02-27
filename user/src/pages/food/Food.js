@@ -35,7 +35,7 @@ const Food = () => {
         try {
             let response = await fetch("http://localhost:8080/food/getfood");
             let data = await response.json();
-            setFood(data);
+            setFood(data.results);
         } catch (error) {
             console.error('Error fetching food data:', error);
         }
