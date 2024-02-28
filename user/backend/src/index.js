@@ -6,6 +6,7 @@ const cinemaRouter=require('./routes/cinemas')
 const showtimeRouter=require('./routes/showtimes')
 const bookedSeatRouter=require('./routes/bookedSeats')
 const foodRouter=require('./routes/food')
+const ownerRouter=require('./routes/Owner')
 const cors=require('cors')
 
 app.use(cors())
@@ -21,6 +22,7 @@ app.use('/users',userRouter);
 app.use('/show', showtimeRouter);
 app.use('/bookedSeats', bookedSeatRouter);
 app.use('/food', foodRouter);
+app.use('/owner', ownerRouter);
 
 app.listen(port,()=>{
     console.log(`server runnint at port ${port}`)

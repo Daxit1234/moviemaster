@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 const CinemaSchema = new mongoose.Schema({
+    ownerId:{
+        type:String,
+        required:true
+    },
     cinemaName:{
         type:String,
         require:true

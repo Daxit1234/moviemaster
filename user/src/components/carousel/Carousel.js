@@ -8,7 +8,7 @@ const Carousel = ({ data, loading}) => {
   const url = "https://image.tmdb.org/t/p/original";
   return (
     <div className="row">
-        {!loading  && data?.AxiosError ? (
+        {!loading  && !data?.AxiosError ? (
           <>
              {data?.map((items) => {
               const poster=items.poster_path ?

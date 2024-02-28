@@ -20,7 +20,6 @@ function Showtime({cinemaid,name ,address}) {
         }
       } catch (error) {
         console.error(error);
-        // Handle error if needed
       }
     };
 
@@ -56,7 +55,7 @@ function Showtime({cinemaid,name ,address}) {
         const data = await response.json();
         setBookedSeats(data); // Assuming data is an array of booked seats
         localStorage.setItem("bookedSeats", JSON.stringify(data));
-        Navigate("/seats");
+        Navigate(`/seats/${item.showPrice}`);
       } else {
         console.error("Failed to fetch booked seats");
       }

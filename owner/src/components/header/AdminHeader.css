@@ -1,0 +1,28 @@
+.header {
+    width: 100%;
+    height: 50px;
+   background-color:rgb(59,138,186) ;
+   display: flex;
+  }
+  .imglogo{
+    position: absolute;
+    left: 100px;
+    top: 20px;
+    height: 15px;
+   width: 50px;
+    transform: scale(3);
+  }
+  .menu-icon{
+    font-size: 30px;
+    margin-left: 17%;
+    align-self: center;
+    color: white;
+  }
+  .hide{
+     margin-left: 0px;
+     transition: all ease 1s;
+  }
+  .visible{
+    display: block;
+    transition: all ease 1s;
+  }

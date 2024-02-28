@@ -1,0 +1,29 @@
+.add-btn{
+    margin-right: 30px;
+    padding: 30px;
+    background-color: blue;
+    color: white;
+    height: 30px;
+}
+.table-title{
+    background-color: rgba(59,138,186,0.3);
+    height: 3rem;
+}
+table th{
+    font-size: 20px;
+    text-align: center;
+}
+table tr td{
+    font-size: 20px;
+    text-align: center;
+}
+.cinema-list{
+    height: 420px;
+    overflow: scroll;
+}
+.even-row{
+    background-color: rgba(29, 88, 88, 0.104);
+}
+.odd-row{
+    background-color: rgba(60, 20, 152, 0.179);
+}

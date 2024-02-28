@@ -1,15 +1,21 @@
 import React, { useState, useEffect,useContext } from "react";
 import "./Seats.css";
 import MovieContext from "../../context/Moviecontext";
-import { useNavigate } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from 'react-router-dom';
 
 function Seats() {
   const {bookingDetails,setBookingDetails,bookedSeats}=useContext(MovieContext);
   const [status, setStatus] = useState(false);
   const [selectedSeats, setSelectedSeats] = useState([]);
+  const [displayamount,setDisplayAmount]=useState(null)
   let navigate=useNavigate()
+  const { showPrice }=useParams()
+
   let seats = [
+    {
+      row: showPrice.split(",")[0],
+      seatNo: [],
+    },
     {
       row: "A",
       seatNo: [1, 2, 3, 4, 0, 5, 6, 7, 8, 9, 10, 11, 12, 0, 13, 14, 15, 16],
@@ -23,6 +29,10 @@ function Seats() {
       seatNo: [1, 2, 3, 4, 0, 5, 6, 7, 8, 9, 10, 11, 12, 0, 13, 14, 15, 16],
     },
     {
+      row:showPrice.split(",")[1],
+      seatNo: [],
+    },
+    {
       row: "D",
       seatNo: [1, 2, 3, 4, 0, 5, 6, 7, 8, 9, 10, 11, 12, 0, 13, 14, 15, 16],
     },
@@ -33,6 +43,10 @@ function Seats() {
     {
       row: "F",
       seatNo: [1, 2, 3, 4, 0, 5, 6, 7, 8, 9, 10, 11, 12, 0, 13, 14, 15, 16],
+    },
+    {
+      row:showPrice.split(",")[2],
+      seatNo: [],
     },
     {
       row: "G",
@@ -73,7 +87,7 @@ function Seats() {
 
   }, [bookedSeats]);
 
-  let selected = (e) => {
+  let selected = async(e) => {
     let temp=e.target.getAttribute("name")
     if (status) {
       e.target.style.backgroundColor = "";
@@ -88,9 +102,22 @@ function Seats() {
   };
 
   let handleBooking =async () => {
+    let amount=0;
+   await selectedSeats.map((i)=>{
+      if(i.slice(0,1)==="A" || i.slice(0,1)==="B" ||i.slice(0,1)==="C"){
+        amount=amount+parseInt(showPrice.split(",")[0])
+      }
+      if(i.slice(0,1)==="D" || i.slice(0,1)==="E" ||i.slice(0,1)==="F"){
+        amount=amount+parseInt(showPrice.split(",")[1])
+      }
+      if(i.slice(0,1)==="G" || i.slice(0,1)==="H" ||i.slice(0,1)==="I"){
+        amount=amount+parseInt(showPrice.split(",")[2])
+      }
+    })
+    console.log(amount)
    await setBookingDetails({...bookingDetails,
       seats:selectedSeats,
-      totalAmount:selectedSeats.length*200,
+      totalAmount:amount,
     })
      navigate("/food")
   };
@@ -102,8 +129,9 @@ function Seats() {
       <div  className={`d-flex justify-content-center`}>
          <div className="d-flex justify-content-between book-container">
           <div className="">
-          <h5 className="text-light" id="" onClick={handleBooking}> ₹{selectedSeats.length*200}</h5>
-          <p className="text-light">Ticket {selectedSeats.length} x ₹{selectedSeats.length*200}</p>
+          {/* <h5 className="text-light" id="" onClick={handleBooking}> ₹{displayamount}</h5> */}
+          <p className="text-light">No Of Ticket {selectedSeats.length}</p>
+          <p className="text-light">{selectedSeats.map(i=><span className="mr-1">{i+" "}</span> )} </p>
           </div>
           <div>
           <div className="book-btn" id="booking-btn" onClick={handleBooking}>Book Now</div>
@@ -118,7 +146,13 @@ function Seats() {
           return (
             <>
               <div className="row seat-container">
-                <h3 className="col-1">{item.row}</h3>
+                {
+                  item.seatNo.length!==0 ?
+                  <h3 className="col-1 text-center">{item.row}</h3>
+                  :
+                  <h5 className="text-center price-title">₹ {item.row} </h5>
+
+                }
                 {item.seatNo.map((e) => {
                   return (
                     <>

@@ -1,0 +1,33 @@
+/* Base styles for non-responsive layout */
+.nav {
+    width: 100%;
+    height: 50px;
+    background-color: rgb(237, 240, 247);
+    display: flex;
+    justify-content: space-between; /* Adjusted for better layout */
+}
+
+.nav-item {
+    font-size: 30px;
+    font-weight: bold;
+    align-self: center;
+    margin-left: 10px; /* Adjusted for better spacing on small screens */
+}
+
+.right-nav {
+    margin-right: 10px; /* Adjusted for better spacing on small screens */
+    align-self: center;
+}
+
+/* Media query for responsive layout */
+@media screen and (max-width: 600px) {
+    .nav {
+        flex-direction: column; /* Stack items vertically on small screens */
+        align-items: center; /* Center items on small screens */
+    }
+
+    .nav-item,
+    .right-nav {
+        margin: 10px 0; /* Adjusted for better spacing on small screens */
+    }
+}
