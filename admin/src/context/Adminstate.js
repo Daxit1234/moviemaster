@@ -9,9 +9,10 @@ function Adminstate(props) {
     locationUrl: "",
   });
   const [newShow, setNewShow] = useState({
-    cinemaName: "",
+    cinemaId: "",
     time: "",
-    showType: ""
+    showType: "",
+    showPrice:[]
   });
   const [allShows,setAllShows]=useState([])
   const [allCinema, setAllCinema] = useState([]);
@@ -46,7 +47,6 @@ function Adminstate(props) {
     });
     let data = await responce.json();
     setAllShows(allShows.concat(data));
-    console.log(allShows)
   };
 
   let getCinemas = async (page,row) => {

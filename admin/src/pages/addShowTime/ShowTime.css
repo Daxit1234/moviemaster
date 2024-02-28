@@ -1,11 +1,5 @@
 .cinema-time-card{
-    min-height: 400px;
-
-}
-.time-box{
-    background-color: aqua;
-margin: 1px;
-display: flex;
+    min-height: 350px;
 }
 .add-button{
     position: absolute;
@@ -13,3 +7,13 @@ display: flex;
     margin: 5px;
     bottom: 0px;
 }
+.container-showtime{
+    height: 540px;
+    overflow: scroll;
+}
+.time-box {
+    height: 50px;
+    font-size: 13px;
+    background-color: rgb(237, 240, 247);
+    width: 60px; /* Adjust the width as per your requirement */
+  }

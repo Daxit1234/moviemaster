@@ -9,7 +9,7 @@ function Bookings() {
   useContext(AdminContext);
   
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   useEffect(() => {
     getBooking(page, rowsPerPage);
   }, [page, rowsPerPage]);
@@ -49,7 +49,7 @@ function Bookings() {
                   <tr className={`${index % 2 === 0 ? "even-row" : "odd-row"}`} key={index}>
                     <td>{currentIndex}</td> {/* Render the calculated index */}
                     <td>{item.userName}</td>
-                    <td>{item.cinemaName}dkvskdvskldmvkldsnl</td>
+                    <td>{item.cinemaName}</td>
                     <td>{item.movieName}</td>
                     <td>{formatDate(item.date)}</td> {/* Format the date */}
                     <td>{item.showTime}</td>

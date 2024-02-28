@@ -1,10 +1,15 @@
-import React, { useContext ,useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AdminContext from "../../../context/AdminContext";
 
-function AddTimeModel({role,item}) {
-  const {addNewShow,newShow,setNewShow,editshow,getShows}=useContext(AdminContext)
-  const {cinemaName,_id}=item
-  const [editShow,setEditShow]=useState({showType:"",time:""})
+function AddTimeModel({ cinemaId }) {
+  const { addNewShow, newShow, setNewShow, editshow, getShows } = useContext(AdminContext);
+
+  const [prices, setPrices] = useState([null, null, null]);
+
+  // Set the cinemaId when the component mounts
+  useEffect(() => {
+    setNewShow({ ...newShow, cinemaId: cinemaId });
+  }, [cinemaId, setNewShow]);
 
   function convertTo12HourFormat(time24) {
     // Split the time into hours and minutes
@@ -20,40 +25,36 @@ function AddTimeModel({role,item}) {
     var time12 = adjustedHours + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + ampm;
 
     return time12;
-}
-  let handleAddShow = async(e) => {
+  }
+
+  let handleAddShow = async (e) => {
     e.preventDefault();
-    addNewShow()
+    addNewShow();
+    window.location.reload();
+    document.getElementById("closebtn").click()
   };
 
-  let handleEditShow = async(e) => {
-    e.preventDefault();
-    editshow(_id,editShow)
-    getShows()
+  let handleOnChange = (e) => {
+    if (e.target.name === "time") {
+      let time12 = convertTo12HourFormat(e.target.value);
+      setNewShow({ ...newShow, [e.target.name]: time12 });
+    } else if (e.target.name.startsWith("price")) {
+      const index = parseInt(e.target.name.replace("price", "")) - 1;
+      const newPrices = [...prices];
+      newPrices[index] = e.target.value;
+      setPrices(newPrices);
+      setNewShow({ ...newShow, showPrice: newPrices });
+    } else {
+      setNewShow({ ...newShow, [e.target.name]: e.target.value });
+    }
   };
 
-  let handleOnChange=(e)=>{
-    if(e.target.name==="time"){
-      let time12=convertTo12HourFormat(e.target.value);
-       setNewShow({...newShow,  [e.target.name]: time12})
-    }else{
-      setNewShow({...newShow, [e.target.name]: e.target.value})
-    }
-  }
-  let handleOnChangeEdit=(e)=>{
-     if(e.target.name==="time"){
-      let time12=convertTo12HourFormat(e.target.value);
-       setEditShow({...editShow,  [e.target.name]: time12})
-    }else{
-      setEditShow({...editShow, [e.target.name]: e.target.value})
-    }
-  }
   return (
     <div>
       <div
         className="modal fade"
         id="exampleModalCenter"
-        tabindex="-1"
+        tabIndex="-1"
         role="dialog"
         aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true"
@@ -62,9 +63,7 @@ function AddTimeModel({role,item}) {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalCenterTitle">
-               {
-                role==="add"?"Add Show":"Edit Show"
-               } 
+                Add Show
               </h5>
               <button
                 type="button"
@@ -76,35 +75,22 @@ function AddTimeModel({role,item}) {
               </button>
             </div>
             <div className="modal-body">
-              {
-                role==="add"?
-              <form for="add-cinema" onSubmit={handleAddShow}>
+              <form onSubmit={handleAddShow}>
                 <div className="form-group">
-                  <label for="cinema-name" className="col-form-label">
-                    Cinema Name:
-                  </label>
-                  <input onChange={handleOnChange}
-                    required
-                    type="text"
-                    className="form-control"
-                    id="cinema-name"
-                    name="cinemaName"
-                  />
-                </div>
-                <div className="form-group">
-                  <label for="showType" className="col-form-label">
+                  <label htmlFor="showType" className="col-form-label">
                     Time:
                   </label>
-                  <input onChange={handleOnChange}
+                  <input
                     required
                     type="time"
                     className="form-control"
                     id="showType"
                     name="time"
+                    onChange={handleOnChange}
                   />
                 </div>
                 <div className="form-group">
-                  <label for="cinema-name" className="col-form-label">
+                  <label htmlFor="showType" className="col-form-label">
                     Show Type:
                   </label>
                   <br />
@@ -120,11 +106,33 @@ function AddTimeModel({role,item}) {
                     <option value="2D">2D</option>
                   </select>
                 </div>
+                <div className="form-group">
+                  <label htmlFor="showPrice" className="col-form-label">
+                    Show Price:
+                  </label>
+                  <br />
+                  <div className="d-flex">
+                    {[1, 2, 3].map((index) => (
+                      <input
+                        key={index}
+                        required
+                        type="number"
+                        className="form-control"
+                        id={`showPrice${index}`}
+                        name={`price${index}`}
+                        placeholder={`Price ${index}`}
+                        onChange={handleOnChange}
+                      />
+                    ))}
+                  </div>
+                </div>
+
                 <div className="modal-footer">
                   <button
                     type="button"
                     className="btn btn-secondary"
                     data-dismiss="modal"
+                    id="closebtn"
                   >
                     Close
                   </button>
@@ -133,66 +141,6 @@ function AddTimeModel({role,item}) {
                   </button>
                 </div>
               </form>
-              :
-              <form for="add-cinema" onSubmit={handleEditShow}>
-              <div className="form-group">
-                <label for="cinema-name" className="col-form-label">
-                 Cinema Name:
-                </label>
-                <input onChange={handleOnChangeEdit}
-                  required
-                  type="text"
-                  className="form-control"
-                  id="cinema-name"
-                  name="cinemaName"
-                  value={cinemaName}
-                  disabled
-                />
-              </div>
-              <div className="form-group">
-                <label for="showType" className="col-form-label">
-                  Time:
-                </label>
-                <input onChange={handleOnChangeEdit}
-                  required
-                  type="time"
-                  className="form-control"
-                  id="time"
-                  name="time"
-                />
-              </div>
-              <div className="form-group">
-                <label for="cinema-name" className="col-form-label">
-                  Show Type:
-                </label>
-                <br />
-                <select
-                  className="w-50 form-select form-select-lg mb-3"
-                  aria-label=".form-select-lg example"
-                  name="showType"
-                  onChange={handleOnChangeEdit}
-                  required
-                >
-                  <option value="" disabled selected>select Show Type</option>
-                  <option value="2D">2D</option>
-                  <option value="3D">3D</option>
-                 
-                </select>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button type="submit" className="btn btn-primary">
-                  Edit and Save
-                </button>
-              </div>
-            </form>
-              }
             </div>
           </div>
         </div>

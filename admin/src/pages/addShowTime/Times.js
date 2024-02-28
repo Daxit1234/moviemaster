@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const Times = ({ cinemaId }) => {
+const Times = ({ cinemaId,selected }) => {
   const [showTime, setShowTime] = useState([]);
 
   useEffect(() => {
@@ -17,23 +17,28 @@ const Times = ({ cinemaId }) => {
         }
       } catch (error) {
         console.error(error);
-        // Handle error if needed
       }
     };
 
     fetchShowTime();
   }, [cinemaId]);
+
+
   return (
-  <div>
+  <div className="d-flex flex-wrap justify-content-evenly">
     {showTime?.map(i=>{
-        return(
+        return( 
         <div
-        className="col-3 btn btn-outline-success "
-        style={{height:"55px",fontSize:"15px"}}
+        className="m-1 btn time-box"
+        style={{height:"50px",fontSize:"13px",backgroundColor:"rgb(237,240,247)"}}
+        key={i._id}
+        name={i._id}
+        onClick={selected}
       >
-          {i.time}
+        {i.time.slice(0,i.time.length-2)}
           <br />
-          {i.showType}
+          {/* {i.showType} */}
+          {i.time.slice(i.time.length-2)}
       
       </div>
         )

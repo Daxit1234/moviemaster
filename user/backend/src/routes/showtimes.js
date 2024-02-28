@@ -5,29 +5,36 @@ const router = express.Router();
 
 // ROUTE: add cinema using POST http://localhost:8080/show/addshowtime
 router.post("/addshowtime", async (req, res) => {
+  // try {
+  //   const { cinemaName, showType, time } = req.body;
+
+  //   // Validate that the cinema exists
+  //   const cinema = await Cinema.findOne({ cinemaName });
+  //   if (!cinema) {
+  //     return res.status(404).json({ error: "Cinema not found" });
+  //   }
+
+  //   // Create a new Showtime instance with cinema ID
+  //   const showtime = new Showtime({
+  //     cinemaId: cinema._id, // Assign the cinema ID
+  //     time: time,
+  //     showType: showType,
+  //   });
+
+  //   // Save the showtime to the database
+  //   await showtime.save();
+
+  //   res.status(201).json(showtime);
+  // } catch (error) {
+  //   res.status(400).json({ error: error.message });
+  // }
   try {
-    const { cinemaName, showType, time } = req.body;
-
-    // Validate that the cinema exists
-    const cinema = await Cinema.findOne({ cinemaName });
-    if (!cinema) {
-      return res.status(404).json({ error: "Cinema not found" });
-    }
-
-    // Create a new Showtime instance with cinema ID
-    const showtime = new Showtime({
-      cinemaId: cinema._id, // Assign the cinema ID
-      time: time,
-      showType: showType,
-    });
-
-    // Save the showtime to the database
-    await showtime.save();
-
-    res.status(201).json(showtime);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
+    const showTime = new Showtime(req.body);
+    await showTime.save();
+    res.status(201).send(showTime);
+} catch (e) {
+    res.status(400).send(e);
+}
 });
 
 // ROUTE: get showtime using GET http://localhost:8080/show/getshowtime
