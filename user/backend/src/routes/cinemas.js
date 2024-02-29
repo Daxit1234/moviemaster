@@ -41,6 +41,49 @@
             res.status(400).json({ error: error.message });
         }
     });
+    router.get("/getallcinema", async (req, res) => {
+        try {
+            const cinema = await Cinema.find()
+        
+            if (req.query.q) {
+                const query = req.query.q.toLowerCase();
+                const results = cinema.filter(item => item.cinemaName.toLowerCase().includes(query));
+                res.status(201).send(results);
+            }
+            else{
+                res.status(201).send(cinema);
+            }
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
+    });
+
+    router.get("/getcinema/:oid", async (req, res) => {
+        try {
+            const cinema = await Cinema.find({ownerId: req.params.oid})
+
+            const page = parseInt(req.query.page) || 1;
+            const pageSize = parseInt(req.query.pageSize) || 10;
+            
+            // Calculate startIndex and endIndex for slicing the data
+            const startIndex = (page - 1) * pageSize;
+            const endIndex = startIndex + pageSize;
+            const paginatedData = cinema.slice(startIndex, endIndex);
+            const totalData = cinema.length
+        
+            if (req.query.q) {
+                const query = req.query.q.toLowerCase();
+                const results = paginatedData.filter(item => item.cinemaName.toLowerCase().includes(query));
+                paginatedData=results
+                res.status(201).send({paginatedData,totalData});
+            }
+            else{
+                res.status(201).send({paginatedData,totalData});
+            }
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
+    });
 
     // ROUTE 3: edit cinema using post http://localhost:8080/cinemas/editcinema
     router.put("/editcinema/:id", async (req, res) => {

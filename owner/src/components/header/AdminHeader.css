@@ -26,3 +26,10 @@
     display: block;
     transition: all ease 1s;
   }
+  .login-link{
+    text-decoration: none;
+    font-size: 20px;
+    position: absolute;
+    right: 20px;
+    color: blue;
+  }

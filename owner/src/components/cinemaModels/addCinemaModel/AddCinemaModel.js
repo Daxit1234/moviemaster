@@ -9,12 +9,15 @@ function AddCinemaModel({role,item}) {
   let handleAddCinema = (e) => {
     e.preventDefault();
     addNewCinema()
+    document.getElementById("close").click()
+
   };
 
   let handleEditCinema = async(e) => {
     e.preventDefault();
     editcinema(_id,editCinema)
     getCinemas()
+    document.getElementById('close').click()
   };
 
   let handleOnChange=(e)=>{
@@ -206,6 +209,7 @@ function AddCinemaModel({role,item}) {
               </div>
             </form>
               }
+              <button id="close"  data-dismiss="modal"></button>
             </div>
           </div>
         </div>

@@ -4,18 +4,19 @@ import SideBar from "../../components/sideBar/SideBar";
 import Header2 from "../../components/header2/Header2";
 import "./ShowTime.css";
 import Times from "./Times";
-import AddTimeModel from "../../components/cinemaModels/AddTimeModel/AddTimeModel";
+import TablePaginationDemo from "../../components/pagination/Paginathion";
 
 const ShowTime = () => {
-  const { getCinemas, allCinema,deleteTime } = useContext(AdminContext);
-  const [role,setRole]=useState("add")
+  const { totalCinema ,getCinemas, allCinema,deleteTime } = useContext(AdminContext);
   const [status, setStatus] = useState(false);
   const [selectedTime, setSelectedTime] = useState([]);
   const [cid,setCid]=useState("")
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(6);
 
   useEffect(() => {
-    getCinemas();
-  }, []);
+    getCinemas(page, rowsPerPage);
+  }, [page, rowsPerPage]);
   
   let selected = (e) => {
     let temp=e.target.getAttribute("name")
@@ -60,19 +61,18 @@ const ShowTime = () => {
           <button type="button" onClick={deleteShow} class="btn mx-3 btn-danger btn-sm" 
               >
               Delete 
-            </button>  
-          <button type="button" onClick={()=>setCid(i._id)} class="btn btn-primary"   data-toggle="modal"
-              data-target="#exampleModalCenter">
-              Add Show 
-            </button>  
+            </button>   
           </div>
                 </div>
                 
               )
             })}
           </div>
-      <AddTimeModel  role={role} cinemaId={cid} />
         </div>
+        <TablePaginationDemo
+          set={{ page, rowsPerPage, setPage, setRowsPerPage }}
+          count={totalCinema}
+        />
       </div>
     </div>
   );

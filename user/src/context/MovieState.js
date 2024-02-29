@@ -52,9 +52,9 @@ const Moviestate = (props) => {
 
     //ger cinemas
     let getCinemas = async (query) => {
-      let responce = await fetch(`http://localhost:8080/cinemas/getcinema?q=${query}`);
+      let responce = await fetch(`http://localhost:8080/cinemas/getallcinema?q=${query}`);
       let data = await responce.json();
-      setAllCinema(data.paginatedData);
+      setAllCinema(data);
     };
 
   // //get data from table

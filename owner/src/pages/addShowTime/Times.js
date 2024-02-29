@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const Times = ({ cinemaId,selected }) => {
-  const [showTime, setShowTime] = useState([]);
+  const [showTime, setShowTime] = useState([])
 
   useEffect(() => {
     const fetchShowTime = async () => {

@@ -18,6 +18,7 @@ function Adminstate(props) {
   const [allCinema, setAllCinema] = useState([]);
   const [allFood, setAllFood] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
+  const [allOwner, setAllOwner] = useState([]);
   const [allBooking, setAllBooking] = useState([]);
   const [totalCinema,setTotalCinema]=useState(null);
   const [totalFood,setTotalFood]=useState(null);
@@ -86,7 +87,16 @@ function Adminstate(props) {
     } catch (error) {
       console.log("object")
     }
-
+  };
+  
+  let getOwner= async () => {
+    try {
+      let responce = await fetch(`${host}/owner/getallowner`);
+      let data = await responce.json();
+      setAllOwner(data)
+    } catch (error) {
+      console.log("object")
+    }
   };
 
   let deleteCinema = async(id) => {
@@ -162,6 +172,7 @@ let editshow = async (_id, editShow) => {
         deleteTime,newShow, setNewShow,
         addNewShow,editshow,
         allUsers, setAllUsers,getUsers,
+        allOwner, setAllOwner,getOwner,
         allFood, setAllFood,getFood,totalCinema,totalFood,totalUser,
         getBooking,allBooking,totalBooking,setAllBooking
       }}

@@ -1,20 +1,24 @@
 import React, { useContext, useEffect } from "react";
 import "./Dashboard.css";
 import SideBar from "../../components/sideBar/SideBar";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header2 from "../../components/header2/Header2";
 import AdminContext from "../../context/AdminContext";
 
 function Dashboard() {
   const location = useLocation();
-  const {getBooking,totalBooking, getShows,getCinemas,getFood,getUsers,allShows,totalCinema,totalFood,totalUser}=useContext(AdminContext);
+  const navigate=useNavigate()
+  const {getBooking,totalBooking,totalShow, getShows,getCinemas,allShows,totalCinema}=useContext(AdminContext);
   useEffect(()=>{
+   if (!localStorage.getItem("owner")) {
+     navigate("/login")
+   }
+    
     getShows()
     getCinemas()
-    getUsers()
-    getFood()
     getBooking()
   },[])
+
   return (
     <>
       <div className="d-flex">
@@ -24,7 +28,7 @@ function Dashboard() {
         <div className="counting-box">
           <div className="users m-3 counting-item">
             <div>
-              <div className="count-no" >{totalUser}</div>
+              <div className="count-no" >23</div>
               <div  className="title-item">Users</div>
             </div>
             <div className="d-flex">
@@ -42,7 +46,7 @@ function Dashboard() {
           </div>
           <div className="shows m-3 counting-item">
             <div>
-            <div className="count-no">{allShows?.length || 0}</div>
+            <div className="count-no">{totalShow || 25}</div>
               <div className="title-item">Shows</div>
             </div>
             <div className="d-flex">

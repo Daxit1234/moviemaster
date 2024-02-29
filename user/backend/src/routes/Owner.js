@@ -14,13 +14,32 @@ router.post("/addowner", async (req, res) => {
 });
 
 // ROUTE 2: get owner using GET http://localhost:8080/cinemas/getowner
-router.get("/getowner", async (req, res) => {
+router.post("/getowner", async (req, res) => {
     try {
-        const owner = await Owner.find()
-            res.status(201).send(owner);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
+        const { email, password } = req.body;
+        let owner = await Owner.findOne({ email });
+        if (!owner) {
+          return res
+            .status(400)
+            .json({ error: "Please try to login with correct email" });
+        }
+        if (password != owner.password) {
+          return res.status(400).json({ error: "Please enter valid password" });
+        }
+        res.send(owner);
+      } catch (error) {
+        res.send({error:error})
+        
+      }
+});
+
+router.get("/getallowner", async (req, res) => {
+    try {
+        let owner = await Owner.find();
+        res.send(owner);
+      } catch (error) {
+        res.send({error:error})   
+      }
 });
 
 
