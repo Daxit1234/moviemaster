@@ -104,6 +104,11 @@ function Adminstate(props) {
       method: "DELETE",
     });
   };
+  let deleteOwner = async(id) => {
+    await fetch(`${host}/owner/deleteowner/${id}`, {
+      method: "DELETE",
+    });
+  };
 
   let deleteTime = async(id) => {
     await fetch(`${host}/show/deleteshowtime/${id}`, {
@@ -172,7 +177,7 @@ let editshow = async (_id, editShow) => {
         deleteTime,newShow, setNewShow,
         addNewShow,editshow,
         allUsers, setAllUsers,getUsers,
-        allOwner, setAllOwner,getOwner,
+        allOwner, setAllOwner,getOwner,deleteOwner,
         allFood, setAllFood,getFood,totalCinema,totalFood,totalUser,
         getBooking,allBooking,totalBooking,setAllBooking
       }}

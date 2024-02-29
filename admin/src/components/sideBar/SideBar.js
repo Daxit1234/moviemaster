@@ -12,7 +12,7 @@ const SideBar = () => {
            <img src={avatar} alt="img" />
             </div>
             <div className="">
-                <h6 className="text-light m-1">Admin name</h6>
+                <h6 className="text-light m-1">Admin</h6>
                 <div className="d-flex mt-2">
                     <div className="status-dot bg-success mr-2 mt-2"></div>
                   <p className="text-light o-3">Online</p>
@@ -33,7 +33,7 @@ const SideBar = () => {
             <Link to="/users"><i class="fa-solid fa-user"></i> Users</Link>
           </li>
           <li>
-            <Link to="/owner"><i class="fa-solid fa-user"></i> Owner</Link>
+            <Link to="/owner"><i class="fa-solid fa-chalkboard-user"></i> Owner</Link>
           </li>
           <li>
             <Link to="/bookings"><i class="fa-solid fa-ticket"></i>Bookings</Link>

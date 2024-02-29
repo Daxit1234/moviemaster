@@ -3,6 +3,7 @@ import SideBar from '../../components/sideBar/SideBar'
 import AdminContext from '../../context/AdminContext'
 import Header2 from '../../components/header2/Header2'
 import TablePaginationDemo from '../../components/pagination/Paginathion'
+import OwnerModel from '../../components/cinemaModels/OwnerModel'
 
 
 const Owner = () => {
@@ -11,11 +12,11 @@ const Owner = () => {
   useEffect(()=>{
     getOwner()
   },[])
-
-  let addOwner=()=>{
-    let ownerName=prompt("enter Owner Name :")
-    console.log(ownerName)
+  let handledeleteOwner=(id)=>{
+    deleteOwner(id)
+    getOwner()
   }
+
   return (
     <div className='d-flex'>
       <SideBar/>
@@ -24,7 +25,8 @@ const Owner = () => {
         <div className="d-flex justify-content-between">
         <div className="h3 opacity-25 m-3">Owner List</div>
         <div className="p-1">
-          <button type="button" onClick={addOwner} className="btn btn-primary btn-lg"  >
+        <button type="button" class="btn btn-primary btn-lg"   data-toggle="modal"
+            data-target="#exampleModalCenter">
             Add Owner
           </button>
         </div>
@@ -36,7 +38,7 @@ const Owner = () => {
               <th>owner Name</th>
               <th>E-mail</th>
               <th>owner ID</th>
-              <th>Status</th>
+              <th>Delete</th>
             </tr>
             {allOwner?.map((item, index) => {
               return (
@@ -46,13 +48,14 @@ const Owner = () => {
                   <td>{item.email}</td>
                   <td>{item._id}</td>
                   <td>
-                  <button  id={item._id}  className="btn-success btn-sm" type="button">Active</button>
+                  <button  id={item._id}  onClick={()=>handledeleteOwner(item._id)} className="btn-danger " type="button">delete</button>
                   </td>
                 </tr>
               );
             })}
           </table>
         </div>
+        <OwnerModel />
       </div>
     </div>
   )

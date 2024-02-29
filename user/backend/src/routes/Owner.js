@@ -44,7 +44,7 @@ router.get("/getallowner", async (req, res) => {
 
 
 // ROUTE 4: delete owner using GET http://localhost:8080/cinemas/deletecinema
-router.delete("/deleteOwner/:id", async (req, res) => {
+router.delete("/deleteowner/:id", async (req, res) => {
     try {
         await Owner.findByIdAndDelete(req.params.id)
         res.status(201).send({success:"owner are deketed"});
