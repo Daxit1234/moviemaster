@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Invoice2 = ({foodBeverage}) => {
   const { bookingDetails ,booking } = useContext(MovieContext);
-  const { date, movieName, seats, showId, totalAmount, showTime, showType, cinemaName, cinemaAdd } = bookingDetails;
+  const {  seats, totalAmount} = bookingDetails;
   const navigate = useNavigate();
 
   // State variables for calculations
@@ -13,7 +13,7 @@ const Invoice2 = ({foodBeverage}) => {
   const [gst, setGst] = useState(0);
   const [convenienceFees, setConvenienceFees] = useState(0);
   const [foodAmount, setFoodAmount] = useState(0);
-  const [contibution , setContibution] = useState(Math.floor(Math.random() * 10) + 1);
+  const [contibution , setContibution] = useState(seats.length);
 
   useEffect(() => {
     // Calculate base amount, GST, and convenience fees
@@ -30,51 +30,51 @@ const Invoice2 = ({foodBeverage}) => {
     setFoodAmount(foodTotal);
   }, [totalAmount, foodBeverage]);
   return (
-        <div class="booking-summary mt-5">
-      <div class="card card-upper">
-        <div class="title">
+        <div className="booking-summary mt-5">
+      <div className="card card-upper">
+        <div className="title">
           <h5>BOOKING SUMMARY</h5>
         </div>
-        <div class="noticket">
+        <div className="noticket">
           <p>Seats {seats.map((i)=><strong>{i}  </strong>)}({seats.length} Tickets)</p>
           <p>Rs. {totalAmount}</p>
         </div>
-        {/* <div class="screen">
+        <div>
           <p>SCREEN 3</p>
-        </div> */}
-        <div class="fees">
+        </div>
+        <div className="fees">
           <p>+ Convenience fees</p>
           <p>Rs {convenienceFees}</p>
         </div>
-        <div class="base-amount">
-          <div class="amount">
+        <div className="base-amount">
+          <div className="amount">
             <p>Base Amount</p>
             <p>Rs.{base}</p>
           </div>
-          <div class="cgst">
+          <div className="cgst">
             <p>Central GST (CGST) @9%</p>
             <p>Rs.{gst}</p>
           </div>
-          <div class="sgst">
+          <div className="sgst">
             <p>State GST (SGST) @9%</p>
             <p>Rs.{gst}</p>
           </div>
         </div>
       </div>
-      <div class="card card-lower">
-        <div class="sub-total">
+      <div className="card card-lower">
+        <div className="sub-total">
           <p>Sub Total</p>
           <p>Rs.{totalAmount+convenienceFees}</p>
         </div>
-        <div class="food">
+        <div className="food">
           <p>Food & Beverage</p>
           <p>Rs.{foodAmount}</p>
         </div>
-        <div class="items">
+        <div className="items">
        {
         foodBeverage.map((item)=>{
           return(
-          <div class="item1">
+          <div className="item1">
             <p>{item.name} (Qt.{item.quantity})</p>
             <p>Rs.{item.price*item.quantity}</p>
           </div>
@@ -82,21 +82,21 @@ const Invoice2 = ({foodBeverage}) => {
         })
        } 
         </div>
-        <div class="card1 last-card">
-          <div class="fline">
+        <div className="card1 last-card">
+          <div className="fline">
             <p>Contibution to MovieMasters</p>
             <p>Rs.{contibution}</p>
           </div>
-          <div class="sline">
+          <div className="sline">
             <p>(Rs.1 per ticket has been added)</p>
             <p onClick={()=>setContibution(0)}>Remove</p>
           </div>
-          <div class="lline">
+          <div className="lline">
             <p className='text-primary'>View T&C</p>
           </div>
         </div>
         
-        <div class="total mt-3" onClick={()=>{booking() ;navigate('/payment')}}>
+        <div className="total mt-3" onClick={()=>navigate(`/payment/${totalAmount}/${convenienceFees}/${foodAmount}/${contibution}`)}>
           <p>Amount Payable</p>
           <p>Rs.{totalAmount+convenienceFees+contibution+foodAmount}</p>
         </div>

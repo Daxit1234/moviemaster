@@ -40,14 +40,21 @@ const Moviestate = (props) => {
     })
       .then((res) => res.json())
       .then((e) => console.log(e));
-    //   setBookingDetails({...bookingDetails,
-    //   cinemaId:"65a28751eeafe22cbdf56d23",
-    // showId:"65a28767eeafe22cbdf56d25",
-    // movieId:null,
-    // date:new Date().toString().slice(0,16) +"00:00:00.000+00:00",
-    // totalAmount:null,
-    // seats:[],
-    // });
+      setBookingDetails({
+        cinemaId:"",
+        showId:"",
+        movieId:null,
+        date:new Date().toString().slice(0,16) +"00:00:00.000+00:00",
+        totalAmount:null,
+        seats:[],
+        userName:obj.name,
+        email:obj.email,
+        cinemaName:"",
+        cinemaAdd:"",
+        showTime:"",
+        movieName:"",
+        showType:""
+      });
   };
 
     //ger cinemas
@@ -57,34 +64,6 @@ const Moviestate = (props) => {
       setAllCinema(data);
     };
 
-  // //get data from table
-  // let getdata = async () => {
-  //   await fetch(`${host}/ticket/getticket/${email}`)
-  //     .then((res) => res.json())
-  //     .then((e) => setUserTikets(e));
-  // };
-
-  // //get allTickets for admin
-  // let getAllTickets = async () => {
-  //   await fetch(`${host}/ticket/getallticket`)
-  //     .then((res) => res.json())
-  //     .then((e) => setallTickets(e));
-  // };
-
-  // //detele tikets
-  // let deleteData = async (id) => {
-  //   await fetch(`${host}/ticket/delete/${id}`, {
-  //     method: "DELETE",
-  //   });
-  //   getdata();
-  //   getAllTickets();
-  // };
-
-  // //get all user details
-  // let getUserDetails=async()=>{
-  //   await fetch("http://localhost:8080/users/getUserDetails").then((res) =>
-  //   res.json().then(e=>setUsers(e)))
-  // }
   return (
     <MovieContext.Provider
       value={{
@@ -92,11 +71,6 @@ const Moviestate = (props) => {
         booking,bookedSeats, setBookedSeats,
         allCinema, setAllCinema,getCinemas,
         query,setQuery
-        // userTikets,
-        // getdata,
-        // deleteData,
-        // getAllTickets,allTickets,
-        // users,getUserDetails
       }}
     >
       {props.children}

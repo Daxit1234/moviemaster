@@ -41,8 +41,6 @@ const Food = () => {
         }
     }
 
-  
-
     return (
         <div className='d-flex fluid-container'>
             <div className="row mx-2 mt-3 ">

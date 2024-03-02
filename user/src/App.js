@@ -11,7 +11,7 @@ import LoginSingup from './pages/login&singup/LoginSingup';
 import Moviestate from "./context/MovieState";
 import Payment from './pages/payment/Payment';
 import Food from './pages/food/Food';
-import PaymentForm from './pages/stripe/Stripe';
+import Stripe from './pages/stripe/Stripe';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
@@ -29,9 +29,9 @@ function App() {
           <Route path='/cinema/:id' element={<Cinema />} />
           <Route path='/seats/:showPrice' element={<Seats />} />
           <Route path='/login' element={<LoginSingup />} />
-          <Route path='/payment' element={<Payment />} />
+          <Route path='/payment/:amount/:convenienceFees/:foodAmount/:contribution' element={<Payment />} />
           <Route path='/food' element={<Food />} />
-          {/* <Route path='/stripe' element={<Elements stripe={stripePromise}><PaymentForm /></Elements>} /> Wrap PaymentForm with Elements provider */}
+          {/* <Route path='/stripe' element={<Elements stripe={stripePromise}><Stripe /></Elements>} /> Wrap PaymentForm with Elements provider */}
         </Routes>
       </Router>
     </Moviestate>

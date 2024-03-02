@@ -1,10 +1,19 @@
 import React, { useContext } from 'react'
 import "./Invoice.css"
 import MovieContext from '../../context/Moviecontext';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Invoice = ({handlevisible}) => {
-  const {bookingDetails}=useContext(MovieContext);
-  const {date,movieName,seats,showId,totalAmount,showTime,showType,cinemaName,cinemaAdd}=bookingDetails
+  const {bookingDetails ,booking }=useContext(MovieContext);
+  const navigate=useNavigate()
+  const {date,movieName,seats,showTime,showType,cinemaName,cinemaAdd}=bookingDetails
+  const {amount ,convenienceFees,contribution,foodAmount}=useParams()
+
+  let handleBooking=()=>{
+    handlevisible()
+    booking()
+    navigate("/stripe")
+  }
   return (
         <div className="container-invoice">
       <div className="card card-upper">
@@ -17,7 +26,7 @@ const Invoice = ({handlevisible}) => {
           <p>Show Type : <strong>{showType}</strong></p>
           <p>Cinema : <strong>{cinemaName}</strong></p>
           <p>Address : <strong>{cinemaAdd}</strong></p>
-          <p>M-Ticket</p>
+          <p>Screen 2</p>
           <div className="time">
             <p>Seats No : {seats.map((i)=><strong>{i}  </strong>)}</p>
             <p>{date.slice(0,16) }</p>
@@ -28,26 +37,25 @@ const Invoice = ({handlevisible}) => {
       <div className="card card-lower">
         <div className="item-lower">
           <p className="name">Sub Total</p>
-          <h5>Rs. {totalAmount}.00</h5>
+          <h5>Rs. {amount}.00</h5>
         </div>
         <div className="item-lower">
           <p className="name">
-            +Add-ons &nbsp;<span id="vall">View All </span>
+          convenienceFees
           </p>
-          <p className="price">Rs.1280.00</p>
+          <p className="price">Rs.{convenienceFees}</p>
         </div>
         <div className="item-lower">
-          <p>Nachos (Qty 4)</p>
-          <p>Nachos 80g with Cheese Dip 50g | 382 kcal</p>
-          <p className="price">Rs.1280.00</p>
+          <p> Food And Beverage</p>
+          <p className="price">Rs. {foodAmount}</p>
         </div>
         <div className="item-lower">
-          <p className="name">+ Convenience fees</p>
-          <p className="price">Rs. 35.40</p>
+          <p className="name">contribution To Movie Master</p>
+          <p className="price">Rs. {contribution}</p>
         </div>
-        <div className="total" onClick={handlevisible}>
+        <div className="total" onClick={handleBooking}>
            <p>Amount Pay</p>
-           <h5>Rs. 244.42</h5>
+           <h5>Rs. {parseInt( amount) +parseInt( contribution) +parseInt( convenienceFees)+parseInt( foodAmount)}</h5>
         </div>
       </div>
     </div>
