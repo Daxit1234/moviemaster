@@ -4,20 +4,22 @@ import useFetch from '../../../hook/useFetch';
 import Img from '../../../components/lazyLoading/Img';
 import ContentWrapper from '../../../components/contentWrapper/ContentWrapper';
 import "./herobanner.css"
+import moviedata from "../Moviedata.json"
 
 let HeroBannerr=()=> {
   const [backGround, setBackGround] = useState("");
   const [query, setQuery] = useState("");
   const navigate = useNavigate()
-  const { data, loading } = useFetch("/movie/upcoming")
+  // const { data, loading } = useFetch("/movie/upcoming")
   const url  ="https://image.tmdb.org/t/p/original"
   useEffect(() => {
     const bg =
       url+
-      data?.results?.[Math.floor(Math.random() * 20)]
+       moviedata?.results ?.[Math.floor(Math.random() * 20)]
         ?.backdrop_path;
+        console.log(bg)
     setBackGround(bg)
-  }, [data])
+  }, [])
 
   const searchQueryHandle = (e) => {
     if (e.key === "Enter" && query.length > 0) {
@@ -32,9 +34,9 @@ let HeroBannerr=()=> {
 
   return (
     <div className="heroBanner">
-      {!loading&& <div className="backdrop-img">
+      <div className="backdrop-img">
         <Img className="lazy-load-image-background heroimg" src={backGround}/>
-      </div>}
+      </div>
       <div className="opacity-layer"></div>
       <ContentWrapper>
       <div className="wrapper">
