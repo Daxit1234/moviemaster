@@ -70,7 +70,7 @@ const Moviestate = (props) => {
         bookingDetails,setBookingDetails,
         booking,bookedSeats, setBookedSeats,
         allCinema, setAllCinema,getCinemas,
-        query,setQuery
+        query,setQuery,obj
       }}
     >
       {props.children}

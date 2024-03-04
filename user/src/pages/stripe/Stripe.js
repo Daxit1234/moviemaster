@@ -1,45 +1,73 @@
-import React, { useState, useEffect } from "react";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
+// PaymentForm.js
+import React, { useState } from 'react';
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
-import CheckoutForm from "./CheckoutForm";
-import "./Stripe.css";
+const PaymentForm = () => {
+    const stripe = useStripe();
+    const elements = useElements();
+    const [amount, setAmount] = useState('');
 
-// Make sure to call loadStripe outside of a component’s render to avoid
-// recreating the Stripe object on every render.
-// This is your test publishable API key.
-const stripePromise = loadStripe("pk_test_51OkMarSFAUlrV5RfcT0dXmV8ZfS4GtjlasaADXYMRrY7PyYQpgP3b9Rhnpoj01SYRzv5Pl0MVXzbARkgZyIdkQAZ00HNxbulUv");
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
-export default function Stripe() {
-  const [clientSecret, setClientSecret] = useState("");
+        if (!stripe || !elements) {
+            return;
+        }
 
-  useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
-    fetch("/create-payment-intent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
-    })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
-  }, []);
+        const { paymentMethod, error } = await stripe.createPaymentMethod({
+            type: 'card',
+            card: elements.getElement(CardElement),
+        });
 
-  const appearance = {
-    theme: 'stripe',
-  };
-  const options = {
-    clientSecret,
-    appearance,
-  };
+        if (error) {
+            console.log(error.message);
+        } else {
+            // Send payment method ID and amount to your server
+            fetch('/process-payment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    paymentMethodId: paymentMethod.id,
+                    amount: amount,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                // Handle success or failure from server
+            });
+        }
+    };
 
-  return (
-    <div className="App">
-        <h1 className="text-light">sdksdnkf</h1>
-      {clientSecret && (
-        <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
-        </Elements>
-      )}
-    </div>
-  );
-}
+    return (
+        <form onSubmit={handleSubmit}>
+            <input
+                type="number"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                placeholder="Enter Amount"
+            />
+             <CardElement
+                    options={{
+                        style: {
+                            base: {
+                                fontSize: '16px',
+                                color: '#424770',
+                                '::placeholder': {
+                                    color: '#aab7c4',
+                                },
+                            },
+                            invalid: {
+                                color: '#9e2146',
+                            },
+                        },
+                    }}
+                />
+            <button type="submit">Pay</button>
+        </form>
+    );
+};
+
+export default PaymentForm;

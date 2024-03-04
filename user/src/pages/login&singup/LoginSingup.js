@@ -66,6 +66,7 @@ const LoginSingup = () => {
     } else {
       localStorage.setItem("userData",JSON.stringify(json))
         navigate("/")
+        window.location.reload();
         setUserLogin({ email: "", password: "" })
         setLoginError("")
     }
@@ -197,7 +198,7 @@ const LoginSingup = () => {
               </span>
             </div>
             <div class="input-field">
-              <input type="text" name="password" required spellcheck="false" onChange={handleonchangeLogin}/>
+              <input type="password" name="password" required spellcheck="false" onChange={handleonchangeLogin}/>
               <label>Password</label>
               <span className="icon ">
                 <i className="fa-solid fa-lock text-light"></i>

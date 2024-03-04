@@ -9,10 +9,29 @@ const Invoice = ({handlevisible}) => {
   const {date,movieName,seats,showTime,showType,cinemaName,cinemaAdd}=bookingDetails
   const {amount ,convenienceFees,contribution,foodAmount}=useParams()
 
-  let handleBooking=()=>{
+  let handleBooking=(amount)=>{
+  if (localStorage.getItem("userData")) {
+    fetch('http://localhost:8080/payment/process-payment', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          // paymentMethodId: paymentMethod.id,
+          amount: amount,
+      }),
+  })
+  .then(response => response.json())
+  .then(data => {
+      console.log(data);
+      // Handle success or failure from server
+  });
     handlevisible()
     booking()
-    navigate("/stripe")
+    navigate("/")
+  }else{
+    navigate("/login")
+  }
   }
   return (
         <div className="container-invoice">
@@ -53,7 +72,7 @@ const Invoice = ({handlevisible}) => {
           <p className="name">contribution To Movie Master</p>
           <p className="price">Rs. {contribution}</p>
         </div>
-        <div className="total" onClick={handleBooking}>
+        <div className="total" onClick={()=>handleBooking(parseInt( amount) +parseInt( contribution) +parseInt( convenienceFees)+parseInt( foodAmount))}>
            <p>Amount Pay</p>
            <h5>Rs. {parseInt( amount) +parseInt( contribution) +parseInt( convenienceFees)+parseInt( foodAmount)}</h5>
         </div>

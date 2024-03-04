@@ -54,6 +54,12 @@ function Header() {
                   </li>
                 </div>
               ) : (
+                <>
+                <li className="nav-item">
+                <Link className="nav-link" to="/bookings">
+                  Bookings
+                </Link>
+              </li>
                 <div>
                   <li className="nav-item">
                     <Link onClick={logout} className="nav-link" to="/login">
@@ -61,6 +67,7 @@ function Header() {
                     </Link>
                   </li>
                 </div>
+                </>
               )}
             </ul>
           </div>

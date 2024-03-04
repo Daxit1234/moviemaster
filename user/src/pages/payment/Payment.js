@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Payment.css";
 import Upi from "../../components/payment/upi/Upi";
 import Invoice from "../../components/invoice/Invoice";
+import Card from "../../components/payment/card/Card";
 
 const Payment = () => {
   const [invoiceVisible, setInvoiceVisible] = useState(true);
@@ -101,7 +102,7 @@ const Payment = () => {
                       paymentMode === "card" ? "show" : ""
                     }`}
                   >
-                    {paymentMode === "card" && <Upi />}
+                    {paymentMode === "card" && <Card/>}
                   </div>
                 </div>
                 <div

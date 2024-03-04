@@ -79,6 +79,18 @@ router.get("/getallbooking", async (req, res) => {
     }
 });
 
+// ROUTE 4: get user booked seat using GET http://localhost:8080/bookedSeats/getuserseat
+router.post("/getuserbooking", async (req, res) => {
+    try {
+        const bookedseat = await BookedSeat.find({email:req.body.email});
+        
+        res.status(201).send( bookedseat );
+        
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
 
 
 module.exports= router

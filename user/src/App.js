@@ -14,6 +14,7 @@ import Food from './pages/food/Food';
 import Stripe from './pages/stripe/Stripe';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import Bookings from './pages/bookings/Bookings';
 
 const stripePromise = loadStripe('YOUR_PUBLISHABLE_KEY'); // Replace with your actual Stripe publishable key
 
@@ -29,10 +30,12 @@ function App() {
           <Route path='/cinema/:id' element={<Cinema />} />
           <Route path='/seats/:showPrice' element={<Seats />} />
           <Route path='/login' element={<LoginSingup />} />
-          <Route path='/payment/:amount/:convenienceFees/:foodAmount/:contribution' element={<Payment />} />
           <Route path='/food' element={<Food />} />
+          <Route path='/bookings' element={<Bookings/>} />
+          <Route path='/payment/:amount/:convenienceFees/:foodAmount/:contribution' element={<Elements stripe={stripePromise}><Payment /></Elements>} />
           {/* <Route path='/stripe' element={<Elements stripe={stripePromise}><Stripe /></Elements>} /> Wrap PaymentForm with Elements provider */}
         </Routes>
+    
       </Router>
     </Moviestate>
   );
