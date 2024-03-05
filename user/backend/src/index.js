@@ -7,6 +7,7 @@ const showtimeRouter=require('./routes/showtimes')
 const bookedSeatRouter=require('./routes/bookedSeats')
 const foodRouter=require('./routes/food')
 const ownerRouter=require('./routes/Owner')
+const reviewRouter=require('./routes/review')
 const paymentRouter=require('./routes/payment')
 const cors=require('cors')
 
@@ -24,6 +25,7 @@ app.use('/show', showtimeRouter);
 app.use('/bookedSeats', bookedSeatRouter);
 app.use('/food', foodRouter);
 app.use('/owner', ownerRouter);
+app.use('/review', reviewRouter);
 app.use('/payment', paymentRouter);
 
 app.listen(port,()=>{

@@ -41,6 +41,9 @@ const SideBar = () => {
           <li>
             <Link to="/foods"><i class="fa-solid fa-mug-saucer"></i> Foods</Link>
           </li>
+          <li>
+            <Link to="/review"><i class="fa-solid fa-mug-saucer"></i> User Reviews</Link>
+          </li>
         </ul>
       </div>
     </>

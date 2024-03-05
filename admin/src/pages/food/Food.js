@@ -26,7 +26,7 @@ const Food = () => {
     <SideBar />
     <div className="w-100">
       <Header2 page="Food List" />
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-between" >
         <div className="h3 opacity-25 m-3">Food List</div>
         <div className="p-3">
           <button type="button" class="btn btn-primary btn-lg"   data-toggle="modal"
@@ -35,7 +35,7 @@ const Food = () => {
           </button>
         </div>
       </div>
-      <div className="cinema-list">
+      <div className="cinema-list" style={{height:"419px"}}>
          <table className="table w-100 overflow-auto table-striped">
           <tr className="table-title">
             <th>F.No</th>
@@ -61,13 +61,7 @@ const Food = () => {
                 </td>
                 <td>
                   <button  className="btn-warning  mr-3" type="button">Edit</button></td><td>
-                  {/* <button  id={item._id} 
-                           cinemaName={item.cinemaName} 
-                           city={item.city} 
-                           address={item.address} 
-                           locationUrl={item.locationUrl} 
-                  data-toggle="modal" data-target="#exampleModalCenter" onClick={handleEditCinema} className="btn-warning  mr-3" type="button">Edit</button> */}
-                 
+                
                   <button onClick={handleDeleteFood}  id={item._id}  className="btn-danger" type="button">Delete</button>
                 </td>
               </tr>

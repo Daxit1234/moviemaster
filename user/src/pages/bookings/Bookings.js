@@ -31,7 +31,7 @@ const Bookings = () => {
   }, [obj]); // Depend on obj to re-fetch data when it changes
 
   return (
-    <div className="row mx-5">
+    <div className="row mx-md-5">
       {bookings.map((item) => {
         return (
           <BookingCard data={item}/>

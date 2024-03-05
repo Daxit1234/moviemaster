@@ -12,7 +12,7 @@ const ShowTime = () => {
   const [selectedTime, setSelectedTime] = useState([]);
   const [cid,setCid]=useState("")
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(6);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   useEffect(() => {
     getCinemas(page, rowsPerPage);

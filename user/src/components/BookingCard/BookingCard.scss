@@ -133,7 +133,8 @@ $black: #343434;
 .barcode {
   height: 2em;
   width: 0;
-  margin: 1.2em 0 0 .8em;
+  justify-self: center;
+  margin-top: 15px;
   box-shadow: 1px 0 0 1px $black,
   5px 0 0 1px $black,
   10px 0 0 1px $black,
@@ -158,4 +159,8 @@ $black: #343434;
   74px 0 0 1px $black,
   77px 0 0 1px $black,
   81px 0 0 1px $black;
+}
+.rating-star{
+  position: absolute;
+  left: 0;
 }
