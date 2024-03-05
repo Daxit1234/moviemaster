@@ -26,8 +26,6 @@ function Adminstate(props) {
   });
   const [allShows, setAllShows] = useState([]);
   const [allCinema, setAllCinema] = useState([]);
-  const [allFood, setAllFood] = useState([]);
-  const [allUsers, setAllUsers] = useState([]);
   const [allBooking, setAllBooking] = useState([]);
   const [totalCinema, setTotalCinema] = useState(null);
   const [totalShow, setTotalShow] = useState(null);

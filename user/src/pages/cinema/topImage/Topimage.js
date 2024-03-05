@@ -25,7 +25,7 @@ function Topimage({data}) {
           </div>
           <div className="opacity-layer"></div>
 
-          <span onClick={()=>navigate(`/details/${id}`)} className='title'>{newData.name || newData.title}</span>
+          {/* <span onClick={()=>navigate(`/details/${id}`)} className='title'>{newData.name || newData.title}</span> */}
         </>
     )
     }

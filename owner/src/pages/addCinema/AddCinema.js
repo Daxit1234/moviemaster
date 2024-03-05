@@ -71,6 +71,7 @@ const AddCinema = () => {
               <th>City</th>
               <th>Location</th>
               <th>Update</th>
+              <th>Delete</th>
             </tr>
             {allCinema?.map((item, index) => {
               const currentIndex = index + 1 + page * rowsPerPage; // Calculate the current index
@@ -105,6 +106,7 @@ const AddCinema = () => {
                     >
                       Edit
                     </button>
+                    </td><td>
                     <button
                       onClick={handleDeleteCinema}
                       id={item._id}

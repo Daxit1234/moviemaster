@@ -17,6 +17,7 @@ function AddCinemaModel({role,item}) {
     e.preventDefault();
     editcinema(_id,editCinema)
     getCinemas()
+    window.location.reload()
     document.getElementById('close').click()
   };
 
@@ -67,6 +68,7 @@ function AddCinemaModel({role,item}) {
                     className="form-control"
                     id="cinema-name"
                     name="cinemaName"
+    
                   />
                 </div>
                 <div className="form-group">
@@ -141,7 +143,7 @@ function AddCinemaModel({role,item}) {
                   className="form-control"
                   id="cinema-name"
                   name="cinemaName"
-                  placeholder={cinemaName}
+              
                 />
               </div>
               <div className="form-group">
@@ -154,7 +156,7 @@ function AddCinemaModel({role,item}) {
                   className="form-control"
                   id="address"
                   name="address"
-                  placeholder={address}
+                
                 />
               </div>
               <div className="form-group">
@@ -168,7 +170,7 @@ function AddCinemaModel({role,item}) {
                   name="city"
                   onChange={handleOnChangeEdit}
                   required
-                  placeholder={city}
+                
                 >
                   <option value="" disabled selected>select City</option>
                   <option value="surat">Surat</option>
@@ -191,7 +193,7 @@ function AddCinemaModel({role,item}) {
                   className="form-control"
                   id="location"
                   name="locationUrl"
-                  placeholder={locationUrl}
+                 
                 />
               </div>
               <div className="modal-footer">

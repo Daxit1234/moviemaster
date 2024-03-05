@@ -41,7 +41,7 @@ const ShowTime = () => {
       <SideBar />
       <div className="w-100">
         <Header2 page="Show List" />
-        <div className="mx-2 mb-3 container-showtime">
+        <div className="mx-2 mb-3 container-showtime" style={{  overflowX: "hidden"}}>
           <div className="row">
             {allCinema?.map((i) => {
               return(

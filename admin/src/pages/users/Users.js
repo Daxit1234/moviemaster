@@ -19,13 +19,13 @@ const Users = () => {
       <SideBar/>
       <div className="w-100">
         <Header2 page="User List" />
-        <div className="cinema-list">
+        <div className="cinema-list"  style={{height:"500px"}}>
           <table className="table w-100 overflow-auto table-striped">
             <tr className="table-title">
               <th>User.No</th>
               <th>User Name</th>
               <th>E-mail</th>
-              <th>Delete</th>
+              <th>Status</th>
             </tr>
             {allUsers?.map((item, index) => {
                  const currentIndex = index + 1 + page * rowsPerPage;

@@ -1,5 +1,5 @@
 .cinema-time-card{
-    min-height: 350px;
+    min-height: 300px;
 }
 .add-button{
     position: absolute;
@@ -8,7 +8,7 @@
     bottom: 0px;
 }
 .container-showtime{
-    height: 480px;
+    height: 490px;
     overflow: scroll;
     overflow-x: hidden;
 }

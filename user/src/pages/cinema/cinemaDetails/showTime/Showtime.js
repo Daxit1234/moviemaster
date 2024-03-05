@@ -25,6 +25,7 @@ function Showtime({cinemaid,name ,address}) {
 
     fetchShowTime();
   }, [cinemaid]);
+  console.log(showTime)
 
   const handleSetShow = async (item) => {
     try {

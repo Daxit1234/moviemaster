@@ -25,9 +25,9 @@ function Bookings() {
       <SideBar/>
       <div className="w-100">
         <Header2 page="Booking List" />
-        <div className="cinema-list">
-          <table className="table w-100 overflow-auto table-striped">
-              <tr className="table-title w-100">
+        <div className="cinema-list"  style={{height:"500px"}}>
+          <table className="table w-100  table-striped">
+              <tr className="table-title">
                 <th>B.No</th>
                 <th>User</th>
                 <th>Cinema</th>
@@ -51,7 +51,7 @@ function Bookings() {
                     <td>{formatDate(item.date)}</td> {/* Format the date */}
                     <td>{item.showTime}</td>
                     <td>{item.showType}</td>
-                    <td>{item.seats.map(i =><strong>{i +" "}</strong> )}</td>
+                    <td className='text-left'>{item.seats.map(i =><strong>{i +" "}</strong> )}</td>
                     <td>{item.totalAmount}</td>
                     <td>{item.Amount}</td>
                   </tr>

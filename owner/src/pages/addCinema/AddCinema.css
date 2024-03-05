@@ -18,8 +18,9 @@ table tr td{
     text-align: center;
 }
 .cinema-list{
-    height: 420px;
+    height: 415px;
     overflow: scroll;
+
 }
 .even-row{
     background-color: rgba(29, 88, 88, 0.104);

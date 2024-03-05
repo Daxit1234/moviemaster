@@ -8,7 +8,7 @@ import AdminContext from "../../context/AdminContext";
 function Dashboard() {
   const location = useLocation();
   const navigate=useNavigate()
-  const {getBooking,totalBooking,totalShow, getShows,getCinemas,allShows,totalCinema}=useContext(AdminContext);
+  const {getBooking,totalBooking,totalShow, getShows,getCinemas,totalCinema}=useContext(AdminContext);
   useEffect(()=>{
    if (!localStorage.getItem("owner")) {
      navigate("/login")
@@ -26,7 +26,7 @@ function Dashboard() {
         <div className=" w-100">
         <Header2  page="DashBoard"/>
         <div className="counting-box">
-          <div className="users m-3 counting-item">
+          {/* <div className="users m-3 counting-item">
             <div>
               <div className="count-no" >23</div>
               <div  className="title-item">Users</div>
@@ -34,7 +34,7 @@ function Dashboard() {
             <div className="d-flex">
             <i className="fa-solid fa-user"></i>
             </div>
-          </div>
+          </div> */}
           <div className="cinema m-3 counting-item">
             <div>
             <div className="count-no">{totalCinema}</div>
@@ -44,7 +44,7 @@ function Dashboard() {
             <i class="fa-solid fa-chart-simple"></i>
             </div>
           </div>
-          <div className="shows m-3 counting-item">
+          {/* <div className="shows m-3 counting-item">
             <div>
             <div className="count-no">{totalShow || 25}</div>
               <div className="title-item">Shows</div>
@@ -52,8 +52,8 @@ function Dashboard() {
             <div className="d-flex">
             <i class="fa-solid fa-video"></i>
             </div>
-          </div>
-          <div className="booking m-3 counting-item">
+          </div> */}
+          {/* <div className="booking m-3 counting-item">
             <div>
             <div className="count-no">{totalBooking}</div>
               <div className="title-item">Bookings</div>
@@ -61,7 +61,7 @@ function Dashboard() {
             <div className="d-flex">
             <i class="fa-solid fa-chart-pie"></i>
             </div>
-          </div>
+          </div> */}
         </div>
         </div>
       </div>

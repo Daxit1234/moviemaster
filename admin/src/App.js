@@ -9,6 +9,7 @@ import Adminstate from './context/Adminstate'
 import Food from './pages/food/Food'
 import ShowTime from './pages/addShowTime/ShowTime'
 import Owner from './pages/owner/Owner'
+import Review from './pages/review/Review'
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
      <Route path='/bookings' element={<Bookings/>} />
      <Route path='/foods' element={<Food/>} />
      <Route path='/owner' element={<Owner /> } />
+     <Route path='/review' element={<Review/> } />
    </Routes>
   </Router>
     </Adminstate>

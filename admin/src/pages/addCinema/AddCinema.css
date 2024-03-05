@@ -11,11 +11,11 @@
 }
 table th{
     font-size: 20px;
-    text-align: center;
+    /* text-align: center; */
 }
 table tr td{
     font-size: 20px;
-    text-align: center;
+    /* text-align: center; */
 }
 .cinema-list{
     height: 485px;

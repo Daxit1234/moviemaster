@@ -13,33 +13,26 @@ router.post("/addreview", async (req, res) => {
     }
 });
 
-// // ROUTE 2: get review using GET http://localhost:8080/cinemas/getowner
-// router.post("/getreview", async (req, res) => {
-//     try {
-//         const { email, password } = req.body;
-//         let review = await Review.findOne({ email });
-//         if (!review) {
-//           return res
-//             .status(400)
-//             .json({ error: "Please try to login with correct email" });
-//         }
-//         if (password != review.password) {
-//           return res.status(400).json({ error: "Please enter valid password" });
-//         }
-//         res.send(review);
-//       } catch (error) {
-//         res.send({error:error})
-        
-//       }
-// });
 
 router.get("/getallreview", async (req, res) => {
     try {
-        let review = await Review.find();
-        res.send(review);
-      } catch (error) {
-        res.send({error:error})   
-      }
+        const review = await Review.find();
+        const page = parseInt(req.query.page) || 1;
+        const pageSize = parseInt(req.query.pageSize) || 10;
+        
+        // Calculate startIndex and endIndex for slicing the data
+        const totalData = review.length;
+        const startIndex = Math.max(totalData - page * pageSize, 0);
+        const endIndex = Math.max(totalData - (page - 1) * pageSize, 0);
+        
+        // Extract the data for the current page in reverse order
+        const results = review.slice(startIndex, endIndex).reverse();
+        
+        res.status(201).send({ results, totalData });
+        
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
 });
 
 

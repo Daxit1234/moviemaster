@@ -44,7 +44,6 @@ const Food = () => {
             <th>Category</th>
             <th>Price</th>
             <th>Image</th>
-            <th>Update</th>  
             <th>Delete</th>
           </tr>
           {allFood?.map((item, index) => {
@@ -60,8 +59,6 @@ const Food = () => {
                   <img src={item.imageUrl} height={100} width={150} alt="not found" />
                 </td>
                 <td>
-                  <button  className="btn-warning  mr-3" type="button">Edit</button></td><td>
-                
                   <button onClick={handleDeleteFood}  id={item._id}  className="btn-danger" type="button">Delete</button>
                 </td>
               </tr>
