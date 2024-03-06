@@ -106,7 +106,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* pointer-events: none; */
+  text-decoration: none;
 }
 .container-invoice .card-lower .total h5{
    font-weight: bold;

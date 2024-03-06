@@ -46,7 +46,7 @@ const FoodCard = ({ item,OnFoodAdd }) => {
                     <h5 className="card-title">Rs. {item.price}</h5>
                 </div>
                 <div className="description">
-                    <p className="card-text">{item.description} </p>
+                    <p className="card-text text-sm">{item.description} </p>
                     {quantity === 0 ? (
                         <button className='btn btn-success' onClick={handleAddFood}>Add</button>
                     ) : (

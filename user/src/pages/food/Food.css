@@ -1,6 +1,7 @@
 .food-image{
 	height: 150px;
 	width: 150px;
+	object-fit: cover;
 }
 .description{
 	display: flex;
@@ -12,8 +13,9 @@
 	align-self: flex-end;
 }
 .description p{
-	max-width: 50%;
+	max-width: 70%;
 	color: rgba(255, 255, 255, 0.452);
+	font-size: 12px;
 }
 .addremove-box{
 	display: flex;

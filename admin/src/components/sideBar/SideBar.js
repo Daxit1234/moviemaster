@@ -39,6 +39,9 @@ const SideBar = () => {
             <Link to="/bookings"><i class="fa-solid fa-ticket"></i>Bookings</Link>
           </li>
           <li>
+            <Link to="/payment"><i class="fa-solid fa-credit-card"></i> Payments</Link>
+          </li>
+          <li>
             <Link to="/foods"><i class="fa-solid fa-mug-saucer"></i> Foods</Link>
           </li>
           <li>

@@ -10,33 +10,54 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 const SearchBox = () => {
-    const {setQuery}=useContext(MovieContext)
-    const [city,setCity]=useState("")
-    const [age, setAge] = React.useState('');
+    const {setQuery,city,setCity,showType,setShowType}=useContext(MovieContext)
 
-    const handleChange = (event) => {
-      setAge(event.target.value);
+    const handleChangeCity = (event) => {
+      setCity(event.target.value);
+    };
+    const handleChangeShowType = (event) => {
+      setShowType(event.target.value);
     };
     let HandleCinemaSearch=(e)=>{
         const inputValue = e.target.value;
         setQuery(inputValue);
     }
   return (
-    <div className='filter-box d-flex text-light'>
-           <Box sx={{ minWidth: 120, marginRight: "50px" }}>
+    <div className='filter-box text-light'>
+           <Box sx={{ minWidth: 120, marginRight: "20px" }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label" sx={{ color: 'white' }}>Age</InputLabel>
+        <InputLabel id="demo-simple-select-label" sx={{ color: 'white' }}>ShowType</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={age}
-          label="Age"
-          onChange={handleChange}
-          sx={{ '& fieldset': { borderColor: 'white', color: 'white' }, '&:hover fieldset': { borderColor: 'white',color: 'white' } }}
+          value={showType}
+          label="ShowType"
+          onChange={handleChangeShowType}
+          sx={{color:'white', '& fieldset': { borderColor: 'white',border:"1px solid white" }, '&:hover fieldset': { borderColor: 'white' } }}
         >
-          <MenuItem value={10} >Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value="allShow"  >All Show</MenuItem>
+          <MenuItem value="2d"  >2D</MenuItem>
+          <MenuItem value="3d">3D</MenuItem>
+        </Select>
+      </FormControl>
+    </Box>
+    
+           <Box sx={{ minWidth: 120, marginRight: "50px" }}>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label" sx={{ color: 'white' }}>City</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={city}
+          label="City"
+          onChange={handleChangeCity}
+          sx={{color:'white', '& fieldset': { borderColor: 'white',border:"1px solid white" }, '&:hover fieldset': { borderColor: 'white' } }}
+        >
+          <MenuItem value="allCity"  >All City</MenuItem>
+          <MenuItem value="surat"  >Surat</MenuItem>
+          <MenuItem value="ahmadabad">Ahmadabad</MenuItem>
+          <MenuItem value="pune">Pune</MenuItem>
+          <MenuItem value="chennai">Chennai</MenuItem>
         </Select>
       </FormControl>
     </Box>

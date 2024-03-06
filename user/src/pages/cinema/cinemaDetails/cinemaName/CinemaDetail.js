@@ -7,15 +7,26 @@ import cinemaNotFound from "../../../../assets/no-results.png"
 
 function CinemaDetail() {
   const [show, setShow] = useState(false);
-  const {getCinemas ,allCinema ,query}=useContext(MovieContext)
+  const {getCinemas ,allCinema ,query,city}=useContext(MovieContext)
   useEffect(()=>{
     getCinemas(query)
-  },[query])
+    console.log(allCinema)
+  },[query,city])
+
+  function filterCinemasByCity(allCinema, city) {
+    if (city==="allCity" || city==="") {
+      return allCinema
+    }
+    return allCinema.filter(cinema => cinema.city.toLowerCase() === city.toLowerCase());
+}
+
+// Example: Filter cinemas by city "surat"
+const newCinemas = filterCinemasByCity(allCinema, city);
   return (
     <div>
       {
-        allCinema?.length!==0?(
-          allCinema?.map((item) => {
+        newCinemas?.length!==0?(
+          newCinemas?.map((item) => {
             return (
               <div className="cinema-container" key={item._id}>
                 <div className="cinema-info">

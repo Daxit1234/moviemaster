@@ -5,7 +5,7 @@ import MovieContext from "../../../../context/Moviecontext";
 
 function Showtime({cinemaid,name ,address}) {
   const Navigate = useNavigate();
-  const { bookingDetails, setBookingDetails, setBookedSeats } = useContext(MovieContext);
+  const { bookingDetails, setBookingDetails, setBookedSeats ,showType} = useContext(MovieContext);
   const [showTime, setShowTime] = useState([]);
 
   useEffect(() => {
@@ -25,7 +25,16 @@ function Showtime({cinemaid,name ,address}) {
 
     fetchShowTime();
   }, [cinemaid]);
-  console.log(showTime)
+
+  function filterCinemasByCity(showTime, city) {
+    if (city==="allShow" || city==="") {
+      return showTime
+    }
+    return showTime.filter(show=> show.showType.toLowerCase() === showType.toLowerCase());
+}
+
+// Example: Filter cinemas by city "surat"
+const  newShows= filterCinemasByCity(showTime, showType);
 
   const handleSetShow = async (item) => {
     try {
@@ -67,7 +76,7 @@ function Showtime({cinemaid,name ,address}) {
 
   return (
     <div className="showtime-container">
-      {showTime?.map((item) => {
+      {newShows?.map((item) => {
         return (
           <>
             <div

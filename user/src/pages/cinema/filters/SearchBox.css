@@ -3,6 +3,7 @@
     margin-top: 5%;
     margin-right: 5%;
     z-index: 2;
+    display: flex;
 }
 .filter-box .input-field input {
     width: 100%;
@@ -26,20 +27,6 @@
 }
 @media only screen and (max-width: 768px) {
     .filter-box{
-        height: 100%;
-        z-index: 2;
-    }
-    .filter-box .input-field input {
-        width: 80%;
-        margin-top: -40px;
-        margin-left: 40px;
-      }
-      .filter-box .input-field .icon{
-        position: relative;
-        right: 0px;
-        bottom: 3.6rem;
-        font-size: 1.5em;
-        color: #edf9f1;
-        line-height: 57px;
+        display: none;
     }
 }

@@ -1,20 +1,43 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Payment.css";
-import Upi from "../../components/payment/upi/Upi";
+// import Upi from "../../components/payment/upi/Upi";
 import Invoice from "../../components/invoice/Invoice";
-import Card from "../../components/payment/card/Card";
+import { useNavigate } from "react-router-dom";
+import MovieContext from "../../context/Moviecontext";
+// import Card from "../../components/payment/card/Card";
 
 const Payment = () => {
   const [invoiceVisible, setInvoiceVisible] = useState(true);
-  const [paymentMode, setPayentMode] = useState("");
+  const navigate=useNavigate()
+  const {booking }=useContext(MovieContext);
+  const [payment, setPayment] = useState({ email: "", contactNo: null, paymentId: "" });
 
-  let handlevisible = () => {
-    invoiceVisible ? setInvoiceVisible(false) : setInvoiceVisible(true);
+  const handleVisible = () => {
+    setInvoiceVisible(!invoiceVisible);
   };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setPayment({ ...payment, [name]: value });
+  };
+
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    await fetch("http://localhost:8080/payment/addpayment",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payment),
+    })
+    booking()
+    navigate("/bookings")
+  };
+
   return (
     <div className="payment-page">
-      <div className="viewBill" onClick={handlevisible}>
-        View Invoice
+      <div className="viewBill" onClick={handleVisible}>
+        Book Now
       </div>
       <div className="d-flex">
         <div>
@@ -24,141 +47,79 @@ const Payment = () => {
             }`}
           >
             <div className="heading">
-              <p className="text">Share your contect Details</p>
+              <p className="text">Verify Your Payment</p>
             </div>
-            <div className="d-flex form-box">
-              <div class="input-field">
-                <input type="text" name="email" required spellcheck="false" />
-                <label>Enter email</label>
-                <span className="icon ">
+            <form className="form-box" onSubmit={handleSubmit}>
+              <div className="input-field">
+                <input
+                  type="text"
+                  name="email"
+                  required
+                  spellCheck="false"
+                  value={payment.email}
+                  onChange={handleInputChange}
+                />
+                <label>Email</label>
+                <span className="icon">
                   <i className="fa-solid fa-envelope text-light"></i>
                 </span>
               </div>
-              <div class="input-field">
-                <input type="text" name="mobile" required spellcheck="false" />
+              <div className="input-field">
+                <input
+                  type="number"
+                  name="contactNo"
+                  required
+                  spellCheck="false"
+                  value={payment.contactNo}
+                  onChange={handleInputChange}
+                />
                 <label>Mobile Number</label>
-                <span className="icon ">
+                <span className="icon">
                   <i className="fa-solid fa-phone text-light"></i>
                 </span>
               </div>
-              <div>
-                <button className="btn-continue">Continue</button>
+              <div className="input-field">
+                <input
+                  type="text"
+                  name="paymentId"
+                  required
+                  spellCheck="false"
+        
+                  value={payment.paymentId}
+                  onChange={handleInputChange}
+                />
+                <label>Payment ID</label>
+                <span className="icon">
+                <i class="fa-solid fa-credit-card"></i>
+                </span>
+              
               </div>
-            </div>
+              <div>
+                <button type="submit" className="btn-continue">
+                  Continue
+                </button>
+              </div>
+            </form>
           </div>
 
           <div
-            className={`contect-details payment-options ${
+            className={`contect-detail payment-options ${
               !invoiceVisible ? "visible" : "hidden"
             }`}
+            style={{ visibility: "hidden" }}
           >
-            <div className="heading">
+            <div className="heading"  style={{ visibility: "hidden" }}>
               <p className="text">Payment Options</p>
             </div>
-            <div className="d-flex">
+            <div className="d-flex"  style={{ visibility: "hidden" }}>
               <div className="payment-menus">
-                <div
-                  className={`menu-item ${
-                    paymentMode === "upi" ? "active" : ""
-                  }`}
-                >
-                  <div
-                    onClick={() =>paymentMode === "" ? setPayentMode("upi"):setPayentMode("")}
-                    className="d-flex justify-content-between"
-                  >
-                    <span>UPI</span>
-                    {paymentMode === "upi" ? (
-                      <i className="fa-solid fa-caret-down"></i>
-                    ) : (
-                      <i className="fa-solid fa-caret-up"></i>
-                    )}
-                  </div>
-                  <div
-                    className={`upi-container ${
-                      paymentMode === "upi" ? "show" : ""
-                    }`}
-                  >
-                    {paymentMode === "upi" && <Upi />}
-                  </div>
-                </div>
-                <div
-                  className={`menu-item ${
-                    paymentMode === "card" ? "active" : ""
-                  }`}
-                >
-                  <div
-                    onClick={() =>paymentMode === "" ? setPayentMode("card"):setPayentMode("")}
-                    className="d-flex justify-content-between"
-                  >
-                    <span>Debit/Credit Card</span>
-                    {paymentMode === "card" ? (
-                      <i className="fa-solid fa-caret-down"></i>
-                    ) : (
-                      <i className="fa-solid fa-caret-up"></i>
-                    )}
-                  </div>
-                  <div
-                    className={`upi-container ${
-                      paymentMode === "card" ? "show" : ""
-                    }`}
-                  >
-                    {paymentMode === "card" && <Card/>}
-                  </div>
-                </div>
-                <div
-                  className={`menu-item ${
-                    paymentMode === "netBank" ? "active" : ""
-                  }`}
-                >
-                  <div
-                     onClick={() =>paymentMode === "" ? setPayentMode("netBank"):setPayentMode("")}
-                    className="d-flex justify-content-between"
-                  >
-                    <span>Net Banking</span>
-                    {paymentMode === "netBank" ? (
-                      <i className="fa-solid fa-caret-down"></i>
-                    ) : (
-                      <i className="fa-solid fa-caret-up"></i>
-                    )}
-                  </div>
-                  <div
-                    className={`upi-container ${
-                      paymentMode === "netBank" ? "show" : ""
-                    }`}
-                  >
-                    {paymentMode === "netBank" && <Upi />}
-                  </div>
-                </div>
-                <div
-                  className={`menu-item ${
-                    paymentMode === "wallets" ? "active" : ""
-                  }`}
-                >
-                  <div
-                    onClick={() =>paymentMode === "" ? setPayentMode("wallets"):setPayentMode("")}
-                    className="d-flex justify-content-between"
-                  >
-                    <span>Net Banking</span>
-                    {paymentMode === "wallats" ? (
-                      <i className="fa-solid fa-caret-down"></i>
-                    ) : (
-                      <i className="fa-solid fa-caret-up"></i>
-                    )}
-                  </div>
-                  <div
-                    className={`upi-container ${
-                      paymentMode === "=wallets" ? "show" : ""
-                    }`}
-                  >
-                    {paymentMode === "=wallets" && <Upi />}
-                  </div>
-                </div>
+                Payment options menu
               </div>
             </div>
           </div>
         </div>
-        <div className={` ${invoiceVisible ? "invoice" : "no-invoice"}`}>
-          <Invoice handlevisible={handlevisible} />
+        <div className={`ml-5 ${invoiceVisible ? "invoice" : "no-invoice"}`}>
+          <Invoice handleVisible={handleVisible} />
         </div>
       </div>
     </div>

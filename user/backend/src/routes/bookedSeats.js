@@ -91,6 +91,16 @@ router.post("/getuserbooking", async (req, res) => {
     }
 });
 
+// ROUTE 4: get user booked seat using GET http://localhost:8080/bookedSeats/getuserseat
+router.delete("/deleteuserbooking/:id", async (req, res) => {
+    try {
+        await BookedSeat.findByIdAndDelete(req.params.id)
+        res.status(201).send({success:"Ticket are deketed"});
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
 
 
 module.exports= router

@@ -26,6 +26,11 @@
     width: 40%;
     display: flex;
   }
+.contect-details .form-box  {
+  display: flex;
+  align-items: center;
+    flex-direction: column;
+  }
   .contect-details .form-box .input-field input {
     width: 100%;
     height: 50px;
@@ -122,6 +127,9 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .contect-details   {
+    width: 100%;
+    }
   .hidden{
     display: none;
   }
@@ -146,6 +154,7 @@
   }
     .contect-details  .form-box{
         flex-direction: column;
+        width: 100%;
     }
      .contect-details .heading .text{
         font-size: 15px;
@@ -158,11 +167,11 @@
     }
     .contect-details .form-box .input-field {
         position: relative;
-        width: 90%;
+        width: 100%;
         display: flex;
       }
       .payment-menus{
         display: block;
-         width: 1000%;
+         width: 100%;
       }
 }

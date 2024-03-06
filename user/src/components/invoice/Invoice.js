@@ -4,34 +4,16 @@ import MovieContext from '../../context/Moviecontext';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const Invoice = ({handlevisible}) => {
-  const {bookingDetails ,booking }=useContext(MovieContext);
-  const navigate=useNavigate()
+  const {bookingDetails,setBookingDetails}=useContext(MovieContext);
+ 
   const {date,movieName,seats,showTime,showType,cinemaName,cinemaAdd}=bookingDetails
   const {amount ,convenienceFees,contribution,foodAmount}=useParams()
 
-  let handleBooking=(amount)=>{
-  if (localStorage.getItem("userData")) {
-    fetch('http://localhost:8080/payment/process-payment', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-          // paymentMethodId: paymentMethod.id,
-          amount: amount,
-      }),
-  })
-  .then(response => response.json())
-  .then(data => {
-      console.log(data);
-      // Handle success or failure from server
-  });
-    handlevisible()
-    booking()
-    navigate("/")
-  }else{
-    navigate("/login")
-  }
+  let handleBooking=async()=>{
+    window.open("https://rzp.io/l/zcOwbvgXr", "_blank");
+    await setBookingDetails({...bookingDetails,
+      totalAmount:parseInt( amount) +parseInt( contribution) +parseInt( convenienceFees)+parseInt( foodAmount),
+    })
   }
   return (
         <div className="container-invoice">

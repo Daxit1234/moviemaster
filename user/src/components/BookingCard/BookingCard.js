@@ -3,11 +3,16 @@ import './BookingCard.scss';
 import FeedBack from '../Models/FeedBack';
 
 const BookingCard = ({ data }) => {
-   
+   let handleDeleteTicket=(id)=>{
+     fetch(`http://localhost:8080/bookedSeats/deleteuserbooking/${id}`,{
+        method:"DELETE"
+     })
+     window.location.reload()
+   }
     return (
         <div className="col-md-4 d-flex cpl-sm-1 cardWrap  my-2">
             <div className="customcard cardLeft">
-                <h1>Cinema: <span>{data.cinemaName}</span></h1>
+                <h1><span>{data.cinemaName}</span></h1>
                 <div className="movie-title">
                     <h2 className='movie-name'>{data.movieName}</h2>
                     <span>Movie</span>
@@ -33,6 +38,10 @@ const BookingCard = ({ data }) => {
                 </div>
             </div>
             <div className="customcard cardRight">
+                <div className='text-right mr-2' onClick={()=>handleDeleteTicket(data._id)}>
+
+                <i class="fa-solid fa-trash" style={{position:"absolute"}}></i>
+                </div>
                 <div className="eye"></div>
                 <div className="number" >
                     <h3>{data.seats.length}</h3>

@@ -12,6 +12,8 @@ const Moviestate = (props) => {
 }
 
  const [bookedSeats, setBookedSeats] = useState([]);
+ const [city,setCity]=useState("")
+ const [showType,setShowType]=useState("")
   const [bookingDetails, setBookingDetails] = useState({
     cinemaId:"",
     showId:"",
@@ -70,7 +72,8 @@ const Moviestate = (props) => {
         bookingDetails,setBookingDetails,
         booking,bookedSeats, setBookedSeats,
         allCinema, setAllCinema,getCinemas,
-        query,setQuery,obj
+        query,setQuery,obj,city,setCity,
+        showType,setShowType
       }}
     >
       {props.children}
