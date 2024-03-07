@@ -9,7 +9,7 @@ const Food = () => {
   const {getFood,allFood,deleteFood ,totalFood}=useContext(AdminContext)
   const [role,setRole]=useState("add")
   
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   // const [item,setItem]=useState({_id:"",cinemaName:"",address:"",city:"",locationUrl:""})
   useEffect(()=>{
@@ -47,7 +47,7 @@ const Food = () => {
             <th>Delete</th>
           </tr>
           {allFood?.map((item, index) => {
-             const currentIndex = index + 1 + page * rowsPerPage; 
+             const currentIndex = index + 1 + page * rowsPerPage-rowsPerPage; 
             return (
               <tr className={`${index % 2 === 0 ? "even-row" : "odd-row"}`}>
                 <th>{currentIndex}</th>

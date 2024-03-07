@@ -21,7 +21,7 @@ const SideBar = () => {
         </div>
         <ul>
           <li>
-            <Link to="/"><i class="fa-solid fa-house"></i> Dashboard</Link>
+            <Link to="/dashboard"><i class="fa-solid fa-house"></i> Dashboard</Link>
           </li>
           <li>
             <Link to="/cinemas"><i class="fa-solid fa-film"></i>Movie Cinemas</Link>

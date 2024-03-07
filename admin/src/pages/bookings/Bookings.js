@@ -8,7 +8,7 @@ function Bookings() {
   const { getBooking, allBooking, totalBooking } =
   useContext(AdminContext);
   
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   useEffect(() => {
     getBooking(page, rowsPerPage);
@@ -49,7 +49,7 @@ function Bookings() {
               </tr>
             <tbody> {/* Use tbody for table body */}
               {allBooking?.map((item, index) => {
-                const currentIndex = index + 1 + page * rowsPerPage; // Calculate the current index
+                const currentIndex = index + 1 + page * rowsPerPage-rowsPerPage; // Calculate the current index
 
                 return (
                   <tr className={`${index % 2 === 0 ? "even-row" : "odd-row"}`} key={index}>

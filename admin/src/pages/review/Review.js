@@ -7,7 +7,7 @@ import Rating from "@mui/material/Rating";
 
 const Review = () => {
   const [reviews, setReviews] = useState([]);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [totalReview, setTotalReview] = useState(null);
 
@@ -40,7 +40,7 @@ const Review = () => {
               <th>Comment</th>
             </tr>
             {reviews?.map((item, index) => {
-              const currentIndex = index + 1 + page * rowsPerPage;
+              const currentIndex = index + 1 + page * rowsPerPage-rowsPerPage;
               return (
                 <tr className={`${index % 2 === 0 ? "even-row" : "odd-row"}`}>
                   <th>{currentIndex}</th>

@@ -11,7 +11,11 @@ const PaymentSchema = new mongoose.Schema({
     paymentId:{
         type:String,
         required: true
-
+    },
+    totalAmount:{
+        type:Number,
+        required: true
+      
     }
 }
 );

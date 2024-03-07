@@ -11,6 +11,7 @@ import ShowTime from './pages/addShowTime/ShowTime'
 import Owner from './pages/owner/Owner'
 import Review from './pages/review/Review'
 import Payment from './pages/pament/Payment'
+import Login from './pages/login/Login'
 
 
 function App() {
@@ -20,7 +21,8 @@ function App() {
     <Router>
       <AdminHeader/>
    <Routes>
-     <Route path='/'element={<Dashboard/>}/>
+     <Route path='/'element={<Login/>}/>
+     <Route path='/dashboard'element={<Dashboard/>}/>
     <Route path='cinemas' element={<AddCinema/>} />
      <Route path='/showtimes' element={<ShowTime/>} />
      <Route path='/users' element={<Users/>} />

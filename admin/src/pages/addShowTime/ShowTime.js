@@ -11,7 +11,7 @@ const ShowTime = () => {
   const [status, setStatus] = useState(false);
   const [selectedTime, setSelectedTime] = useState([]);
   const [cid,setCid]=useState("")
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   useEffect(() => {

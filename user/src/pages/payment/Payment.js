@@ -9,8 +9,8 @@ import MovieContext from "../../context/Moviecontext";
 const Payment = () => {
   const [invoiceVisible, setInvoiceVisible] = useState(true);
   const navigate=useNavigate()
-  const {booking }=useContext(MovieContext);
-  const [payment, setPayment] = useState({ email: "", contactNo: null, paymentId: "" });
+  const {booking ,bookingDetails}=useContext(MovieContext);
+  const [payment, setPayment] = useState({ email: "", contactNo: null, paymentId: "" ,totalAmount:null});
 
   const handleVisible = () => {
     setInvoiceVisible(!invoiceVisible);
@@ -18,7 +18,7 @@ const Payment = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setPayment({ ...payment, [name]: value });
+    setPayment({ ...payment, [name]: value ,totalAmount:bookingDetails.totalAmount});
   };
 
   const handleSubmit = async(e) => {

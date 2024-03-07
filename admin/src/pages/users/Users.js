@@ -7,7 +7,7 @@ import TablePaginationDemo from '../../components/pagination/Paginathion'
 
 const Users = () => {
   const { allUsers ,getUsers ,deleteUser ,totalUser}=useContext(AdminContext)
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   useEffect(()=>{
@@ -28,7 +28,7 @@ const Users = () => {
               <th>Status</th>
             </tr>
             {allUsers?.map((item, index) => {
-                 const currentIndex = index + 1 + page * rowsPerPage;
+                 const currentIndex = index + 1 + page * rowsPerPage-rowsPerPage;
               return (
                 <tr className={`${index % 2 === 0 ? "even-row" : "odd-row"}`}>
                   <th>{currentIndex}</th>

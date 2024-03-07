@@ -16,7 +16,7 @@ const AddCinema = () => {
     city: "",
     locationUrl: "",
   });
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   useEffect(() => {
@@ -74,7 +74,7 @@ const AddCinema = () => {
               <th>Delete</th>
             </tr>
             {allCinema?.map((item, index) => {
-              const currentIndex = index + 1 + page * rowsPerPage; // Calculate the current index
+              const currentIndex = index + 1 + page * rowsPerPage-rowsPerPage; // Calculate the current index
 
               return (
                 <tr className={`${index % 2 === 0 ? "even-row" : "odd-row"}`}>

@@ -3,7 +3,7 @@
 /* Base styles */
 .sidebar {
   width: 20%;
-  height: 599px;
+  height: 100%;
   background-color: rgb(34, 43, 50);
   padding-top: 20px;
 }
