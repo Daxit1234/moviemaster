@@ -9,10 +9,11 @@ const AddCinema = () => {
     useContext(AdminContext);
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [query,setQuery]=useState("")
 
   useEffect(() => {
-    getCinemas(page, rowsPerPage);
-  }, [page, rowsPerPage]);
+    getCinemas(page, rowsPerPage,query);
+  }, [page, rowsPerPage,query]);
 
   let handleDeleteCinema = (e) => {
     let id = e.target.getAttribute("id");
@@ -25,6 +26,10 @@ const AddCinema = () => {
       <SideBar />
       <div className="w-100">
         <Header2 page="Cinema List" />
+        <div className="mr-3 d-flex justify-content-end">
+        <i  className="fa-solid fa-magnifying-glass mr-3" style={{fontSize:"25px",alignSelf:"center"}}></i>
+          <input type="text" placeholder="Search Cinema" onChange={(e)=>setQuery(e.target.value)} className="form-control w-25 " />
+        </div>
         <div className="cinema-list">
           <table className="table w-100 overflow-auto table-striped">
             <tr className="table-title">

@@ -4,6 +4,15 @@ const Times = ({ cinemaId,selected }) => {
   const [showTime, setShowTime] = useState([]);
 
   useEffect(() => {
+    const sortByTime = (data) => {
+      const sortedMovies = [...data].sort((a, b) => {
+          // Assuming time is in the format HH:MM AM/PM
+          const timeA = new Date("01/01/2024 " + a.time);
+          const timeB = new Date("01/01/2024 " + b.time);
+          return timeA - timeB;
+      });
+      setShowTime(sortedMovies);
+  };
     const fetchShowTime = async () => {
       try {
         const response = await fetch(
@@ -11,7 +20,7 @@ const Times = ({ cinemaId,selected }) => {
         );
         if (response.ok) {
           const data = await response.json();
-          setShowTime(data);
+          sortByTime(data)
         } else {
           throw new Error("Failed to fetch show time");
         }
@@ -37,7 +46,6 @@ const Times = ({ cinemaId,selected }) => {
       >
         {i.time.slice(0,i.time.length-2)}
           <br />
-          {/* {i.showType} */}
           {i.time.slice(i.time.length-2)}
       
       </div>

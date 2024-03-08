@@ -8,6 +8,7 @@ import TablePaginationDemo from '../../components/pagination/Paginathion'
 const Food = () => {
   const {getFood,allFood,deleteFood ,totalFood}=useContext(AdminContext)
   const [role,setRole]=useState("add")
+  const [item,setItem]=useState()
   
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -59,6 +60,8 @@ const Food = () => {
                   <img src={item.imageUrl} height={100} width={150} alt="not found" />
                 </td>
                 <td>
+                  <button onClick={()=>{setRole("edit");setItem(item)}}   id={item._id}  className="btn-warning mr-3" type="button" data-toggle="modal"
+            data-target="#exampleModalCenter">Edit</button>
                   <button onClick={handleDeleteFood}  id={item._id}  className="btn-danger" type="button">Delete</button>
                 </td>
               </tr>
@@ -69,7 +72,7 @@ const Food = () => {
       <TablePaginationDemo set={{ page, rowsPerPage, setPage, setRowsPerPage }}
       count={totalFood}/>
     </div>
-    <AddFoodModel role={role}/>
+    <AddFoodModel role={role} item={item}/>
   </div>
   )
 }

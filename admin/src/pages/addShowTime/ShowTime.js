@@ -13,10 +13,11 @@ const ShowTime = () => {
   const [cid,setCid]=useState("")
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [query,setQuery]=useState("")
 
   useEffect(() => {
-    getCinemas(page, rowsPerPage);
-  }, [page, rowsPerPage]);
+    getCinemas(page, rowsPerPage,query);
+  }, [page, rowsPerPage,query]);
   
   let selected = (e) => {
     let temp=e.target.getAttribute("name")
@@ -42,6 +43,10 @@ const ShowTime = () => {
       <SideBar />
       <div className="w-100">
         <Header2 page="Show List" />
+        <div className="mr-3 d-flex justify-content-end">
+        <i  className="fa-solid fa-magnifying-glass mr-3" style={{fontSize:"25px",alignSelf:"center"}}></i>
+          <input type="text" placeholder="Search Cinema" onChange={(e)=>setQuery(e.target.value)} className="form-control w-25 " />
+        </div>
         <div className="mx-2 mb-3 container-showtime">
           <div className="row">
             {allCinema?.map((i) => {
@@ -49,9 +54,9 @@ const ShowTime = () => {
                <div className="col-4 cinema-time-card ">
                 <div className="bg-dark text-light px-4" style={{fontSize:"20px"}}>
                 <div>
-                  {i.cinemaName}, {i.city}
+                  {i.cinemaName},<span style={{fontSize:"20px"}}>{i.city}</span> 
                 </div>
-                <div>
+                <div style={{fontSize:"15px",opacity:"0.5"}}>
                   {i.address}
                 </div>
                 </div>

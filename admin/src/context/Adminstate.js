@@ -50,8 +50,8 @@ function Adminstate(props) {
     setAllShows(allShows.concat(data));
   };
 
-  let getCinemas = async (page,row) => {
-    let responce = await fetch(`${host}/cinemas/getcinema?page=${page}&pageSize=${row}`);
+  let getCinemas = async (page,row,query) => {
+    let responce = await fetch(`${host}/cinemas/getcinema?q=${query}&page=${page}&pageSize=${row}`);
     let data = await responce.json();
     setAllCinema(data.paginatedData);
     setTotalCinema(data.totalData)
@@ -78,9 +78,9 @@ function Adminstate(props) {
     setTotalFood(data.totalData);
   };
 
-  let getUsers = async (page,row) => {
+  let getUsers = async (page,row,query) => {
     try {
-      let responce = await fetch(`${host}/users/getUserDetails?page=${page}&pageSize=${row}`);
+      let responce = await fetch(`${host}/users/getUserDetails?q=${query}&page=${page}&pageSize=${row}`);
       let data = await responce.json();
       setAllUsers(data.results);
       setTotalUser(data.totalData)
@@ -121,43 +121,37 @@ function Adminstate(props) {
     });
   };
 
-  // let deleteUser = async(id) => {
-  //   await fetch(`${host}/show/deleteshowtime/${id}`, {
-  //     method: "DELETE",
-  //   });
-  // };
-
-let editcinema = async (_id, editCinema) => {
+let editFood = async (_id, editFood) => {
   try {
-    let response = await fetch(`http://localhost:8080/cinemas/editcinema/${_id}`, {
+    let response = await fetch(`http://localhost:8080/food/editfood/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(editCinema)
+      body: JSON.stringify(editFood)
     });
     let data = await response.json();
     console.log(data)
   } catch (error) {
-    console.error("Error during editcinema:", error);
+    console.error("Error during editFood:", error);
   }
 };
 
-let editshow = async (_id, editShow) => {
-  try {
-    let response = await fetch(`http://localhost:8080/show/editshow/${_id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(editShow)
-    });
-    let data = await response.json();
-    console.log(data)
-  } catch (error) {
-    console.error("Error during editcinema:", error);
-  }
-};
+// let editshow = async (_id, editShow) => {
+//   try {
+//     let response = await fetch(`http://localhost:8080/show/editshow/${_id}`, {
+//       method: "PUT",
+//       headers: {
+//         "Content-Type": "application/json"
+//       },
+//       body: JSON.stringify(editShow)
+//     });
+//     let data = await response.json();
+//     console.log(data)
+//   } catch (error) {
+//     console.error("Error during editcinema:", error);
+//   }
+// };
 
 
   return (
@@ -172,10 +166,10 @@ let editshow = async (_id, editShow) => {
         allCinema,
         deleteCinema,
         deleteFood,
-        editcinema,
+        editFood,
         getShows,allShows,
         deleteTime,newShow, setNewShow,
-        addNewShow,editshow,
+        addNewShow,
         allUsers, setAllUsers,getUsers,
         allOwner, setAllOwner,getOwner,deleteOwner,
         allFood, setAllFood,getFood,totalCinema,totalFood,totalUser,

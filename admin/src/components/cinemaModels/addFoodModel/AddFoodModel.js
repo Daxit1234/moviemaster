@@ -4,7 +4,7 @@ import { imageDb } from "./ImageDb";
 import {getDownloadURL, listAll, ref,uploadBytes} from "firebase/storage";
 import {v4 } from "uuid"
 
-const AddFoodModel = () => {
+const AddFoodModel = ({role,item}) => {
   const [image, setImage] = useState(null);
   const [newFood, setNewFood] = useState({
     name: "",
@@ -14,7 +14,7 @@ const AddFoodModel = () => {
     type: "",
     imageUrl: "",
   });
-  const { getFood,setAllFood,allFood } = useContext(AdminContext);
+  const { getFood,setAllFood,allFood ,editFood} = useContext(AdminContext);
   const [loading,setLoading]=useState(false)
 
   const handleImageChange = (event) => {
@@ -52,9 +52,9 @@ const AddFoodModel = () => {
       body: JSON.stringify(newFood),
     });
     const data = await response.json();
-    console.log(data);
     setAllFood(allFood.concat(data));
     document.getElementById("closeButton").click();
+    window.location.reload()
   };
   
   const handleAddFood = async (e) => {
@@ -70,6 +70,23 @@ const AddFoodModel = () => {
     });
     setImage(null);
   };
+
+  let handleEditFood=async(e)=>{
+    e.preventDefault();
+    console.log(newFood)
+    editFood(item._id,newFood)
+    setNewFood({
+      name: "",
+      category: "",
+      description: "",
+      price: null,
+      type: "",
+      imageUrl: "",
+    });
+    setImage(null);
+    document.getElementById("closeButtonEdit").click()
+      window.location.reload()
+  }
   return (
     <div>
       <div
@@ -83,7 +100,7 @@ const AddFoodModel = () => {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLongTitle">
-                Add Food
+                {role==="add"? "Add Food" : "Edit Food"}
               </h5>
               <button
                 type="button"
@@ -96,6 +113,8 @@ const AddFoodModel = () => {
             </div>
             <div className="modal-body">
               <div>
+                {
+                  role==="add"?
                 <form onSubmit={handleAddFood}>
                   <label htmlFor="foodName" className="col-form-label">
                     Food Name:
@@ -106,6 +125,7 @@ const AddFoodModel = () => {
                     className="form-control"
                     id="foodName"
                     name="name"
+                    value={newFood.name}
                     onChange={handleOnChange}
                   />
                   <label htmlFor="description" className="col-form-label">
@@ -200,6 +220,114 @@ const AddFoodModel = () => {
                     </button>
                   </div>
                 </form>
+                :
+                <form  onSubmit={handleEditFood} >
+                  <label htmlFor="foodName" className="col-form-label">
+                   Edit Food Name:
+                  </label>
+                  <input
+                    required
+                    type="text"
+                    className="form-control"
+                    id="foodName"
+                    name="name"
+                    onChange={handleOnChange}
+                  />
+                  <label htmlFor="description" className="col-form-label">
+                   Edit Food Description:
+                  </label>
+                  <input
+                    required
+                    type="text"
+                    className="form-control"
+                    id="description"
+                    name="description"
+                    onChange={handleOnChange}
+                  />
+                  <label htmlFor="price" className="col-form-label">
+                   Edit Price:
+                  </label>
+                  <input
+                    required
+                    type="text"
+                    className="form-control"
+                    id="price"
+                    name="price"
+                    onChange={handleOnChange}
+                  />
+                  <div>
+                    <label className="col-form-label">Edit Type:</label>
+                    <br />
+                    <select
+                      className="w-50 form-select form-select-lg mb-3"
+                      aria-label=".form-select-lg example"
+                      name="type"
+                      required
+                      onChange={handleOnChange}
+                    >
+                      <option value="" disabled selected>
+                        select Type
+                      </option>
+                      <option value="snackes">Snackes</option>
+                      <option value="beverages">Beverages</option>
+                      <option value="popcorn">Popcorn</option>
+                      <option value="combos">Combos</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label className="col-form-label">Edit Category:</label>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        id="veg"
+                        value="vegetarian"
+                        name="category"
+                        onChange={handleOnChange}
+                        required
+                      />
+                      <label className="form-check-label" htmlFor="veg">
+                        Vegetarian
+                      </label>
+                      <br />
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        id="non-veg"
+                        value="non-vegetarian"
+                        name="category"
+                        onChange={handleOnChange}
+                        required
+                      />
+                      <label className="form-check-label" htmlFor="non-veg">
+                        Non-Vegetarian
+                      </label>
+                    </div>
+                  </div>
+                  <label className="form-check-label" htmlFor="veg">
+                       Edit Food Image
+                      </label>
+                  <input required type="file" onChange={handleImageChange} />
+
+                  <button type="button" onClick={handleImageUpload}>
+                    {loading?"loading":"upload"}</button>
+                  <div className="modal-footer">
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      data-dismiss="modal"
+                      id="closeButtonEdit"
+    
+                    >
+                      Close
+                    </button>
+                    <button type="submit" className="btn btn-primary">
+                      Save changes
+                    </button>
+                  </div>
+                </form>
+
+                }
               </div>
             </div>
           </div>

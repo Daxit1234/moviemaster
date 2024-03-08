@@ -18,10 +18,11 @@ const AddCinema = () => {
   });
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [query,setQuery]=useState("")
 
   useEffect(() => {
-    getCinemas(page, rowsPerPage);
-  }, [page, rowsPerPage]);
+    getCinemas(page, rowsPerPage,query);
+  }, [page, rowsPerPage,query]);
 
   let handleDeleteCinema = (e) => {
     let id = e.target.getAttribute("id");
@@ -49,7 +50,16 @@ const AddCinema = () => {
       <div className="w-100">
         <Header2 page="Cinema List" />
         <div className="d-flex justify-content-between">
-          <div className="h3 opacity-25 m-3">Cinema List</div>
+          <div className="d-flex">
+
+        <div className="h3 opacity-25 m-3">
+            Cinema List</div>
+        <div className=" d-flex justify-content-ed">
+        <i  className="fa-solid fa-magnifying-glass mr-3" style={{fontSize:"25px",alignSelf:"center"}}></i>
+          <input type="text" placeholder="Search Cinema" onChange={(e)=>setQuery(e.target.value)} className="form-control aling-center " />
+        </div>
+          </div>
+       
           <div className="p-3">
             <button
               type="button"

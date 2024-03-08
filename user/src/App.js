@@ -11,12 +11,7 @@ import LoginSingup from './pages/login&singup/LoginSingup';
 import Moviestate from "./context/MovieState";
 import Payment from './pages/payment/Payment';
 import Food from './pages/food/Food';
-import Stripe from './pages/stripe/Stripe';
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
 import Bookings from './pages/bookings/Bookings';
-
-const stripePromise = loadStripe('YOUR_PUBLISHABLE_KEY'); // Replace with your actual Stripe publishable key
 
 function App() {
   return (
@@ -32,8 +27,7 @@ function App() {
           <Route path='/login' element={<LoginSingup />} />
           <Route path='/food' element={<Food />} />
           <Route path='/bookings' element={<Bookings/>} />
-          <Route path='/payment/:amount/:convenienceFees/:foodAmount/:contribution' element={<Elements stripe={stripePromise}><Payment /></Elements>} />
-          {/* <Route path='/stripe' element={<Elements stripe={stripePromise}><Stripe /></Elements>} /> Wrap PaymentForm with Elements provider */}
+          <Route path='/payment/:amount/:convenienceFees/:foodAmount/:contribution' element={<Payment />} />
         </Routes>
     
       </Router>

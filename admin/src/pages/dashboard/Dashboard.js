@@ -10,8 +10,8 @@ function Dashboard() {
   const {getBooking,totalBooking, getShows,getCinemas,getFood,getUsers,allShows,totalCinema,totalFood,totalUser}=useContext(AdminContext);
   useEffect(()=>{
     getShows()
-    getCinemas()
-    getUsers()
+    getCinemas(1,4,"")
+    getUsers(1,2,"")
     getFood()
     getBooking()
   },[])

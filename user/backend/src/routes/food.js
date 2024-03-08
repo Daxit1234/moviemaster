@@ -38,6 +38,15 @@ router.get("/getfood", async (req, res) => {
     }
 });
 
+router.get("/getallfood", async (req, res) => {
+    try {
+        const food = await Food.find()
+            res.status(201).send(food);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
 // ROUTE 3: delete food using Delete http://localhost:8080/food/deletefood
 router.delete("/deletefood/:id", async (req, res) => {
     try {

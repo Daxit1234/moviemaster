@@ -56,9 +56,9 @@ function Adminstate(props) {
     setAllShows(allShows.concat(data));
   };
 
-  let getCinemas = async (page, row) => {
+  let getCinemas = async (page, row,q) => {
     let responce = await fetch(
-      `${host}/cinemas/getcinema/${obj._id}?page=${page}&pageSize=${row}`
+      `${host}/cinemas/getcinema/${obj._id}?q=${q}&page=${page}&pageSize=${row}`
     );
     let data = await responce.json();
     setAllCinema(data.paginatedData);

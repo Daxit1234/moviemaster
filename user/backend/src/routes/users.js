@@ -158,8 +158,18 @@ router.get("/getUserDetails", async (req, res) => {
   // Calculate startIndex and endIndex for slicing the data
   const startIndex = (page - 1) * pageSize;
   const endIndex = startIndex + pageSize;
-  const results = user.slice(startIndex, endIndex);
-  const totalData = user.length
+  let results = user.slice(startIndex, endIndex);
+  let totalData = user.length
+  if (req.query.q) {
+    const query = req.query.q.toLowerCase();
+    const data = user.filter(item => item.name.toLowerCase().includes(query));
+    
+    // Update totalData after filtering
+    totalData = results.length;
+
+    // Apply pagination to the filtered data
+    results = data.slice(startIndex, endIndex);
+}
   res.send({results,totalData});
 });
 
