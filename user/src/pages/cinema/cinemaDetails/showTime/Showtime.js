@@ -8,6 +8,7 @@ function Showtime({cinemaid,name ,address}) {
   const { bookingDetails, setBookingDetails, setBookedSeats ,showType} = useContext(MovieContext);
   const [showTime, setShowTime] = useState([]);
 
+  console.log(bookingDetails.date)
   useEffect(() => {
     const sortByTime = (data) => {
       const sortedMovies = [...data].sort((a, b) => {

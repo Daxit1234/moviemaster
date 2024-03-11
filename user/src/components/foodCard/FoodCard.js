@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+
 const FoodCard = ({ item,OnFoodAdd }) => {
     const [quantity, setQuantity] = useState(0);
     const [foodObject, setFoodObject] = useState({ name: "", price: null, quantity: null });
@@ -39,7 +40,8 @@ const FoodCard = ({ item,OnFoodAdd }) => {
 
     return (
         <div className="d-flex my-2 food-card col-md-6 text-light" style={{ width: '18rem' ,borderRadius:"10px" }}>
-            <img className="card-img-top food-image"style={{ borderRadius:"15px" }} src={item.imageUrl} alt="Card image cap" />
+            <img className="card-img-top food-image" style={{ borderRadius:"15px" }} src={item.imageUrl} alt="food img" />
+        
             <div className="card-body ">
                 <div className="d-flex justify-content-between">
                     <h5 className="card-title">{item.name}</h5>

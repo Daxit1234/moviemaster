@@ -65,6 +65,13 @@ const  newFood= filterFood(foodType);
   return (
     <div className="d-flex fluid-container">
       <div style={{minWidth:"1000px"}}>
+      <div className="w-90 mr-5">
+        <img className="w-100 my-3 rounded-right"  src="https://assets-in.bmscdn.com/promotions/cms/creatives/1688188454571_855x95.jpg" alt="" />
+      </div>
+      <div className="text-center">
+        <h2 className="text-light">Grab a <span className="text-danger"> bite!</span></h2>
+        <p className="text-light">Prebook Your Meal and Save More!</p>
+      </div>
         <Box sx={{ width: "100%", bgcolor: "transperent" }}>
           <Tabs value={foodType} sx={{ color:"white" }} onChange={handleChange} centered>
             <Tab label="All" value="allfood"  sx={{ color:"white" }} />
@@ -74,12 +81,13 @@ const  newFood= filterFood(foodType);
             <Tab label="POPCORN" value="POPCORN" sx={{ color:"white" }}/>
           </Tabs>
         </Box>
-      <div className="row mx-2 mt-3 " >
-        {newFood.length !== 0 &&
-          newFood.map((item, index) => (
-            <FoodCard item={item} OnFoodAdd={OnFoodAdd} />
-          ))}
-      </div>
+        <div className="row mx-2 mt-3" style={{ maxHeight: '500px', overflowY: 'scroll' }}>
+  {newFood.length !== 0 &&
+    newFood.map((item, index) => (
+      <FoodCard key={index} item={item} OnFoodAdd={OnFoodAdd} />
+    ))}
+</div>
+
       </div>
       <div className="oderSummary">
         <Invoice2 foodBeverage={foodBeverage} />

@@ -24,10 +24,10 @@ const DetailsBanner = ({ video, crew }) => {
     setDummyData(MovieData?.results.find(item => item.id === parseInt(id)))
   },[])
   
-  let newData= data?.AxiosError ? data  : dummyData  //remove collon in offline
+  let newData= !data?.AxiosError ? data  : dummyData  //remove collon in offline
 
    let genre=[28, 12, 16, 35]
-  const _genres = data?.AxiosError ?  data?.genres.map((g) => g.id) : genre  //remove collon in offline
+  const _genres = !data?.AxiosError ?  data?.genres.map((g) => g.id) : genre  //remove collon in offline
 
   const director = crew?.filter((f) => f.job === "Director");
 
@@ -41,6 +41,13 @@ const DetailsBanner = ({ video, crew }) => {
     return `${hours}h${minutes > 0 ? ` ${minutes}m` : ""}`;
   };
 
+    // Calculate the difference between the current date and the movie's release date
+    const releaseDate = dayjs(newData?.release_date);
+    const currentDate = dayjs();
+    const diffInDays = currentDate.diff(releaseDate, 'day');
+  
+    // Check if the movie was released within the last one month
+    const withinLastMonth = diffInDays <= 60;
   return (
     <div className="detailsBanner">
       {!loading && !data?.AxiosError ? (
@@ -81,7 +88,10 @@ const DetailsBanner = ({ video, crew }) => {
                         <PlayBtn />
                         <span className="text">Watch Trailer</span>
                       </div>
+                      {
+                        withinLastMonth&&
                         <div onClick={()=>navigate(`/cinema/${id}`)} className="btn">Book Now</div>
+                      }
                     </div>
                     <div className="overview">
                       <div className="heading">Overview</div>

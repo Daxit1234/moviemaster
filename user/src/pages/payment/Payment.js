@@ -9,7 +9,7 @@ import MovieContext from "../../context/Moviecontext";
 const Payment = () => {
   const [invoiceVisible, setInvoiceVisible] = useState(true);
   const navigate=useNavigate()
-  const {booking ,bookingDetails}=useContext(MovieContext);
+  const {booking ,bookingDetails,obj}=useContext(MovieContext);
   const [payment, setPayment] = useState({ email: "", contactNo: null, paymentId: "" ,totalAmount:null});
 
   const handleVisible = () => {
@@ -23,15 +23,19 @@ const Payment = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    await fetch("http://localhost:8080/payment/addpayment",{
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payment),
-    })
-    booking()
-    navigate("/bookings")
+    if (obj.email!=="") {
+      await fetch("http://localhost:8080/payment/addpayment",{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payment),
+      })
+      booking()
+      navigate("/bookings")
+    }else{
+      navigate('/login')
+    }
   };
 
   return (

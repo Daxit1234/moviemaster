@@ -30,7 +30,7 @@ const Invoice2 = ({foodBeverage}) => {
     setFoodAmount(foodTotal);
   }, [totalAmount, foodBeverage]);
   return (
-        <div className="booking-summary mt-5">
+        <div className="booking-summary mt-3">
       <div className="card card-upper">
         <div className="title">
           <h5>BOOKING SUMMARY</h5>
@@ -96,10 +96,11 @@ const Invoice2 = ({foodBeverage}) => {
           </div>
         </div>
         
-        <div className="total mt-3" onClick={()=>navigate(`/payment/${totalAmount}/${convenienceFees}/${foodAmount}/${contibution}`)}>
+        <strong className="total mt-3" onClick={()=>navigate(`/payment/${totalAmount}/${convenienceFees}/${foodAmount}/${contibution}`)}>
+        
           <p>Amount Payable</p>
           <p>Rs.{totalAmount+convenienceFees+contibution+foodAmount}</p>
-        </div>
+        </strong>
       </div>
     </div>
   )

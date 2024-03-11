@@ -206,15 +206,16 @@ const LoginSingup = () => {
             </div>
             <div class="remember-forgot mt-3">
               <label>
-                <input type="checkbox" className="mr-2" />
+                <input type="checkbox" required className="mr-2" />
                 Remember Me
               </label>
               <o className="text-primary" onClick={()=> {setForgetPass(true); setLoginError("")}}>Forgot Password?</o>
             </div>
                 </>
               ):(
-                  !verification? (
-                    <>
+                !verification? (
+                  <>
+                  <div onClick={()=> {setForgetPass(false);setOtpBoxForget(false)}} className="text-light " style={{position:"absolute",top:"0px"}}>Back</div>
                     <div class="input-field">
                   <input type="text" name="email" required spellcheck="false" onChange={handleonchangeLogin}/>
                   <label>Enter email</label>
@@ -343,10 +344,10 @@ const LoginSingup = () => {
                 </div>
                 <div className="remember-forgot mt-3">
                   <label>
-                    <input type="checkbox" />
+                    <input type="checkbox" required />
                     Terms & Conditions
                   </label>
-                  <Link to="#">Forgot Password?</Link>
+                  
                 </div>
               </>
             ) : (

@@ -20,7 +20,7 @@ const Details = () => {
         crew={credits?.crew || dummyCredits?.crew }
       />
       <Cast data={credits?.cast || dummyCredits?.cast} loading={creditsLoading} />
-      <VideoSection data={data ? dummyVideo : data} loading={loading} />  //remove collon in offline
+      <VideoSection data={!data ? dummyVideo : data} loading={loading} />  //remove collon in offline
     </div>
   );
 };

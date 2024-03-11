@@ -27,7 +27,7 @@ const Invoice = ({handlevisible}) => {
           <p>Show Type : <strong>{showType}</strong></p>
           <p>Cinema : <strong>{cinemaName}</strong></p>
           <p>Address : <strong>{cinemaAdd}</strong></p>
-          <p>Screen 2</p>
+          <p>Screen 3</p>
           <div className="time">
             <p>Seats No : {seats.map((i)=><strong>{i}  </strong>)}</p>
             <p>{date.slice(0,16) }</p>

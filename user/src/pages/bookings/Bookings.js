@@ -21,7 +21,7 @@ const Bookings = () => {
           }
         );
         const data = await response.json();
-        setBookings(data);
+        setBookings(data.reverse());
       } catch (error) {
         console.error("Error fetching data:", error);
       }

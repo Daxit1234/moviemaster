@@ -47,25 +47,6 @@
         },
         {
             "adult": false,
-            "backdrop_path": "/nTPFkLUARmo1bYHfkfdNpRKgEOs.jpg",
-            "genre_ids": [
-                35,
-                10749
-            ],
-            "id": 1072790,
-            "original_language": "en",
-            "original_title": "Anyone But You",
-            "overview": "After an amazing first date, Bea and Ben’s fiery attraction turns ice cold — until they find themselves unexpectedly reunited at a destination wedding in Australia. So they do what any two mature adults would do: pretend to be a couple.",
-            "popularity": 1248.641,
-            "poster_path": "/yRt7MGBElkLQOYRvLTT1b3B1rcp.jpg",
-            "release_date": "2023-12-21",
-            "title": "Anyone But You",
-            "video": false,
-            "vote_average": 6.912,
-            "vote_count": 691
-        },
-        {
-            "adult": false,
             "backdrop_path": "/jp5MBWKaDVBuzaSFHTHGc9kpu51.jpg",
             "genre_ids": [
                 878,
