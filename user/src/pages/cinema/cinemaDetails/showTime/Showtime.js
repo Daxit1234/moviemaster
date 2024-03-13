@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Showtime.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import MovieContext from "../../../../context/Moviecontext";
 
 function Showtime({cinemaid,name ,address}) {
@@ -8,7 +8,6 @@ function Showtime({cinemaid,name ,address}) {
   const { bookingDetails, setBookingDetails, setBookedSeats ,showType} = useContext(MovieContext);
   const [showTime, setShowTime] = useState([]);
 
-  console.log(bookingDetails.date)
   useEffect(() => {
     const sortByTime = (data) => {
       const sortedMovies = [...data].sort((a, b) => {
@@ -57,7 +56,7 @@ const  newShows= filterCinemasByCity(showTime, showType);
         showType:item.showType,
         showTime:item.time,
         cinemaName:name,
-        cinemaAdd:address
+        cinemaAdd:address,
       }));
 
       const response = await fetch("http://localhost:8080/bookedSeats/getseat", {
@@ -85,7 +84,7 @@ const  newShows= filterCinemasByCity(showTime, showType);
       console.error(error);
     }
   };
-
+console.log(bookingDetails)
   return (
     <div className="showtime-container">
       {newShows?.map((item) => {

@@ -8,5 +8,8 @@
   ::-webkit-scrollbar{
     display: none;
   }
+  font-family: 'Times New Roman', Times ,serif , Georgia; 
+  /* font-family: Georgia, 'Times New Roman', Times, ; */
+
 }
 

@@ -24,7 +24,9 @@ function MovieCard({ poster, rating, title, date, genres, id }) {
       <Badge style={{position:"absolute",right:"30px"}} badgeContent="Available" color="success"  className='badge'>
       </Badge>
       }
+ 
         <Img className="cardimg" src={poster} />
+
       <CircleRating rating={rating} />
       <div className='mt-2 movie-name-card'>{title}</div>
       <p className='release-date-card mt-2'>{dayjs(date).format("MMM D, YYYY")}</p>

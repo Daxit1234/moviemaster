@@ -43,6 +43,8 @@
     position: relative;
     max-width: 800px;
     margin: 0 auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
 }
  .title {
     font-size: 50px;

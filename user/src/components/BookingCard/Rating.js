@@ -9,11 +9,15 @@ export default function BasicRating({value,setValue}) {
 
   return (
     <>
+    <div className='text-center' >
+
     <Rating
+    sx={{fontSize:"50px"}}
       name="simple-controlled"
       value={value}
       onChange={handleRatingChange}
     />
+    </div>
     </>
   );
 }

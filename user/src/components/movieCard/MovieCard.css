@@ -1,11 +1,26 @@
  .cardimg{
     height: 300px;
     width: 180px;
+    overflow: hidden;
 }
 .card-box{
     margin: 10px 0; 
     border-radius: 10px;
     overflow: hidden;
+}
+.cardimg:hover{
+    animation: scaling 2s infinite;
+}
+@keyframes scaling{
+    0%{
+        scale: 1;
+    }
+    50%{
+        scale: 1.12;
+    }
+    190%{
+        scale: 1;
+    }
 }
 .movie-name-card{
     color: aliceblue;
