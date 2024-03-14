@@ -28,7 +28,7 @@ const Cinema = () => {
           movieName:newData?.title || newData?.name
         }));
       }
-    }, [data,setBookingDetails,newData]);
+    }, [data,setBookingDetails,newData,id]);
   return (
     <div>
        <Topimage data={newData} id={id} />

@@ -50,7 +50,7 @@ const Review = () => {
                   </td>
 
                   <td className="text-left">
-                    {item.comment} Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit libero error, ab laudantium pariatur itaque soluta nesciunt rerum eos enim repellat? Accusamus a corporis nesciunt quas, obcaecati sunt iste porro!
+                    {item.comment}
                   </td>
                 </tr>
               );

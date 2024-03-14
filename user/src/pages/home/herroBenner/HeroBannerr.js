@@ -41,7 +41,7 @@ let HeroBannerr=()=> {
       <ContentWrapper>
       <div className="wrapper">
         <div className="heroBannerContent">
-          <span className='title'>WelCome</span>
+          <span className='title'>Welcome</span>
           <span className='subTitle'>
           Your Cinematic Journey Begins Here – Secure Your Spot in the Limelight.
           </span>

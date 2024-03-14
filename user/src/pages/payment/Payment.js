@@ -4,6 +4,7 @@ import "./Payment.css";
 import Invoice from "../../components/invoice/Invoice";
 import { useNavigate } from "react-router-dom";
 import MovieContext from "../../context/Moviecontext";
+import Success from "../../components/Models/Success";
 // import Card from "../../components/payment/card/Card";
 
 const Payment = () => {
@@ -31,8 +32,8 @@ const Payment = () => {
         },
         body: JSON.stringify(payment),
       })
-      booking()
-      navigate("/bookings")
+      booking() 
+      document.getElementById("open-model").click();
     }else{
       navigate('/login')
     }
@@ -99,13 +100,15 @@ const Payment = () => {
               
               </div>
               <div>
-                <button type="submit" className="btn-continue">
-                  Continue
+                <button  type="submit" className="btn-continue">
+                  Comfirm
                 </button>
+                <p id="open-model"  href="#myModal"  data-toggle="modal" className="btn-continue d-none">
+                  Comfirm
+                </p>
               </div>
             </form>
           </div>
-
           <div
             className={`contect-detail payment-options ${
               !invoiceVisible ? "visible" : "hidden"
@@ -125,6 +128,7 @@ const Payment = () => {
         <div className={`ml-5 ${invoiceVisible ? "invoice" : "no-invoice"}`}>
           <Invoice handleVisible={handleVisible} />
         </div>
+        <Success/>
       </div>
     </div>
   );
