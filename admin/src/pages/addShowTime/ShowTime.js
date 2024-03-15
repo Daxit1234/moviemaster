@@ -4,6 +4,7 @@ import SideBar from "../../components/sideBar/SideBar";
 import Header2 from "../../components/header2/Header2";
 import "./ShowTime.css";
 import Times from "./Times";
+import Delete from "../../components/deleteModel/Delete";
 import TablePaginationDemo from "../../components/pagination/Paginathion";
 
 const ShowTime = () => {
@@ -63,7 +64,7 @@ const ShowTime = () => {
                  <Times cinemaId={i._id} selected={selected}/>
                  <div className="add-button">
                   
-          <button type="button" onClick={deleteShow} class="btn mx-3 btn-danger btn-sm" 
+          <button type="button" href="#myModal" data-toggle="modal" class="btn mx-3 btn-danger btn-sm" 
               >
               Delete 
             </button>   
@@ -79,6 +80,11 @@ const ShowTime = () => {
           count={totalCinema}
         />
       </div>
+      {
+      selectedTime &&
+      <Delete handleDelete={deleteShow} deleteId={selectedTime} />
+
+    }
     </div>
   );
 };

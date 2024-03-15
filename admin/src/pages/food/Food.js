@@ -4,12 +4,13 @@ import Header2 from '../../components/header2/Header2'
 import AddFoodModel from '../../components/cinemaModels/addFoodModel/AddFoodModel'
 import AdminContext from '../../context/AdminContext'
 import TablePaginationDemo from '../../components/pagination/Paginathion'
+import Delete from '../../components/deleteModel/Delete'
 
 const Food = () => {
   const {getFood,allFood,deleteFood ,totalFood}=useContext(AdminContext)
   const [role,setRole]=useState("add")
   const [item,setItem]=useState()
-  
+  const [deleteId,setDeleteId]=useState("")
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   // const [item,setItem]=useState({_id:"",cinemaName:"",address:"",city:"",locationUrl:""})
@@ -17,10 +18,9 @@ const Food = () => {
     getFood(page,rowsPerPage)
   },[page,rowsPerPage])
 
-  let handleDeleteFood=(e)=>{
-    let id=e.target.getAttribute("id")
+  let handleDeleteFood=(id)=>{
     deleteFood(id)
-    getFood()
+    window.location.reload()
   }
   return (
     <div className="d-flex">
@@ -62,7 +62,7 @@ const Food = () => {
                 <td>
                   <button onClick={()=>{setRole("edit");setItem(item)}}   id={item._id}  className="btn-warning mr-3" type="button" data-toggle="modal"
             data-target="#exampleModalCenter">Edit</button>
-                  <button onClick={handleDeleteFood}  id={item._id}  className="btn-danger" type="button">Delete</button>
+                  <button   href="#myModal" data-toggle="modal" onClick={()=>setDeleteId(item._id)}  id={item._id}  className="btn-danger" type="button">Delete</button>
                 </td>
               </tr>
             );
@@ -73,6 +73,10 @@ const Food = () => {
       count={totalFood}/>
     </div>
     <AddFoodModel role={role} item={item}/>
+    {
+      deleteId &&
+      <Delete handleDelete={handleDeleteFood} deleteId={deleteId} />
+    }
   </div>
   )
 }

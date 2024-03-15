@@ -24,10 +24,12 @@ const DetailsBanner = ({ video, crew }) => {
     setDummyData(MovieData?.results.find(item => item.id === parseInt(id)))
   },[])
   
-  let newData= !data?.AxiosError ? data  : dummyData  //remove collon in offline
+  // let newData= !data?.AxiosError ? data  : dummyData  // in online
+  let newData= dummyData  // in offline
 
    let genre=[28, 12, 16, 35]
-  const _genres = !data?.AxiosError ?  data?.genres.map((g) => g.id) : genre  //remove collon in offline
+  // const _genres = !data?.AxiosError ?  data?.genres.map((g) => g.id) : genre  // in online
+  const _genres =  genre  // in offline
 
   const director = crew?.filter((f) => f.job === "Director");
 

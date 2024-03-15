@@ -7,7 +7,6 @@ function Seats() {
   const {bookingDetails,setBookingDetails,bookedSeats}=useContext(MovieContext);
   const [status, setStatus] = useState(false);
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const [displayamount,setDisplayAmount]=useState(null)
   let navigate=useNavigate()
   const { showPrice }=useParams()
 
@@ -87,19 +86,19 @@ function Seats() {
 
   }, [bookedSeats]);
 
-  let selected = async(e) => {
-    let temp=e.target.getAttribute("name")
-    if (status) {
+  let selected = async (e) => {
+    let temp = e.target.getAttribute("name");
+    let isSelected = selectedSeats.includes(temp); // Check if the seat is already selected
+    if (isSelected) {
       e.target.style.backgroundColor = "";
-      let newArray=selectedSeats.filter(i=>i!==temp);
-      setSelectedSeats(newArray)
-      setStatus(false);
+      let newArray = selectedSeats.filter(i => i !== temp);
+      setSelectedSeats(newArray);
     } else {
       e.target.style.backgroundColor = "#00b8f5";
-      setSelectedSeats([...selectedSeats,temp])
-      setStatus(true);
+      setSelectedSeats([...selectedSeats, temp]);
     }
   };
+  
 
   let handleBooking =async () => {
     let amount=0;

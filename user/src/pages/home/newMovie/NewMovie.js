@@ -5,7 +5,8 @@ import "./NewMovie.css"
 import moviedata from "../Moviedata.json"
 
 function NewMovie() {
- const {data,loading}=useFetch(`movie/now_playing?page=1`)
+ const {data,loading}=useFetch(`movie/now_paying?page=2`)
+ console.log(data)
   return (
     <div className='popular-main'>
         <h3 className='movie-title'>Now Playing </h3>

@@ -3,13 +3,17 @@ import "./BookingCard.scss";
 import FeedBack from "../Models/FeedBack";
 import QRCode from "react-qr-code";
 import Badge from "@mui/material/Badge";
+import Delete from "../Models/Delete";
 
 const BookingCard = ({ data }) => {
+  const [deleteId,setDeleteId]=useState("")
   let handleDeleteTicket = (id) => {
-    fetch(`http://localhost:8080/bookedSeats/deleteuserbooking/${id}`, {
-      method: "DELETE",
-    });
-    window.location.reload();
+ 
+      fetch(`http://localhost:8080/bookedSeats/deleteuserbooking/${id}`, {
+        method: "DELETE",
+      });
+      window.location.reload(); 
+    
   };
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -30,6 +34,7 @@ const BookingCard = ({ data }) => {
   // Check if the booking date is less than today's date
   const isExpired = new Date(data.date) < currentDate;
   return (
+    <>
     <div className="col-md-4 d-flex cpl-sm-1 cardWrap  my-2">
       <div className="customcard cardLeft">
         <h1>
@@ -67,7 +72,9 @@ const BookingCard = ({ data }) => {
       <div className="customcard cardRight">
         <div
           className="text-right mr-2"
-          onClick={() => handleDeleteTicket(data._id)}
+          // onClick={() => handleDeleteTicket(data._id)}
+          href="#myModal" data-toggle="modal"
+          onClick={()=>setDeleteId(data._id)} 
         >
           <i class="fa-solid fa-trash" style={{ position: "absolute" }}></i>
         </div>
@@ -93,6 +100,11 @@ const BookingCard = ({ data }) => {
         <FeedBack id={data._id} />
       </div>
     </div>
+    {
+      deleteId &&
+      <Delete handleDelete={handleDeleteTicket} deleteId={deleteId} />
+    }
+    </>
   );
 };
 

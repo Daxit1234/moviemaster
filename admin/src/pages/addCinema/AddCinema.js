@@ -4,21 +4,24 @@ import Header2 from "../../components/header2/Header2";
 import "./AddCinema.css";
 import AdminContext from "../../context/AdminContext";
 import TablePaginationDemo from "../../components/pagination/Paginathion";
+import Delete from "../../components/deleteModel/Delete";
+
 const AddCinema = () => {
   const { getCinemas, allCinema, deleteCinema, totalCinema } =
     useContext(AdminContext);
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [query,setQuery]=useState("")
+  const [deleteId,setDeleteId]=useState("")
 
   useEffect(() => {
     getCinemas(page, rowsPerPage,query);
   }, [page, rowsPerPage,query]);
 
-  let handleDeleteCinema = (e) => {
-    let id = e.target.getAttribute("id");
+  let handleDeleteCinema = (id) => {
     deleteCinema(id);
-    getCinemas();
+    getCinemas(page,rowsPerPage,"");
+    window.location.reload();
   };
 
   return (
@@ -61,10 +64,11 @@ const AddCinema = () => {
                   <td>
       
                     <button
-                      onClick={handleDeleteCinema}
+                      onClick={()=>setDeleteId(item._id)} 
                       id={item._id}
                       className="btn-danger"
                       type="button"
+                      href="#myModal" data-toggle="modal"
                     >
                       Delete
                     </button>
@@ -79,6 +83,11 @@ const AddCinema = () => {
           count={totalCinema}
         />
       </div>
+      {
+      deleteId &&
+      <Delete handleDelete={handleDeleteCinema} deleteId={deleteId} />
+
+    }
     </div>
   );
 };

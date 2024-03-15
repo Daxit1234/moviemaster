@@ -12,7 +12,7 @@ const Details = () => {
   const { id } = useParams();
   const { data, loading } = useFetch(`/movie/${id}/videos`);
   const { data: credits, loading: creditsLoading } = useFetch(`/movie/${id}/credits`);
-
+  console.log(data);
   return (
     <div>
       <DetailsBanner

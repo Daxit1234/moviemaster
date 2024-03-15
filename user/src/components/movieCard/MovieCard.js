@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import Genres from '../genres/Genres';
 import { useNavigate } from 'react-router-dom';
 import Badge from '@mui/material/Badge';
+import Delete from '../Models/Delete';
 
 function MovieCard({ poster, rating, title, date, genres, id }) {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ function MovieCard({ poster, rating, title, date, genres, id }) {
       <div style={{ marginTop: "-10px" }}>
         <Genres genresid={genres} />
       </div>
+      <Delete/>
     </div>
   );
 }

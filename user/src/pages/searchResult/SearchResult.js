@@ -45,7 +45,7 @@ function SearchResult() {
 
   let Spinner=()=>{
     return(
-      <div class="loader"><h1 className="text-light">loading</h1></div>
+      <div class="loader"><h1 className="text-light">loading...</h1></div>
     )
   }
 
@@ -53,12 +53,12 @@ function SearchResult() {
     setPageNum(1);
     fetchInitialData();
   },[query]);
-
+  console.log(data)
   return (
     <div className="searchResultsPage">
-      {!loding ? (
+      {!loding || !data?.AxiosError ? (
         <ContentWrapper>
-          {data?.results.length > 0 ? (
+          {data?.results?.length > 0 ? (
             <>
               <div className="pageTitle">
                 {`Search ${data?.total_results > 1 ? "results" : "result"} of ${query}`}

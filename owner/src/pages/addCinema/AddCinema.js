@@ -5,6 +5,8 @@ import "./AddCinema.css";
 import AddCinemaModel from "../../components/cinemaModels/addCinemaModel/AddCinemaModel";
 import AdminContext from "../../context/AdminContext";
 import TablePaginationDemo from "../../components/pagination/Paginathion";
+import Delete from "../../components/deleteModel/Delete";
+
 const AddCinema = () => {
   const { getCinemas, allCinema, deleteCinema, totalCinema } =
     useContext(AdminContext);
@@ -19,16 +21,19 @@ const AddCinema = () => {
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [query,setQuery]=useState("")
+  const [deleteId,setDeleteId]=useState("")
+
 
   useEffect(() => {
     getCinemas(page, rowsPerPage,query);
   }, [page, rowsPerPage,query]);
 
-  let handleDeleteCinema = (e) => {
-    let id = e.target.getAttribute("id");
+  let handleDeleteCinema = (id) => {
     deleteCinema(id);
-    getCinemas();
+    getCinemas(page,rowsPerPage,"");
+    window.location.reload();
   };
+
   let handleEditCinema = (e) => {
     let id = e.target.getAttribute("id");
     let cinemaName = e.target.getAttribute("cinemaName");
@@ -54,7 +59,7 @@ const AddCinema = () => {
 
         <div className="h3 opacity-25 m-3">
             Cinema List</div>
-        <div className=" d-flex justify-content-ed">
+        <div className=" d-flex ">
         <i  className="fa-solid fa-magnifying-glass mr-3" style={{fontSize:"25px",alignSelf:"center"}}></i>
           <input type="text" placeholder="Search Cinema" onChange={(e)=>setQuery(e.target.value)} className="form-control aling-center " />
         </div>
@@ -118,10 +123,11 @@ const AddCinema = () => {
                     </button>
                     </td><td>
                     <button
-                      onClick={handleDeleteCinema}
+                      onClick={()=>setDeleteId(item._id)} 
                       id={item._id}
                       className="btn-danger"
                       type="button"
+                      href="#myModal" data-toggle="modal"
                     >
                       Delete
                     </button>
@@ -137,6 +143,11 @@ const AddCinema = () => {
         />
       </div>
       <AddCinemaModel role={role} item={item} />
+      {
+      deleteId &&
+      <Delete handleDelete={handleDeleteCinema} deleteId={deleteId} />
+
+    }
     </div>
   );
 };
