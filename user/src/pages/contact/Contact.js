@@ -9,8 +9,8 @@ function Contact() {
       <i style={{fontSize:'5rem'}} className="fa-solid fa-phone text-center text-warning"></i>
           <div className="card-body">
             <h5 className="card-title text-center">BY PHONE</h5><br />
-            <p className="card-text text-center">Mondayto friday,9am to 4pm </p>
-            <p className="card-text text-center">NOrth America Toll-Free </p>
+            <p className="card-text text-center">Monday to friday,9am to 4pm </p>
+            <p className="card-text text-center">North America Toll-Free </p>
             <p className="card-text text-center">2-5345-4545-345 </p><br />
             <p className="card-text text-center">INTERNAATIONAL </p>
             <p className="card-text text-center">454-6456-5657 </p>

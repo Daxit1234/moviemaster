@@ -18,11 +18,16 @@ const DetailsBanner = ({ video, crew }) => {
   const [videoId, setVideoId] = useState(null);
   const navigate=useNavigate();
   const { id }=useParams();
-  const { data, loading ,error} = useFetch(`/movie/${id}`);
+  // const { data, loading ,error} = useFetch(`/movie/${id}`);
+  
+  const [loading,setLoading]=useState(true)
   const url = "https://image.tmdb.org/t/p/original";
   useEffect(()=>{
     setDummyData(MovieData?.results.find(item => item.id === parseInt(id)))
-  },[])
+    setTimeout(() => {
+      setLoading(false)
+    }, 2000);
+  },[loading])
   
   // let newData= !data?.AxiosError ? data  : dummyData  // in online
   let newData= dummyData  // in offline
@@ -52,7 +57,7 @@ const DetailsBanner = ({ video, crew }) => {
     const withinLastMonth = diffInDays <= 60;
   return (
     <div className="detailsBanner">
-      {!loading && !data?.AxiosError ? (
+      {!loading && !newData?.AxiosError ? (
         <>
           {newData && (
             <>

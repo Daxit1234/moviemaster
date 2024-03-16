@@ -12,26 +12,25 @@ import MovieData from "../home/Moviedata.json"
 
 const Cinema = () => {
     const { id } = useParams();
-    const { data } = useFetch(`/movie/${id}`);
     const {bookingDetails,setBookingDetails}=useContext(MovieContext);
     const [dummyData, setDummyData] = useState(null);
 
     //remove collon in offline
-    let newData= !data?.AxiosError ? data  : dummyData 
+    let newData= dummyData 
     useEffect(() => {
       setDummyData(MovieData?.results.find(item => item.id === parseInt(id)))
       // Check if data is available before updating context
-      if (data) {
+      if (dummyData) {
         setBookingDetails((prevDetails) => ({
           ...prevDetails,
           movieId: id,
-          movieName:newData?.title || newData?.name
+          movieName:dummyData?.title || dummyData?.name
         }));
       }
-    }, [data,setBookingDetails,newData,id]);
+    }, [dummyData,setBookingDetails,newData,id]);
   return (
     <div>
-       <Topimage data={newData} id={id} />
+       <Topimage data={dummyData} id={id} />
        <div className='date-filter-section'>
        <MovieDates/>
        <SearchBox />
