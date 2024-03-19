@@ -11,7 +11,7 @@ import dummyCredits from "./Cast.json";
 const Details = () => {
   const { id } = useParams();
   // const { data, loading } = useFetch(`/movie/${id}/videos`);
-  // const { data: credits, loading: creditsLoading } = useFetch(`/movie/${id}/credits`);
+  const { data: credits, loading: creditsLoading } = useFetch(`/movie/${id}/credits`);
 
   const [loading,setLoading]=useState(true)
   useEffect(()=>{
@@ -29,9 +29,11 @@ const Details = () => {
       {/* <VideoSection data={data ? dummyVideo : data} loading={loading} />  //remove collon in offline */}
       <DetailsBanner
         video={dummyVideo.results[0]}
-        crew={ dummyCredits?.crew }
+      //  crew={credits?.crew || dummyCredits?.crew }
+       crew={ dummyCredits?.crew }
       />
       <Cast data={ dummyCredits?.cast} loading={loading} />
+      {/* <Cast data={credits?.cast || dummyCredits?.cast} loading={loading} /> */}
       <VideoSection data={dummyVideo } loading={loading} />  //remove collon in offline
     </div>
   );

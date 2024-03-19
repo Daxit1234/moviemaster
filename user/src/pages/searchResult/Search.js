@@ -1,39 +1,76 @@
 import "./SearchResult.css"
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchDataFromApi } from "../../utils/api";
 import ContentWrapper from "../../components/contentWrapper/ContentWrapper";
 import MovieCard from "../../components/movieCard/MovieCard";
 import noResults from "../../assets/no-results.png";
 import Img from "../../components/lazyLoading/Img";
 import PosterFallback from "../../assets/no-poster.png";
-import searchData from "../home/Moviedata.json"
+
 
 function SearchResult() {
   const url = "https://image.tmdb.org/t/p/original";
-  const [loding, setLoading] = useState(true)
-  const [searchResults, setSearchResults] = useState([]);
+  const [data, setData] = useState(null)
+  const [pageNum, setPageNum] = useState(1)
+  const [loding, setLoading] = useState(false)
   const { query } = useParams()
 
-  useEffect(()=>{
-      // Filter data based on search term
-      const results = searchData.results.filter(movie =>
-        movie.title.toLowerCase().includes(query?.toLowerCase())
-      );
-      setSearchResults(results);
-  },[query])
-  console.log(searchResults)
+  const fetchInitialData = () => {
+    setLoading(true);
+    fetchDataFromApi(`/search/multi?query=${query}&page=${pageNum}`).then(
+      (res) => {
+        setData(res);
+        setPageNum((prev) => prev + 1);
+        setLoading(false);
+      }
+    );
+  };
+  const fetchNextPageData = () => {
+    fetchDataFromApi(`/search/multi?query=${query}&page=${pageNum}`).then(
+      (res) => {
+        if (data?.results) {
+          setData({
+            ...data,
+            results: [...data?.results, ...res.results],
+          });
+        } else {
+          setData(res);
+        }
+        setPageNum((prev) => prev + 1);
+      }
+    );
+  };
+
+  let Spinner=()=>{
+    return(
+      <div class="loader"><h1 className="text-light">loading...</h1></div>
+    )
+  }
+
+  useEffect(() => {
+    setPageNum(1);
+    fetchInitialData();
+  },[query]);
+  console.log(data)
   return (
     <div className="searchResultsPage">
-      {loding ? (
+      {!loding || !data?.AxiosError ? (
         <ContentWrapper>
-          {searchResults?.length > 0 ? (
+          {data?.results?.length > 0 ? (
             <>
               <div className="pageTitle">
-                {`Search ${searchResults.length > 1 ? "results" : "result"} of ${query}`}
+                {`Search ${data?.total_results > 1 ? "results" : "result"} of ${query}`}
               </div>
-              <div className="row">
-
-                {searchResults?.map((items)=>{
+              <InfiniteScroll
+                  className="row"
+                  dataLength={data.results.length || []}
+                  next={fetchNextPageData}
+                  hasMore={pageNum <= data?.total_pages}
+                  loader={<Spinner/>}
+              >
+                {data?.results.map((items)=>{
                   if(items.media_type==="person") return;
                   const poster=items.poster_path ?
                   url+ items.poster_path
@@ -52,7 +89,7 @@ function SearchResult() {
                   </div>
                   )
                 })}
-              </div>
+              </InfiniteScroll>
             </>
           ) :
           <span className="resultNotFound">
@@ -64,7 +101,7 @@ function SearchResult() {
         </ContentWrapper>
       ) :
       <>
-        
+        <Spinner initial={true} />
       </>
       }
     </div>

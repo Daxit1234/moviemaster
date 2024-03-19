@@ -191,7 +191,7 @@ const LoginSingup = () => {
               !forgetPass ?(
                 <>
                 <div class="input-field">
-              <input type="text" name="email" required spellcheck="false" onChange={handleonchangeLogin}/>
+              <input type="email" name="email" required spellcheck="false" onChange={handleonchangeLogin}/>
               <label>Enter email</label>
               <span className="icon ">
                 <i className="fa-solid fa-envelope text-light"></i>
@@ -217,7 +217,7 @@ const LoginSingup = () => {
                   <>
                   <div onClick={()=> {setForgetPass(false);setOtpBoxForget(false)}} className="text-light " style={{position:"absolute",top:"0px"}}>Back</div>
                     <div class="input-field">
-                  <input type="text" name="email" required spellcheck="false" onChange={handleonchangeLogin}/>
+                  <input type="email" name="email" required spellcheck="false" onChange={handleonchangeLogin}/>
                   <label>Enter email</label>
                   <span className="icon ">
                     <i className="fa-solid fa-envelope text-light"></i>

@@ -15,7 +15,7 @@ function Dashboard() {
    }
     
     getShows()
-    getCinemas()
+    getCinemas(1,5,"")
     getBooking()
   },[])
 

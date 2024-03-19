@@ -43,6 +43,9 @@
    width: 50px;
     transform: scale(3);
   }
+  .text-primary{
+  
+  }
   @media only screen and (max-width: 640px) {
     .imglogo{
         /* position: absolute; */

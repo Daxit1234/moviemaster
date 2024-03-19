@@ -57,7 +57,7 @@ const Payment = () => {
             <form className="form-box" onSubmit={handleSubmit}>
               <div className="input-field">
                 <input
-                  type="text"
+                  type="email"
                   name="email"
                   required
                   spellCheck="false"

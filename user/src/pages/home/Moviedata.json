@@ -6,23 +6,67 @@
     "results": [
         {
             "adult": false,
-            "backdrop_path": "/bQS43HSLZzMjZkcHJz4fGc7fNdz.jpg",
+            "backdrop_path": "/yppwYxAtvlDIu5FD6CtScyPP5Fa.jpg",
+            "id": 228554,
+            "title": "Shaitan",
+            "original_language": "te",
+            "original_name": "సైతాన్",
+            "overview": "After attempting an attack on the Home Minister, Baali is on the run. What happens when he chooses the path of violence?...",
+            "poster_path": "/ujA4ZWKrtMlbpzP6r2FVeoUl65h.jpg",
+            "media_type": "tv",
             "genre_ids": [
-                878,
-                10749,
-                35
+                80,
+                18
             ],
-            "id": 792307,
-            "original_language": "en",
-            "original_title": "Poor Things",
-            "overview": "Brought back to life by an unorthodox scientist, a young woman runs off with a debauched lawyer on a whirlwind adventure across the continents. Free from the prejudices of her times, she grows steadfast in her purpose to stand for equality and liberation.",
-            "popularity": 1968.226,
-            "poster_path": "/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg",
-            "release_date": "2023-12-07",
-            "title": "Poor Things",
+            "popularity": 13.15,
+            "first_air_date": "2023-06-15",
+            "vote_average": 6.7,
+            "vote_count": 3,
+            "origin_country": [
+                "IN"
+            ]
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/k8qXhC9jymsMTaDPzU2l3pnDznC.jpg",
+            "id": 899718,
+            "title": "Yodha",
+            "original_language": "hi",
+            "original_title": "योद्धा",
+            "overview": "After terrorists hijack a passenger plane, an off-duty soldier aboard devises a strategy to defeat the hijackers and ensure the passengers' survival when the engine fails.",
+            "poster_path": "/fqBoeTYdYjUTDmSlaOIyBjphPsg.jpg",
+            "media_type": "movie",
+            "genre_ids": [
+                28,
+                12,
+                53
+            ],
+            "popularity": 22.07,
+            "release_date": "2024-03-15",
             "video": false,
-            "vote_average": 7.902,
-            "vote_count": 2186
+            "vote_average": 7,
+            "vote_count": 1
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/tExscftlsu5gxID7hZ1NNZLjvTJ.jpg",
+            "id": 137646,
+            "title": "Animal",
+            "original_language": "en",
+            "original_name": "Animal",
+            "overview": "This immersive series follows the world's most magnificent creatures, capturing never-before-seen moments from the heartwarming to the outrageous.",
+            "poster_path": "/dTUzqX7Ude2JskIBQVgldRLEaaS.jpg",
+            "media_type": "tv",
+            "genre_ids": [
+                99
+            ],
+            "popularity": 21.287,
+            "first_air_date": "2021-11-10",
+            "vote_average": 8.172,
+            "vote_count": 29,
+            "origin_country": [
+                "GB"
+            ]
         },
         {
             "adult": false,
@@ -283,25 +327,6 @@
             "video": false,
             "vote_average": 7.787,
             "vote_count": 10722
-        },
-        {
-            "adult": false,
-            "backdrop_path": "/nTPFkLUARmo1bYHfkfdNpRKgEOs.jpg",
-            "genre_ids": [
-                35,
-                10749
-            ],
-            "id": 1072790,
-            "original_language": "en",
-            "original_title": "Anyone But You",
-            "overview": "After an amazing first date, Bea and Ben’s fiery attraction turns ice cold — until they find themselves unexpectedly reunited at a destination wedding in Australia. So they do what any two mature adults would do: pretend to be a couple.",
-            "popularity": 676.392,
-            "poster_path": "/5qHoazZiaLe7oFBok7XlUhg96f2.jpg",
-            "release_date": "2023-12-21",
-            "title": "Anyone But You",
-            "video": false,
-            "vote_average": 7.034,
-            "vote_count": 963
         },
         {
             "adult": false,

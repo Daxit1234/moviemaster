@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Header.css";
 import logo from "../../assets/headerLogo-removebg-preview.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Header() {
   const [login,setLogin]=useState(false)
+  let location=useLocation();
+ console.log(location.pathname)
   useEffect(()=>{
     if (localStorage.getItem("userData")) {
       setLogin(true)
@@ -30,25 +32,25 @@ function Header() {
           </button>
           <div className="collapse navbar-collapse" id="collapsibleNavbar">
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link className="nav-link" to="/">
+              <li className="nav-item ">
+                <Link className={`nav-link ${location.pathname=="/" || location.pathname.slice(0,8)=="/details" || location.pathname.slice(0,7)=="/cinema" || location.pathname.slice(0,7)=="/food" || location.pathname.slice(0,8)=="/payment" || location.pathname.slice(0,6)=="/seats" ? "text-primary" :""}`} to="/">
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/about">
+                <Link className={`nav-link ${location.pathname=="/about" && "text-primary"}`} to="/about">
                   About
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/contact">
+                <Link className={`nav-link ${location.pathname=="/contact" && "text-primary"}`} to="/contact">
                   Contact
                 </Link>
               </li>
               {!login ? (
                 <div>
                   <li className="nav-item">
-                    <Link className="nav-link" to="/login">
+                    <Link className={`nav-link ${location.pathname=="/login"&& "text-primary"}`} to="/login">
                       Login
                     </Link>
                   </li>
@@ -56,13 +58,13 @@ function Header() {
               ) : (
                 <>
                 <li className="nav-item">
-                <Link className="nav-link" to="/bookings">
+                <Link className={`nav-link ${location.pathname=="/bookings"&& "text-primary"}`} to="/bookings">
                   Bookings
                 </Link>
               </li>
                 <div>
                   <li className="nav-item">
-                    <Link onClick={logout} className="nav-link" to="/login">
+                    <Link onClick={logout} className={`nav-link ${location.pathname=="/login"&& "text-primary"}`} to="/login">
                       Log Out
                     </Link>
                   </li>

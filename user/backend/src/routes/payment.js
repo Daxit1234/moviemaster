@@ -2,6 +2,39 @@ const Payment = require("../models/payment");
 const express = require("express");
 const router = express.Router();
 
+const nodemailer = require("nodemailer");
+
+let sendEmailForComfirm = (userEmail) => {
+
+  // Create a Nodemailer transporter
+  const transporter = nodemailer.createTransport({
+    service: "gmail", // You can change this to your email service provider
+    auth: {
+      user: "dakshitgodhani103@gmail.com", // Your email address
+      pass: "uerv dnou gtjz wuut", // Your email password or app-specific password
+    },
+  });
+
+  // Function to send OTP via email
+  const sendmail = (email) => {
+    const mailOptions = {
+      from: "dakshitgodhani103@gmail.com", // Your email address
+      to: email,
+      subject: "Ticket Comfirmation",
+      text: `Your Payment are successfull , Ticket are Comfirm Thanks You`,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error(error);
+      } else {
+        console.log("Email sent: " + info.response);
+      }
+    });
+  };
+  sendmail(userEmail);
+};
+
 // Require the Twilio module and create a Twilio client
 const accountSid = 'AC053d6e77b2a34371e8645d7958ecda80';
 const authToken = 'b012b6ab967f4a0b1887bcfb07f010fc';
@@ -21,11 +54,13 @@ function sendSMS(to, message) {
 }
 
 
+
 // ROUTE 1: add payment using POST http://localhost:8080/payment/addpayment
 router.post("/addpayment", async (req, res) => {
   try {
     const payment = new Payment(req.body);
     sendSMS("+91"+payment.contactNo, `your Payment are successfull , Payment id is ${payment.paymentId}`);
+    sendEmailForComfirm(payment.email)
     await payment.save();
     res.status(201).send(payment);
   } catch (e) {
