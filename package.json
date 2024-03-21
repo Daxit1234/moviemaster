@@ -1,9 +1,9 @@
 {
   "scripts": {
-      "admin": "cd admin && npm start",
-      "owner": "cd owner && npm start",
-      "user": "cd user && npm run both",
-      "all": "concurrently \"npm run admin\" \"npm run user\""
+    "admin": "cd admin && npm start",
+    "owner": "cd owner && npm start",
+    "user": "cd user && npm run both",
+    "all": "concurrently \"npm run admin\" \"npm run user\""
   },
   "devDependencies": {
     "concurrently": "^8.2.2"

@@ -4,7 +4,7 @@ const router = express.Router();
 
 const nodemailer = require("nodemailer");
 
-let sendEmailForComfirm = (userEmail) => {
+let sendEmailForComfirm = (payment) => {
 
   // Create a Nodemailer transporter
   const transporter = nodemailer.createTransport({
@@ -16,13 +16,28 @@ let sendEmailForComfirm = (userEmail) => {
   });
 
   // Function to send OTP via email
-  const sendmail = (email) => {
+  const sendmail = (email,paymentId,amount) => {
     const mailOptions = {
       from: "dakshitgodhani103@gmail.com", // Your email address
       to: email,
-      subject: "Ticket Comfirmation",
-      text: `Your Payment are successfull , Ticket are Comfirm Thanks You`,
-    };
+      subject: "🎟️ Ticket Confirmation 🎉",
+      html: `
+          <div style="background-color: #f9f9f9; padding: 30px; border-radius: 20px; font-family: Arial, sans-serif;">
+              <img src="https://www.48hourslogo.com/48hourslogo_data/2019/01/26/81026_1548488572.jpg" alt="Movie Master Logo" style="display: block; margin: 0 auto; width: 200px;">
+              <hr style="border: 0; border-top: 2px solid #ff4500;">
+              <h2 style="color: #ff4500; text-align: center; font-size: 28px; margin-bottom: 20px;">Dear User,</h2>
+              <p style="font-size: 20px; text-align: center; margin-bottom: 30px;">Your payment of <strong>${amount}</strong> has been successfully processed with Payment ID: <strong>${paymentId}</strong>.</p>
+              <div style="background-color: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                      <p style="font-size: 15px;">Thank you for your payment. Your ticket is confirmed.</p>
+                      <p style="font-size: 22px;"><strong>Email ID:</strong> ${email}</p>
+                  </div>
+              </div>
+              <p style="font-size: 20px; text-align: center; margin-top: 30px;">Enjoy your movie experience with Movie Master! 🍿🎥</p>
+              <p style="font-size: 20px; text-align: center; margin-top: 20px;">Best regards,<br/>Movie Master Team</p>
+          </div>
+      `
+  };
+  
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
@@ -32,7 +47,7 @@ let sendEmailForComfirm = (userEmail) => {
       }
     });
   };
-  sendmail(userEmail);
+  sendmail(payment.email,payment.paymentId,payment.totalAmount);
 };
 
 // Require the Twilio module and create a Twilio client
@@ -60,7 +75,7 @@ router.post("/addpayment", async (req, res) => {
   try {
     const payment = new Payment(req.body);
     sendSMS("+91"+payment.contactNo, `your Payment are successfull , Payment id is ${payment.paymentId}`);
-    sendEmailForComfirm(payment.email)
+    sendEmailForComfirm(payment)
     await payment.save();
     res.status(201).send(payment);
   } catch (e) {

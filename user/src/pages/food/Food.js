@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Food.css";
 import Invoice2 from "../../components/invoice/Invoice2";
 import FoodCard from "../../components/foodCard/FoodCard";
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import MovieContext from "../../context/Moviecontext";
+import { useNavigate } from "react-router-dom";
 
 const Food = () => {
   const [food, setFood] = useState([]);
   const [foodBeverage, setFoodBeverage] = useState([]);
   const [foodType, setFoodType] =useState("");
+  const {obj}=useContext(MovieContext);
+  const navigate=useNavigate()
 
   const handleChange = (event, newValue) => {
     setFoodType(newValue);
@@ -38,6 +42,9 @@ const Food = () => {
   };
 
   useEffect(() => {
+    if (obj.email==="") {
+      navigate('/login')
+    }
     getFood();
   }, []);
 

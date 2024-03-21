@@ -4,7 +4,7 @@ import MovieContext from "../../context/Moviecontext";
 import { useNavigate, useParams } from 'react-router-dom';
 
 function Seats() {
-  const {bookingDetails,setBookingDetails,bookedSeats}=useContext(MovieContext);
+  const {bookingDetails,setBookingDetails,bookedSeats,obj}=useContext(MovieContext);
   const [status, setStatus] = useState(false);
   const [selectedSeats, setSelectedSeats] = useState([]);
   let navigate=useNavigate()
@@ -62,6 +62,9 @@ function Seats() {
   ];
 
   useEffect(() => {
+    if (obj.email==="") {
+      navigate('/login')
+    }
     const spans = document.getElementsByTagName("span");
     for (let i = 0; i < spans.length; i++) {
       if (

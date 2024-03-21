@@ -23,9 +23,23 @@ let sendEmailForOtp = (userEmail) => {
     const mailOptions = {
       from: "dakshitgodhani103@gmail.com", // Your email address
       to: email,
-      subject: "Your One-Time Password (OTP)",
-      text: `Your OTP is: ${otp}`,
-    };
+      subject: "🔒 Your One-Time Password (OTP) 🔑",
+      html: `
+          <div style="background-color: #f9f9f9; padding: 30px; border-radius: 20px; font-family: Arial, sans-serif;">
+              <img src="https://www.48hourslogo.com/48hourslogo_data/2019/01/26/81026_1548488572.jpg" alt="Lock Icon" style="display: block; margin: 0 auto; width: 100px;">
+              <hr style="border: 0; border-top: 2px solid #ff4500;">
+              <h2 style="color: #ff4500; text-align: center; font-size: 14px; margin-bottom: 20px;">Your One-Time Password (OTP)</h2>
+              <p style="font-size: 20px; text-align: center; margin-bottom: 30px;">Use the following OTP to authenticate your account:</p>
+              <div style="background-color: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center; padding: 20px;">
+                  <h3 style="color: #ff4500; font-size: 24px; margin-bottom: 20px;">Your OTP is:</h3>
+                  <p style="font-size: 28px; font-weight: bold; color: #333; margin-bottom: 20px;">${otp}</p>
+              </div>
+              <p style="font-size: 24px; text-align: center; margin-top: 30px;">Keep your account secure! 🔒</p>
+              <p style="font-size: 20px; text-align: center; margin-top: 20px;">Best regards,<br/>Movie Master Team</p>
+          </div>
+      `
+  };
+  
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {

@@ -2,12 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import MovieContext from "../../context/Moviecontext";
 import BookingCard from "../../components/BookingCard/BookingCard";
+import { useNavigate } from "react-router-dom";
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([]); // Initialize as an empty array
   const { obj } = useContext(MovieContext);
+  const navigate=useNavigate()
+
 
   useEffect(() => {
+    if (obj.email==="") {
+      navigate('/login')
+    }
     const fetchData = async () => {
       try {
         const response = await fetch(

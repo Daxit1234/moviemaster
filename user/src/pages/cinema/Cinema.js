@@ -1,5 +1,5 @@
 import React,{useContext ,useEffect, useState} from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useFetch from '../../hook/useFetch';
 import Topimage from './topImage/Topimage';
 import MovieDates from './dates/MovieDates';
@@ -12,12 +12,17 @@ import MovieData from "../home/Moviedata.json"
 
 const Cinema = () => {
     const { id } = useParams();
-    const {bookingDetails,setBookingDetails}=useContext(MovieContext);
+    const {bookingDetails,setBookingDetails,obj}=useContext(MovieContext);
     const [dummyData, setDummyData] = useState(null);
+    const navigate=useNavigate()
 
     //remove collon in offline
     let newData= dummyData 
     useEffect(() => {
+      if (obj.email==="") {
+        navigate('/login')
+        window.location.reload()
+      }
       setDummyData(MovieData?.results.find(item => item.id === parseInt(id)))
       // Check if data is available before updating context
       if (dummyData) {

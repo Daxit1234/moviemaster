@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, {  useEffect, useState } from "react";
 import "./LoginSingup.css";
 import { Link, useNavigate } from "react-router-dom";
 import cinemaImage from "../../assets/cinema.jpg";
@@ -24,6 +24,7 @@ const LoginSingup = () => {
   const [verification,setVerification]=useState(false);
   const navigate=useNavigate();
  
+
   const handlesubmitSingup = async (e) => {
     e.preventDefault();
     const { name, email, password, cpassword } = usersingup;

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Payment.css";
 // import Upi from "../../components/payment/upi/Upi";
 import Invoice from "../../components/invoice/Invoice";
@@ -12,6 +12,12 @@ const Payment = () => {
   const navigate=useNavigate()
   const {booking ,bookingDetails,obj}=useContext(MovieContext);
   const [payment, setPayment] = useState({ email: "", contactNo: null, paymentId: "" ,totalAmount:null});
+
+  useEffect(() => {
+    if (obj.email==="") {
+      navigate('/login')
+    }
+  }, []);
 
   const handleVisible = () => {
     setInvoiceVisible(!invoiceVisible);
