@@ -156,9 +156,7 @@ const LoginSingup = () => {
         } else {
           setLoginError("");
           alert(json.success);
-          setVerification(false);
-          setOtpBoxForget(false)
-          setForgetPass(false);
+          window.location.reload(); 
         }
       } catch (error) {
         console.error("An error occurred:", error);

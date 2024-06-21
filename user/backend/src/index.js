@@ -19,6 +19,7 @@ app.get("/",(req,res)=>{
     res.send("daxit godhani")
 })
 app.use(express.json());
+
 app.use('/cinemas',cinemaRouter);
 app.use('/users',userRouter);
 app.use('/show', showtimeRouter);

@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
+    "bwip-js": "^4.3.2",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "email-existence": "^0.1.6",
@@ -19,8 +20,9 @@
     "mongoos": "^0.0.1-security",
     "mongoose": "^7.4.0",
     "multer": "^1.4.5-lts.1",
-    "nodemailer": "^6.9.7",
+    "nodemailer": "^6.9.13",
     "nodemon": "^3.0.1",
+    "pdfkit": "^0.14.0",
     "qrcode": "^1.5.3",
     "stripe": "^14.19.0",
     "twilio": "^4.23.0"
